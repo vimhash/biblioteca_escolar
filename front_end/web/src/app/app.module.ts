@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
-import { HomeComponent } from './main/home/home.component';
 import { InstituteComponent } from './main/admin/institute/institute.component';
 import { CategoriesComponent } from './main/admin/categories/categories.component';
 import { AdminsComponent } from './main/user_registration/admins/admins.component';
+import { StudentsComponent } from './main/user_registration/students/students.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +18,10 @@ import { AdminsComponent } from './main/user_registration/admins/admins.componen
     SidebarComponent,
     HeaderComponent,
     MainComponent,
-    HomeComponent,
     InstituteComponent,
     CategoriesComponent,
-    AdminsComponent
+    AdminsComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,

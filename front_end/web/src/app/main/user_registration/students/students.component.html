@@ -1,11 +1,11 @@
 <body class="component_position">
     <main>
-        <h1 class="text-4xl">Sistema Bibliotecario <span class="text-xl"> Administración - Administradores</span></h1>
+        <h1 class="text-4xl">Sistema Bibliotecario <span class="text-xl"> Administración - Estudiantes</span></h1>
         
         <hr>
 
-        <p>Bienvenido a la sección donde se encuentra el listado de los administradores, puedes desactivar la 
-            cuenta de cualquier administrador o eliminar los datos si no hay préstamos asociados a la cuenta </p>
+        <p>Bienvenido a la sección donde se encuentra el listado de estudiantes de la institución, podrás buscar 
+            los estudiantes por nombre. Puedes actualizar o eliminar los datos del estudiante.</p>
 
         <div class="addData">
             <a type="button" onclick="document.getElementById('id04').style.display='block'">
@@ -15,7 +15,7 @@
         
         <!-- TABLA Administradores -->
         <div class="table-wrapper">
-            <h1>CUENTAS DE ADMINISTRADORES</h1>
+            <h1>LISTADO DE ESTUDIANTES</h1>
             <table class="fl-table">
                 <thead *ngFor="let item of table_header">
                     <th>{{ item.persona_identificacion }}</th>
@@ -56,9 +56,9 @@
                     </header>
         
                     <div>
-                        <h1>Nueva Categoria</h1>
-                        <form [formGroup]="adminsForm" autocomplete="off">
-                            <strong>Nombre de Categoria*</strong><br>
+                        <h1>Nuevo Estudiante</h1>
+                        <form [formGroup]="studentsForm" autocomplete="off">
+                            <strong>Nombre *</strong><br>
                             <input formControlName="categoria_nombre">
                             <br>
         
@@ -66,7 +66,7 @@
                                 <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                             </a>
                         </form>
-                        <span class="w3-display-bottomleft" *ngIf="adminsForm.controls['categoria_nombre'].errors?.required">* Campos Obligatorios</span>
+                        <span class="w3-display-bottomleft" *ngIf="studentsForm.controls['categoria_nombre'].errors?.required">* Campos Obligatorios</span>
                     </div>
                 </div>
             </div>
