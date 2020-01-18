@@ -1,16 +1,15 @@
 {
-  "name": "servidor",
+  "name": "back_end",
   "version": "1.0.0",
-  "description": "api REST node - express - knex",
+  "description": "API REST NodeJS - Express - Knex",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./instalacion/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Johao Nicolas Perlaza Zambrano",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.20.4",
     "pg": "^7.12.0"
