@@ -1,11 +1,11 @@
 <body class="component_position">
     <main>
-        <h1 class="text-4xl">Sistema Bibliotecario <span class="text-xl"> Administración - Proveedor</span></h1>
+        <h1 class="text-4xl">Sistema Bibliotecario <span class="text-xl"> Administración - Administradores</span></h1>
         
         <hr>
 
-        <p>Bienvenido a la sección para registrar un nuevo proveedor, debes de llenar todos los campos del 
-            siguiente formulario para poder registrar un proveedor </p>
+        <p>Bienvenido a la sección donde se encuentra el listado de los administradores, puedes desactivar la 
+            cuenta de cualquier administrador o eliminar los datos si no hay préstamos asociados a la cuenta </p>
 
         <div class="addData">
             <a type="button" onclick="document.getElementById('id04').style.display='block'">
@@ -13,29 +13,23 @@
             </a>
         </div>
         
-        <!-- TABLA Proveedores -->
+        <!-- TABLA Administradores -->
         <div class="table-wrapper">
-            <h1>Proveedores</h1>
+            <h1>CUENTAS DE ADMINISTRADORES</h1>
             <table class="fl-table">
                 <thead *ngFor="let item of table_header">
-                    <th>{{item.idcliente}}</th>
-                    <th>{{item.fecha}}</th>
-                    <th>{{item.idestado}}</th>
-                    <!-- <th></th> -->
+                    <th>{{ item.persona_identificacion }}</th>                    <th>{{item.tipo_identificacion}}</th>
+                    <th>{{ item.persona_nombre }}</th>                    <th>{{item.tipo_identificacion}}</th>
+                    <th>{{ item.persona_email }}</th>
                     <th></th>
                     <th></th>
                 </thead>
         
                 <tbody>
                     <tr *ngFor="let item of respuestaFacturas">
-                        <td>{{ item.idcliente }}</td>
-                        <td>{{ item.fecha }}</td>
-                        <th>{{ item.idestado }}</th>
-                        <!-- <td>
-                            <a type="button" (click)="getDatabyID(item.id)">
-                                <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
-                            </a>
-                        </td> -->
+                        <td>{{ item.persona_identificacion }}</td>
+                        <td>{{ item.persona_nombre }}</td>
+                        <td>{{ item.persona_email }}</td>
                         <td>
                             <a type="button" href="/resumen_facturacion" (click)="getDatabyID(item.id); getDataClientebyID(item.id);">
                                 <img src="../../assets/details.ico" alt="details-img" height="18" width="18">
@@ -50,9 +44,8 @@
                 </tbody>
             </table>
         </div>
-        <!-- TABLA Proveedores -->
         
-        <!-- MODAL Proveedor -->
+        <!-- MODAL Administradores -->
         <div>
             <div id="id04" class="w3-modal">
                 <div class="w3-modal-content">
@@ -60,27 +53,23 @@
                         <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">
                             <img src="../../assets/close-img.png" alt="edit-img" height="18" width="18">
                         </span>
-                        <!-- <h2>Registro Cliente</h2> -->
                     </header>
         
                     <div>
-                        <h1>Nuevo Factura</h1>
-                        <form [formGroup]="proveedorForm" autocomplete="off">
-                            <strong>Cliente *</strong><br>
-                            <select formControlName="idcliente">
-                                <option *ngFor="let item of respuestaClientes" value={{item.id}}>{{item.apellido}} {{item.nombre}}</option>
-                            </select>
+                        <h1>Nueva Categoria</h1>
+                        <form [formGroup]="adminsForm" autocomplete="off">
+                            <strong>Nombre de Categoria*</strong><br>
+                            <input formControlName="categoria_nombre">
                             <br>
         
                             <a type="button" (click)="postDataFactura()" class="w3-display-bottomright">
                                 <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                             </a>
                         </form>
-                        <span class="w3-display-bottomleft" *ngIf="facturaForm.controls['idcliente'].errors?.required">* Campos Obligatorios</span>
+                        <span class="w3-display-bottomleft" *ngIf="adminsForm.controls['categoria_nombre'].errors?.required">* Campos Obligatorios</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- MODAL Proveedor -->
     </main>
 </body>

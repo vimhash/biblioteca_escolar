@@ -14,18 +14,19 @@ export class CategoriesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.formularioCategoria();
+
     this.table_header = [
       {
-        fecha: 'Fecha',
-        idcliente:'Cliente',
-        idestado: 'Estado'
+        categoria_id: 'Nº',
+        categoria_nombre: 'Categoria'
       }
-    ]   
+    ]
   }
 
-  formularioProveedor(){
+  formularioCategoria(){
     this.categoriasForm = this.formBuilder.group({
-      idcliente:['',[Validators.required]]
+      categoria_nombre: [ '', [ Validators.required ] ]
     })
   }
 }
