@@ -10,6 +10,7 @@ import { MainComponent } from './main/main.component';
 import { HomeComponent } from './main/home/home.component';
 import { InstituteComponent } from './main/admin/institute/institute.component';
 import { ProviderComponent } from './main/admin/provider/provider.component';
+import { CategoriesComponent } from './main/admin/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProviderComponent } from './main/admin/provider/provider.component';
     MainComponent,
     HomeComponent,
     InstituteComponent,
-    ProviderComponent
+    ProviderComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
