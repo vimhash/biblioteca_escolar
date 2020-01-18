@@ -5,6 +5,8 @@ import { CategoriesComponent } from './main/admin/categories/categories.componen
 import { AdminsComponent } from './main/user_registration/admins/admins.component';
 import { StudentsComponent } from './main/user_registration/students/students.component';
 import { MainComponent } from './main/main.component';
+import { NewBookComponent } from './main/books_catalogue/new-book/new-book.component';
+import { CatalogueComponent } from './main/books_catalogue/catalogue/catalogue.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'admins', component: AdminsComponent },
   { path: 'students', component: StudentsComponent },
+  { path: 'new_book', component: NewBookComponent },
+  { path: 'catalogue', component: CatalogueComponent },
 ];
 
 @NgModule({

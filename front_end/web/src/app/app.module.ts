@@ -11,6 +11,8 @@ import { InstituteComponent } from './main/admin/institute/institute.component';
 import { CategoriesComponent } from './main/admin/categories/categories.component';
 import { AdminsComponent } from './main/user_registration/admins/admins.component';
 import { StudentsComponent } from './main/user_registration/students/students.component';
+import { NewBookComponent } from './main/books_catalogue/new-book/new-book.component';
+import { CatalogueComponent } from './main/books_catalogue/catalogue/catalogue.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { StudentsComponent } from './main/user_registration/students/students.co
     InstituteComponent,
     CategoriesComponent,
     AdminsComponent,
-    StudentsComponent
+    StudentsComponent,
+    NewBookComponent,
+    CatalogueComponent
   ],
   imports: [
     BrowserModule,
