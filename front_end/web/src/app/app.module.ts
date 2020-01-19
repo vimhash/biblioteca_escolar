@@ -13,6 +13,7 @@ import { AdminsComponent } from './main/user_registration/admins/admins.componen
 import { StudentsComponent } from './main/user_registration/students/students.component';
 import { NewBookComponent } from './main/books_catalogue/new-book/new-book.component';
 import { CatalogueComponent } from './main/books_catalogue/catalogue/catalogue.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CatalogueComponent } from './main/books_catalogue/catalogue/catalogue.c
     AdminsComponent,
     StudentsComponent,
     NewBookComponent,
-    CatalogueComponent
+    CatalogueComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
