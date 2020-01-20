@@ -5,11 +5,11 @@
     class="md:flex-col md:items-stretch md:min-h-full md:flex-no-wrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
   >
     <!-- Titulo -->
-    <a
-      class="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
-      href="javascript:void(0)"
-    >
-      Biblioteca Escolar
+    <div class="flex items-center flex-no-shrink text-white mr-6 mx-64">
+
+    </div>
+    <a class="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0">
+      <span class="font-semibold text-xl tracking-tight text-black">Sistema Bibliotecario</span>
     </a>
     <!-- Primera Parte -->
     <div
@@ -28,29 +28,33 @@
         </li>
         <li class="items-center">
           <a class="text-gray-800 text-xs uppercase py-3 font-bold block"
-            ><i class="fas fa-newspaper text-gray-500 mr-2 text-sm"></i>
+            ><i class="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
             Administracion
-            <ul class="sub-nav">
+            <ul>
               <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/admin/instituto">Instituto</a></li>
               <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/admin/categoria">Categoria</a></li>
             </ul>
           </a>
         </li>
         <li class="items-center">
-          <a
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-            href="#"
-            ><i class="fas fa-user-circle text-gray-500 mr-2 text-sm"></i>
-            Registro de usuarios</a
-          >
+          <a class="text-gray-800 text-xs uppercase py-3 font-bold block"
+            ><i class="fas fa-user-circle text-gray-900 mr-2 text-sm"></i>
+            Registro de usuarios
+            <ul>
+              <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/user_registration/admins">Administradores</a></li>
+              <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/user_registration/students">Estudiantes</a></li>
+            </ul>
+          </a>
         </li>
         <li class="items-center">
-          <a
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-            href="#/login"
-            ><i class="fas fa-fingerprint text-gray-500 mr-2 text-sm"></i>
-            Libros y catálogos</a
-          >
+          <a class="text-gray-800 text-xs uppercase py-3 font-bold block"
+            ><i class="fas fa-fingerprint text-gray-900 mr-2 text-sm"></i>
+            Libros y catálogos
+            <ul>
+              <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/books_catalogue/new-book">Nuevo Libro</a></li>
+              <li class="mx-8 hover:text-gray-600"><i class="fas fa-arrow-circle-right"></i><a routerLink="/books_catalogue/catalogue">Catalogo</a></li>
+            </ul>
+          </a>
         </li>
         <!-- <li class="items-center">
           <a
@@ -63,10 +67,8 @@
           >
         </li> -->
         <li class="items-center">
-          <a
-            class="text-gray-400 text-xs uppercase py-3 font-bold block"
-            href="#pablo"
-            ><i class="fas fa-tools text-gray-400 mr-2 text-sm"></i>
+          <a class="text-gray-900 text-xs uppercase py-3 font-bold block"
+            ><i class="fas fa-tools text-gray-900 mr-2 text-sm"></i>
             Configuraciones</a
           >
         </li>
