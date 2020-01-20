@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'admin/categoria', component: CategoriesComponent },
-  { path: 'admin/instituto', component: InstituteComponent },
+  { path: 'admin/institucion', component: InstituteComponent },
   { path: 'books_catalogue/new-book', component: NewBookComponent },
   { path: 'books_catalogue/catalogue', component: CatalogueComponent },
   { path: 'user_registration/admins', component: AdminsComponent },
