@@ -1,9 +1,7 @@
 import React from 'react';
-import Sidebar from "../components/sidebar";
 
 const Home = () => {
   return (
-    <Sidebar />,
     <body class="component_position">
         <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
             <ol class="list-none p-0 inline-flex">
