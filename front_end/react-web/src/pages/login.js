@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -34,7 +35,7 @@ const Login = () => {
                 </div>
                 <div class="mb-6 text-center">
                   <button class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                    Ingresar
+                    <Link to="/home">{'Ingresar'}</Link>
                   </button>
                 </div>
                 <hr class="mb-6 border-t" />
