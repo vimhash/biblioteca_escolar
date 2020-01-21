@@ -2,15 +2,6 @@ import React from'react';
 import Sidebar from './components/sidebar';
 import Home from './pages/home';
 import Header from './components/header';
-import Login from './pages/login';
-
-const Ingreso = () => {
-  return (
-    <div>
-      <Login />
-    </div>
-  );
-}
 
 const App = () => {
   return (
@@ -22,4 +13,4 @@ const App = () => {
   );
 }
 
-export default Ingreso;
+export default App;

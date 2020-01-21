@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import './styles/tailwind.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// import App from './App';
 import Login from './pages/login';
-import Home from './pages/home';
+import App from './App';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
   <Router>
     <Route path="/" component={ Login } />
-    <Route path="/home" component={ Home } />
+    <Route path="/home" component={ App } />
   </Router>,
 document.getElementById('root')
 );
