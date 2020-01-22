@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from'react';
+import { Link } from "react-router-dom";
 
 const Header = () => (
     <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
@@ -16,7 +17,11 @@ const Header = () => (
                 </a>
             </div>
             <div>
-                <a href="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-blue hover:border-transparent hover:text-teal hover:bg-red mt-4 lg:mt-0">Salir</a>
+                <Link to="/">
+                    <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                      Salir
+                    </button>
+                </Link>
             </div>
         </div>
     </nav>

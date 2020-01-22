@@ -5,11 +5,7 @@ import Header from './components/header';
 
 const App = () => {
   return (
-    <div>
-      <Sidebar />,
-      <Header />,
-      <Home />
-    </div>
+    
   );
 }
 
