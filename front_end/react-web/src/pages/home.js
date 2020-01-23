@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { Link } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 
@@ -10,14 +9,6 @@ const Home = () => {
         <Sidebar />,
         <Header />,
         <div className="component_position">
-            <nav className="text-black font-bold my-8" aria-label="Breadcrumb">
-                <ol className="list-none p-0 inline-flex">
-                <li className="flex items-center">
-                    <Link to="/home">Inicio</Link>
-                </li>
-                </ol>
-            </nav>
-
             <main className="my-8">
                 <hr />
                 <div className="flex mb-4 h-56">
