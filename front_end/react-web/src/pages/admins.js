@@ -30,7 +30,7 @@ class Admin extends Component {
                 <Header />,
                 <div className="component_position">
                     <main className="my-8">
-                        <p className="text-center">Bienvenido a la sección para ver a los administradores.</p>
+                        <p className="text-center">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
 
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">

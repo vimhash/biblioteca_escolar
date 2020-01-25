@@ -81,10 +81,33 @@ let deleteDatos = (req, res) => {
     })
 }
 
+let login = (req,res) =>{
+    let tabla = 'persona';
+    let correo = req.body.correo;
+    let clave = req.body.clave;
+    let campo = req.query.campo;
+  
+    db.select(campo).from(tabla)
+      .then(resultado => {
+        resultado.forEach(element => {
+          if(element.persona_email == correo && element.persona_clave == clave){
+            res.status(200).json({
+              ok: true,
+              mensaje: "found"
+            })
+          }
+        })
+        return res.status(500).json({
+            ok: false,
+            mensaje: 'no-found'
+          })
+      })
+  }
 
 module.exports = {
     getDatos,
     postDatos,
     updateDatos,
-    deleteDatos
+    deleteDatos,
+    login
 }
