@@ -9,8 +9,8 @@ const Home = () => {
         <Sidebar />,
         <Header />,
         <div className="ml-64">
+            <hr />
             <main className="my-8">
-                <hr />
                 <div className="flex mb-4 h-56">
                     <div className="w-1/4 h-48 flex-1 text-center px-4 py-2 m-2">
                         <div className=" rounded  rounded-t-lg bg-pink-300 overflow-hidden shadow max-w-xs my-2 pt-20">

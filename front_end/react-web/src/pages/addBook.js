@@ -9,6 +9,7 @@ const AddBook = () => {
             <Sidebar />,
             <Header />,
             <div className="ml-64">
+                <hr />
                 <main className="my-8">
                     <p className="text-center">Bienvenido a la sección para agregar un nuevo libro a la biblioteca virtual.</p>
     

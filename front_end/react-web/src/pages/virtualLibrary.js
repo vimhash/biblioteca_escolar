@@ -9,6 +9,7 @@ const VirtualLibrary = () => {
             <Sidebar />,
             <Header />,
             <div className="ml-64">
+                <hr />
                 <main className="my-8">
                     <p className="text-center">Bienvenido a la biblioteca virtual.</p>
     
