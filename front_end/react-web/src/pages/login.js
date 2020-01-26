@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-
-const http = new XMLHttpRequest();
+import axios from 'axios';
 
 const API_URL = "http://localhost:8001/server/login";
 
@@ -14,34 +12,31 @@ class Login extends Component {
     };
   }
 
-  handleCorreo = text => { this.setState({ correo: text }) }
-  handleClave = text => { this.setState({ clave: text }) }
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
-  login = () => {
-    let tabla = "persona";
-  
-    let data = `{
-      "tabla": "${tabla}", 
-      "datos":
-        {
-          "persona_email": "${ this.state.correo }",
-          "persona_clave": "${this.state.clave}"
-        }
-     }`;
-  
-    http.open("POST", API_URL, true);
-    http.setRequestHeader("Content-Type", "application/json");
-  
+  loginAccess = e => {
+    e.preventDefault()
     if (this.state.correo === "" || this.state.clave === "") {
       alert("Complete todos los datos para continuar...");
     } else {
-      http.send(data);
-      alert("Se ha registrado correctamente");
-      // window.location.assign("./login.html");
+      axios.post(API_URL, this.state)
+      .then(response => {
+        if ( response.data.mensaje === "found" ) {
+          alert("ok")
+          window.location.assign("http://localhost:3000/home");
+        }
+      })
+      .catch(error => {
+        alert("Datos Incorrectos")
+        console.log(error)
+      })
     }
   };
 
   render() {
+    const { correo, clave } = this.state
     return (
       <div className="font-mono">
         <div className="container mx-auto">
@@ -52,16 +47,17 @@ class Login extends Component {
               </div>
               <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
                 <h3 className="pt-4 text-2xl text-center">Bienvenido!</h3>
-                <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={ this.loginAccess }>
                   <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="persona_email">
                       Correo Institucional
                     </label>
                     <input className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="persona_email"
                       type="text"
+                      name="correo"
                       placeholder="correo@yavirac.edu.ec"
-                      onChangeText={ this.handleCorreo } 
+                      value={ correo }
+                      onChange={ this.changeHandler } 
                     />
                   </div>
                   <div className="mb-4">
@@ -69,16 +65,17 @@ class Login extends Component {
                       Contraseña
                     </label>
                     <input className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="persona_clave"
                       type="password"
+                      name="clave"
                       placeholder="******************"
-                      onChangeText={ this.handleClave } 
-                      secureTextEntry={true}
+                      value={ clave }
+                      onChange={ this.changeHandler } 
+                      securetextentry="true"
                     />
                   </div>
                   <div className="mb-6 text-center">
                     {/* <Link to="/home"> */}
-                      <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" onPress={() => this.login()}>
+                      <button type="submit" className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline">
                         Ingresar
                       </button>
                     {/* </Link> */}
