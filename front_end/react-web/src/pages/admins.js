@@ -66,7 +66,7 @@ class Admin extends Component {
                     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
                         <button onClick={ this.handleOpenModal } type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Nuevo Administrador</button>
                         <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                        className="bg-red-900 flex-1 text-white text-center bg-gray-400 px-32 py-32 m-2"
+                        className="bg-red-500 flex-1 text-white text-center bg-gray-400 px-24 py-24 my-10 mr-40 ml-64"
                         >
                         <p>Modal text!</p>
                         <button onClick={this.handleCloseModal}>Cerrar</button>

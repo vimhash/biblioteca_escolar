@@ -43,50 +43,38 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="font-mono">
-        <div className="container mx-auto">
-          <div className="flex justify-center px-6 my-12">
-            <div className="w-full xl:w-3/4 lg:w-11/12 flex">
-              <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg">
-                
-              </div>
-              <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-                <h3 className="pt-4 text-2xl text-center">Bienvenido!</h3>
-                <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="persona_email">
-                      Correo Institucional
-                    </label>
-                    <input className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="persona_email"
-                      type="text"
-                      placeholder="correo@yavirac.edu.ec"
-                      onChangeText={ this.handleCorreo } 
+      <div class="bg-teal-200 h-screen font-sans">
+        <div class="container mx-auto h-full flex justify-center items-center">
+        <div class="w-1/3">
+            <h1 class="font-hairline mb-6 text-center text-2xl">Bienvenido!</h1>
+            <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label class="font-bold text-gray-700 block mb-2">Correo Insttitucional</label>
+                    <input type="text" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
+                    id="persona_email"
+                    type="text"
+                    placeholder="correo@yavirac.edu.ec"
+                    onChangeText={ this.handleCorreo } 
                     />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="persona_clave">
-                      Contraseña
-                    </label>
-                    <input className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="persona_clave"
-                      type="password"
-                      placeholder="******************"
-                      onChangeText={ this.handleClave } 
-                      secureTextEntry={true}
+                </div>
+
+                <div class="mb-4">
+                    <label class="font-bold text-gray-700 block mb-2">Contraseña</label>
+                    <input type="text" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
+                    id="persona_clave"
+                    type="password"
+                    placeholder="******************"
+                    onChangeText={ this.handleClave } 
+                    secureTextEntry={true}
                     />
-                  </div>
-                  <div className="mb-6 text-center">
-                    {/* <Link to="/home"> */}
-                      <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" onPress={() => this.login()}>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button class="bg-teal-600 hover:bg-teal-700 focus:outline-none focus:shadow-outline text-white font-bold py-2 px-4 rounded" onPress={() => this.login()}>
                         Ingresar
-                      </button>
-                    {/* </Link> */}
-                  </div>
-                  <hr className="mb-6 border-t" />
-                </form>
+                    </button>
+                </div>  
               </div>
-            </div>
           </div>
         </div>
       </div>
