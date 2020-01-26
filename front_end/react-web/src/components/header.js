@@ -3,9 +3,8 @@ import React from'react';
 import { Link } from "react-router-dom";
 
 const Header = () => (
-    <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <div className="text-sm lg:flex-grow mx-64">
+        <div className="flex-grow flex mr-2 ml-64">
+            <div className="flex-grow flex">
                 <div className="relative text-gray-600 block mt-4 lg:inline-block lg:mt-0 mr-4">
                     <input type="search" name="search" placeholder="Buscar Libro" className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none" />
                     <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
@@ -22,9 +21,8 @@ const Header = () => (
                       Salir
                     </button>
                 </Link>
-            </div>
+            </div>            
         </div>
-    </nav>
 )
 
 export default Header;

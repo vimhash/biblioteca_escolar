@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import axios from 'axios';
 
 class Admin extends Component {
     handleOpenModal () { this.setState({ showModal: true }) }      
@@ -28,7 +29,8 @@ class Admin extends Component {
             <div>
                 <Sidebar />,
                 <Header />,
-                <div className="component_position">
+                <div className="ml-64">
+                    <hr />
                     <main className="my-8">
                         <p className="text-center">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
 

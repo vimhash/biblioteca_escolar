@@ -8,7 +8,7 @@ const Home = () => {
     <div>
         <Sidebar />,
         <Header />,
-        <div className="component_position">
+        <div className="ml-64">
             <main className="my-8">
                 <hr />
                 <div className="flex mb-4 h-56">
