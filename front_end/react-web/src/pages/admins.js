@@ -5,6 +5,8 @@ import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 import axios from 'axios';
 
+const API_URL = "http://localhost:8001/server/library?tabla=persona";
+
 class Admin extends Component {
     handleOpenModal () { this.setState({ showModal: true }) }      
     handleCloseModal () { this.setState({ showModal: false }) }
@@ -18,13 +20,26 @@ class Admin extends Component {
                 persona_nombre: 'Nombre',
                 persona_email:'Correo Electrónico'
             },
+            admins: []
         }
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
+    componentDidMount() {
+        axios.get(API_URL)
+            .then(response => {
+                this.setState({admins: response.data.datos})
+                console.log(response.data.datos)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     render() {
+        const { admins } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -37,23 +52,19 @@ class Admin extends Component {
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
                                 <thead className="border-b">
-                                    <th className="text-left p-3 px-5">{ this.state.table_header.persona_identificacion }</th>
-                                    <th className="text-left p-3 px-5">{ this.state.table_header.persona_nombre }</th>
-                                    <th className="text-left p-3 px-5">{ this.state.table_header.persona_email }</th>
-                                    <th></th>
+                                    <tr>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.persona_identificacion }</th>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.persona_nombre }</th>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.persona_email }</th>
+                                        <th></th>
+                                    </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                                        <td className="p-3 px-5">
-                                            1718842642
-                                        </td>
-                                        <td className="p-3 px-5">
-                                            Johao Perlaza
-                                        </td>
-                                        <td className="p-3 px-5">
-                                            jnp.zambrano@yavirac.edu.ec
-                                        </td>
+                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_identificacion} </td>) }
+                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_nombre} </td>) }
+                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_email} </td>) }
                                         <td className="p-3 px-5 flex justify-end">
                                             <button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button>
                                             <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button>
@@ -68,10 +79,9 @@ class Admin extends Component {
                     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
                         <button onClick={ this.handleOpenModal } type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Nuevo Administrador</button>
                         <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                        className="bg-red-500 flex-1 text-white text-center bg-gray-400 px-24 py-24 my-10 mr-40 ml-64"
-                        >
-                        <p>Modal text!</p>
-                        <button onClick={this.handleCloseModal}>Cerrar</button>
+                        className="bg-red-500 flex-1 text-white text-center bg-gray-400 px-24 py-24 my-10 mr-40 ml-64">
+
+                            <button onClick={this.handleCloseModal}>Cerrar</button>
                         </ReactModal>
                     </div>
                     {/* MODAL */}
