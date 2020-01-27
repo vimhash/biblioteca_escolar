@@ -57,17 +57,26 @@ class Admin extends Component {
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_nombre }</th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_email }</th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_identificacion} </td>) }
-                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_nombre} </td>) }
-                                        { admins.map(element => <td className="p-3 px-5" key={element.id}> {element.persona_email} </td>) }
-                                        <td className="p-3 px-5 flex justify-end">
-                                            <button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button>
-                                            <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button>
+                                        <td className="p-3 px-5">
+                                            { admins.map(element => <p key={element.id}> {element.persona_identificacion} </p>) }
+                                        </td>
+                                        <td className="p-3 px-5">
+                                            { admins.map(element => <p key={element.id}> {element.persona_nombre} </p>) }
+                                        </td>
+                                        <td className="p-3 px-5">
+                                            { admins.map(element => <p key={element.id}> {element.persona_email} </p>) }
+                                        </td>
+                                        <td className="p-3 px-5">
+                                            { admins.map(element => <p><button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
+                                        </td>
+                                        <td className="p-3 px-5">
+                                            { admins.map(element => <p><button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>
                                     </tr>
                                 </tbody>
