@@ -88,6 +88,23 @@ class Admin extends Component {
         window.location.assign("http://localhost:3000/admins");
     }
 
+    // updateData = () => {
+    //     axios.put(API+"?tabla=persona", {
+    //         persona_identificacion: this.state.persona_identificacion,
+    //         persona_nombre: this.state.persona_nombre,
+    //         persona_email: this.state.persona_email,
+    //         persona_direccion: this.state.persona_direccion,
+    //         persona_telefono: this.state.persona_telefono,
+    //         persona_clave: this.state.persona_clave
+    //     })
+    //     .then(response => {
+    //         console.log(response);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });
+    // }
+
     render() {
         const { admins, persona_identificacion, persona_nombre, persona_email, persona_direccion, persona_telefono, persona_clave } = this.state
         return(
@@ -103,7 +120,6 @@ class Admin extends Component {
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
                                 <thead className="border-b">
                                     <tr>
-                                        <th></th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_identificacion }</th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_nombre }</th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_email }</th>
@@ -115,9 +131,6 @@ class Admin extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"> {element.id} </p>) }
-                                        </td>
-                                        <td>
                                             { admins.map(element => <p className="p-2 px-5"> {element.persona_identificacion} </p>) }
                                         </td>
                                         <td>
@@ -127,7 +140,7 @@ class Admin extends Component {
                                             { admins.map(element => <p className="p-2 px-5"> {element.persona_email} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"><button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
+                                            { admins.map(element => <p className="p-2 px-5"><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
                                         </td>
                                         <td>
                                             { admins.map(element => <p className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
