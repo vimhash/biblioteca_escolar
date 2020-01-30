@@ -86,42 +86,44 @@ class Admin extends Component {
 
                     {/* MODAL */}
                     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+                    <div className="mt-4">
                         <button onClick={ this.handleOpenModal } type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Nuevo Administrador</button>
+                    </div>
                         <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
                         className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
-<div class="leading-loose">
-<form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
-    <p className="text-gray-800 font-medium">Nuevo Registro</p>
-    <div className="mt-2">
-      <label className="block text-sm text-gray-600" for="cus_email">Cédula de Identidad</label>
-      <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: 175148795" aria-label="Email"/>
-    </div>
-    <div className="mt-2">
-      <label className="block text-sm text-gray-600" for="cus_email">Nombre y Apellido</label>
-      <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: Joel Simbaña" aria-label="Email"/>
-    </div>
-    <div className="mt-2">
-      <label className=" block text-sm text-gray-600" for="cus_email">Correo Intitucional</label>
-      <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="@yavirac.edu.ec" aria-label="Email"/>
-    </div>
-    <div className="mt-2">
-      <label className=" block text-sm text-gray-600" for="cus_email">Dirección</label>
-      <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: Caupicho city" aria-label="Email"/>
-    </div>
-    <div className="inline-block mt-2 w-1/2 pr-1">
-      <label className="block text-sm text-gray-600" for="cus_email">Teléfono</label>
-      <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: 0985461645" aria-label="Email"/>
-    </div>
-    <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
-      <label className="block text-sm text-gray-600" for="cus_email">Clave</label>
-      <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"  name="cus_email" type="password" required="" placeholder="*************" aria-label="Email"/>
-    </div>
-    <div className="mt-4">
-      <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
-    </div>
-  </form>
+                        <div class="leading-loose">
+                            <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+                                <p className="text-gray-800 font-medium">Nuevo Registro</p>
+                                    <div className="mt-2">
+                                        <label className="block text-sm text-gray-600" for="cus_email">Cédula de Identidad</label>
+                                        <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: 175148795" aria-label="Email"/>
+                                    </div>
+                                    <div className="mt-2">
+                                        <label className="block text-sm text-gray-600" for="cus_email">Nombre y Apellido</label>
+                                        <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: Joel Simbaña" aria-label="Email"/>
+                                    </div>
+                                    <div className="mt-2">
+                                        <label className=" block text-sm text-gray-600" for="cus_email">Correo Intitucional</label>
+                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="@yavirac.edu.ec" aria-label="Email"/>
+                                    </div>
+                                    <div className="mt-2">
+                                        <label className=" block text-sm text-gray-600" for="cus_email">Dirección</label>
+                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: Caupicho city" aria-label="Email"/>
+                                    </div>
+                                    <div className="inline-block mt-2 w-1/2 pr-1">
+                                        <label className="block text-sm text-gray-600" for="cus_email">Teléfono</label>
+                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Ej: 0985461645" aria-label="Email"/>
+                                    </div>
+                                    <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                        <label className="block text-sm text-gray-600" for="cus_email">Clave</label>
+                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"  name="cus_email" type="password" required="" placeholder="*************" aria-label="Email"/>
+                                    </div>
+                                    <div className="mt-4">
+                                        <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
+                                    </div>
+                            </form>
 
-</div>
+                        </div>
                         </ReactModal>
                     </div>
                     {/* MODAL */}
