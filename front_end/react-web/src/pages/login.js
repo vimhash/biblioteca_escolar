@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const API_URL = "http://localhost:8001/server/login";
+const API_LOGIN = "http://localhost:8001/server/login";
 
 class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
       correo: '',
-      clave: ''
+      clave: '',
     };
   }
 
@@ -21,7 +21,7 @@ class Login extends Component {
     if (this.state.correo === "" || this.state.clave === "") {
       alert("Complete todos los datos para continuar...");
     } else {
-      axios.post(API_URL, this.state)
+      axios.post(API_LOGIN, this.state)
       .then(response => {
         if ( response.data.mensaje === "found" ) {
           window.location.assign("http://localhost:3000/home");
