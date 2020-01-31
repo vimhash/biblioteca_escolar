@@ -14,7 +14,6 @@ class AddBook extends Component {
             libro_pais: '',
             libro_año: '',
             libro_titulo: '',
-            libro_edicion: '',
             libro_editorial: '',
             libro_existencias: ''
         }
@@ -33,7 +32,6 @@ class AddBook extends Component {
                 libro_pais: this.state.libro_pais,
                 libro_año: this.state.libro_año,
                 libro_titulo: this.state.libro_titulo,
-                libro_edicion: this.state.libro_edicion,
                 libro_editorial: this.state.libro_editorial,
                 libro_existencias: this.state.libro_existencias
             }
@@ -42,8 +40,7 @@ class AddBook extends Component {
         if (this.post.datos.libro_autor === "" ||
             this.post.datos.libro_pais === "" ||
             this.post.datos.libro_año === "" ||
-            // this.post.datos.libro_titulo === "" ||
-            // this.post.datos.libro_edicion === "" ||
+            this.post.datos.libro_titulo === "" ||
             this.post.datos.libro_editorial === "" ||
             this.post.datos.libro_existencias === ""
             ) {
@@ -64,7 +61,7 @@ class AddBook extends Component {
 
 
     render() {
-        const { libro_autor, libro_pais, libro_año, libro_titulo, libro_edicion, libro_editorial, libro_existencias } = this.state
+        const { libro_autor, libro_pais, libro_año, libro_titulo, libro_editorial, libro_existencias } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -79,7 +76,13 @@ class AddBook extends Component {
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-password">
                                         Titulo
                                     </label>
-                                    <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-password" type="text" placeholder="Ej: El Viaje al Centro de la Tierra"></input>
+                                    <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" 
+                                        type="text" 
+                                        placeholder="Ej: El Viaje al Centro de la Tierra"
+                                        name="libro_titulo"
+                                        value={ libro_titulo }
+                                        onChange={ this.changeHandler } 
+                                    />
                                 </div>
                             </div>
                             <div className="-mx-3 md:flex mb-6 ">

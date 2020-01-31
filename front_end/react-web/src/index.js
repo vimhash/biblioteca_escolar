@@ -8,8 +8,8 @@ import Home from './pages/home';
 import Admin from './pages/admins';
 import AddBook from './pages/addBook';
 import VirtualLibrary from './pages/virtualLibrary';
-import Config from './pages/config';
 import Page404 from './pages/Page404';
+import Reserve from './pages/reserve';
 
 render(
   <Router>
@@ -19,7 +19,7 @@ render(
         <Route path="/admins" component={ Admin } />
         <Route path="/add_book" component={ AddBook } />
         <Route path="/virtual_library" component={ VirtualLibrary } />
-        <Route path="/config" component={ Config } />
+        <Route path="/reserve" component={ Reserve } />
         <Route component={ Page404 } />
       </Switch>
   </Router>,

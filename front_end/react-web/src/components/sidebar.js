@@ -26,10 +26,6 @@ const Sidebar = () => (
                             <button className="text-gray-800 text-xs uppercase py-3 font-bold block">
                                 <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
                                 Administradores
-                                {/* <ul>
-                                    <li className="mx-8 hover:text-gray-600"><i className="fas fa-arrow-circle-right"></i>Institución</li>
-                                    <li className="mx-8 hover:text-gray-600"><i className="fas fa-arrow-circle-right"></i>Categoria</li>
-                                </ul> */}
                             </button>
                         </Link>
                     </li>
@@ -53,16 +49,48 @@ const Sidebar = () => (
                             </ul>
                         </div>
                     </li>
+                    <li className="items-center">
+                        <Link to="/reserve">
+                            <button className="text-gray-800 text-xs uppercase py-3 font-bold block">
+                                <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
+                                Pedidos de Reservas
+                            </button>
+                        </Link>
+                    </li>
                 </ul>
                 <hr />
                 <li className="items-center">
-                    <Link to="/config">
-                        <button className="text-gray-800 text-xs uppercase py-4 font-bold block">
+                        <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
                             <i className="fas fa-cog text-gray-900 mr-2 text-sm"></i>
                             Configuraciones
-                        </button>
-                    </Link>
-                </li>
+                            <ul>
+                                <Link to="/home">
+                                    <li className="mx-8 hover:text-gray-600">
+                                        <i className="fas fa-arrow-circle-right"></i>
+                                        Tipos de Persona
+                                    </li>
+                                </Link>
+                                <Link to="/home">
+                                    <li className="mx-8 hover:text-gray-600">
+                                        <i className="fas fa-arrow-circle-right"></i>
+                                        Estado Persona
+                                    </li>
+                                </Link>
+                                <Link to="/home">
+                                    <li className="mx-8 hover:text-gray-600">
+                                        <i className="fas fa-arrow-circle-right"></i>
+                                        Estado Reserva
+                                    </li>
+                                </Link>
+                                <Link to="/home">
+                                    <li className="mx-8 hover:text-gray-600">
+                                        <i className="fas fa-arrow-circle-right"></i>
+                                        Estado Libro
+                                    </li>
+                                </Link>
+                            </ul>
+                        </div>
+                    </li>
             </div>
         </div>
     </nav>

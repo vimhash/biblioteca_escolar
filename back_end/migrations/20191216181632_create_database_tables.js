@@ -32,7 +32,6 @@ exports.up = function(knex, Promise) {
     table.string('libro_pais').notNullable();
     table.string('libro_año').notNullable();
     table.string('libro_titulo').notNullable();
-    table.string('libro_edicion').notNullable();
     table.string('libro_editorial').notNullable();
     table.string('libro_existencias').notNullable();
   })
