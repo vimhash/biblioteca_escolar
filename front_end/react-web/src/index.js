@@ -10,6 +10,10 @@ import AddBook from './pages/addBook';
 import VirtualLibrary from './pages/virtualLibrary';
 import Page404 from './pages/Page404';
 import Reserve from './pages/reserve';
+import AddStateBook from './pages/config/addStateBook';
+import AddStatePeople from './pages/config/addStatePeople';
+import AddStateReserve from './pages/config/addStateReserve';
+import AddTypePeople from './pages/config/addTypePeople';
 
 render(
   <Router>
@@ -20,6 +24,10 @@ render(
         <Route path="/add_book" component={ AddBook } />
         <Route path="/virtual_library" component={ VirtualLibrary } />
         <Route path="/reserve" component={ Reserve } />
+        <Route path="/config/state_books" component={ AddStateBook } />
+        <Route path="/config/state_people" component={ AddStatePeople } />
+        <Route path="/config/state_reserve" component={ AddStateReserve } />
+        <Route path="/config/type_people" component={ AddTypePeople } />
         <Route component={ Page404 } />
       </Switch>
   </Router>,

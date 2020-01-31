@@ -61,7 +61,14 @@ class AddBook extends Component {
 
 
     render() {
-        const { libro_autor, libro_pais, libro_año, libro_titulo, libro_editorial, libro_existencias } = this.state
+        const { 
+            libro_autor, 
+            libro_pais, 
+            libro_año, 
+            libro_titulo, 
+            libro_editorial, 
+            libro_existencias 
+        } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -73,7 +80,7 @@ class AddBook extends Component {
                         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 mx-8" onSubmit={ this.saveData }>
                             <div className="-mx-3 md:flex mb-6">
                                 <div className="md:w-full px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-password">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro-titulo">
                                         Titulo
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" 
@@ -87,7 +94,7 @@ class AddBook extends Component {
                             </div>
                             <div className="-mx-3 md:flex mb-6 ">
                                 <div className="md:w-1/3 px-3 mb-6 md:mb-0">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_autor">
                                         Autor
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
@@ -99,7 +106,7 @@ class AddBook extends Component {
                                     />
                                 </div>
                                 <div className="md:w-1/3 px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_pais">
                                         Pais
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" 
@@ -111,7 +118,7 @@ class AddBook extends Component {
                                     />
                                 </div>
                                 <div className="md:w-1/3 px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_año">
                                         Año
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" 
@@ -125,7 +132,7 @@ class AddBook extends Component {
                             </div>
                             <div className="-mx-3 md:flex mb-6 ">
                                 <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_editorial">
                                         Editorial
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
@@ -137,7 +144,7 @@ class AddBook extends Component {
                                     />
                                 </div>
                                 <div className="md:w-1/2 px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_existencias">
                                         Existencias
                                     </label>
                                     <input className="appearance-none block w-1/2 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-2" 
