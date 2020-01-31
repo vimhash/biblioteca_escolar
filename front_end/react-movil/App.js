@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Switch, Route } from "react-router-native";
 
 import Login from "./pages/Login";
-import Home from './pages/home';
+import Catalogue from './pages/Catalogue';
 
 export default class App extends Component {
   render() {
@@ -12,7 +12,8 @@ export default class App extends Component {
         <View style={styles.container}>
           <Switch>
             <Route exact path="/" component={ Login } />
-            <Route exact path="/home" component={ Home } />
+            <Route exact path="/home" component={ Catalogue } />
+            {/* <Route path="/home" component={ Catalogue } /> */}
           </Switch>
         </View>
       </NativeRouter>
