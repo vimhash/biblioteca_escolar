@@ -11,64 +11,31 @@ const VirtualLibrary = () => {
             <div className="ml-64">
                 <hr />
                 <main className="my-8">
-                    <p className="text-center">Bienvenido a la biblioteca virtual.</p>
-                    {/* <div class="p-24 flex flex-wrap items-center justify-center">
-    
-    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg">
-      <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-        <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
-        <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
-      </svg>
-      <div class="relative pt-10 px-10 flex items-center justify-center">
-        <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-        <img class="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt=""></img>
-      </div>
-      <div class="relative text-white px-6 pb-6 mt-6">
-        <span class="block opacity-75 -mb-1">Indoor</span>
-        <div class="flex justify-between">
-          <span class="block font-semibold text-xl">Peace Lily</span>
-          <span class="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$36.00</span>
-        </div>
-      </div>
-    </div>
-    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
-      <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-        <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
-        <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
-      </svg>
-      <div class="relative pt-10 px-10 flex items-center justify-center">
-        <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-        <img class="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069998-305de300-cc9a-11e9-8ae7-5a0fe00299f2.png" alt=""></img>
-      </div>
-      <div class="relative text-white px-6 pb-6 mt-6">
-        <span class="block opacity-75 -mb-1">Outdoor</span>
-        <div class="flex justify-between">
-          <span class="block font-semibold text-xl">Monstera</span>
-          <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$45.00</span>
-        </div>
-      </div>
-    </div>
-    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
-      <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-        <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
-        <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
-      </svg>
-      <div class="relative pt-10 px-10 flex items-center justify-center">
-        <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-        <img class="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt=""></img>
-      </div>
-      <div class="relative text-white px-6 pb-6 mt-6">
-        <span class="block opacity-75 -mb-1">Outdoor</span>
-        <div class="flex justify-between">
-          <span class="block font-semibold text-xl">Oak Tree</span>
-          <span class="block bg-white rounded-full text-purple-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$68.50</span>
-        </div>
-      </div>
-    </div>
-    
-  </div> */}
-
-    
+                    <p className="text-center pb-8">Bienvenido a la biblioteca virtual.</p>
+                    <div className="max-w-md w-full lg:flex">
+                            <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="https://images-na.ssl-images-amazon.com/images/I/91zIwQ1iI1L.jpg" alt="pic" title="Woman holding a mug" />
+                            <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                <div className="mb-8">
+                                    <div className="text-black font-bold text-xl mb-2">Libro: Viaje al Centro de la Tierra</div>
+                                    <p className="text-grey-darker text-base">Autor: Austral</p>
+                                </div>
+                                <div className="flex items-center">
+                                    <img className="w-10 h-10 rounded-full mr-4" src="data:image/jpeg;base64,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" alt="profile_pic" />
+                                    <div className="text-sm">
+                                        <p className="text-black leading-none">Jonathan Reinink</p>
+                                        <p className="text-grey-dark">Fecha pedido: Aug 18</p>
+                                    </div>
+                                </div>
+                                <div class="m-3">
+                                    <button class="bg-white text-gray-800 font-bold rounded border-b-2 border-blue-500 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                                    <span class="mr-2">Detalles</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                                    </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                 </main>
             </div>
         </div>
