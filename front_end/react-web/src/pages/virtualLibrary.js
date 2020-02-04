@@ -34,9 +34,8 @@ class VirtualLibrary extends Component {
                     <hr />
                     <main className="my-8">
                         <p className="text-center pb-8">Bienvenido a la biblioteca virtual.</p>
-                        <div className="flex h-full">
                             { libros.map(element => 
-                                <div className="w-1/2 max-w-md w-full lg:flex px-16" key={ element.id }>
+                                <div className="max-w-md w-full lg:flex px-16" key={ element.id }>
                                     <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="../../assets/book.png" alt={ element.libro_titulo } />
                                     <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                         <div className="mb-8">
@@ -62,7 +61,6 @@ class VirtualLibrary extends Component {
                                     </div>
                                 </div>
                             ) }
-                        </div>
                     </main>
                 </div>
             </div>
