@@ -131,19 +131,19 @@ class Admin extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"> {element.persona_identificacion} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_identificacion} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"> {element.persona_nombre} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_nombre} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"> {element.persona_email} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_email} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>
                                     </tr>
                                 </tbody>

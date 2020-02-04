@@ -15,6 +15,8 @@ import AddStatePeople from './pages/config/addStatePeople';
 import AddStateReserve from './pages/config/addStateReserve';
 import AddTypePeople from './pages/config/addTypePeople';
 
+window.$URL = 'http://localhost:8001/server/library'
+
 render(
   <Router>
       <Switch>
