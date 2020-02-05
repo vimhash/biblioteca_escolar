@@ -31,7 +31,7 @@ const Sidebar = () => (
                     </li>
                     <li className="items-center">
                         <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
-                            <i className="fas fa-fingerprint text-gray-900 mr-2 text-sm"></i>
+                            <i className="fas fa-book-open text-gray-900 mr-2 text-sm"></i>
                             Libros y catálogos
                             <ul>
                                 <Link to="/add_book">
@@ -52,8 +52,16 @@ const Sidebar = () => (
                     <li className="items-center">
                         <Link to="/reserve">
                             <button className="text-gray-800 text-xs uppercase py-3 font-bold block">
-                                <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
+                                <i className="fas fa-check text-gray-900 mr-2 text-sm"></i>
                                 Pedidos de Reservas
+                            </button>
+                        </Link>
+                    </li>
+                    <li className="items-center">
+                        <Link to="/reserve_history">
+                            <button className="text-gray-800 text-xs uppercase py-3 font-bold block">
+                                <i className="fas fa-archive text-gray-900 mr-2 text-sm"></i>
+                                Historial de Reservas
                             </button>
                         </Link>
                     </li>
