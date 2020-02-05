@@ -59,38 +59,38 @@ const Sidebar = () => (
                     </li>
                 </ul>
                 <hr />
-                <li className="items-center">
-                        <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
-                            <i className="fas fa-cog text-gray-900 mr-2 text-sm"></i>
-                            Configuraciones
-                            <ul>
-                                <Link to="/config/type_people">
-                                    <li className="mx-8 hover:text-gray-600">
-                                        <i className="fas fa-arrow-circle-right"></i>
-                                        Tipos de Persona
-                                    </li>
-                                </Link>
-                                <Link to="/config/state_people">
-                                    <li className="mx-8 hover:text-gray-600">
-                                        <i className="fas fa-arrow-circle-right"></i>
-                                        Estado Persona
-                                    </li>
-                                </Link>
-                                <Link to="/config/state_reserve">
-                                    <li className="mx-8 hover:text-gray-600">
-                                        <i className="fas fa-arrow-circle-right"></i>
-                                        Estado Reserva
-                                    </li>
-                                </Link>
-                                <Link to="/config/state_books">
-                                    <li className="mx-8 hover:text-gray-600">
-                                        <i className="fas fa-arrow-circle-right"></i>
-                                        Estado Libro
-                                    </li>
-                                </Link>
-                            </ul>
-                        </div>
-                    </li>
+                {/* <li className="items-center">
+                    <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
+                        <i className="fas fa-cog text-gray-900 mr-2 text-sm"></i>
+                        Configuraciones
+                        <ul>
+                            <Link to="/config/type_people">
+                                <li className="mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Tipos de Persona
+                                </li>
+                            </Link>
+                            <Link to="/config/state_people">
+                                <li className="mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Estado Persona
+                                </li>
+                            </Link>
+                            <Link to="/config/state_reserve">
+                                <li className="mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Estado Reserva
+                                </li>
+                            </Link>
+                            <Link to="/config/state_books">
+                                <li className="mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Estado Libro
+                                </li>
+                            </Link>
+                        </ul>
+                    </div>
+                </li> */}
             </div>
         </div>
     </nav>
