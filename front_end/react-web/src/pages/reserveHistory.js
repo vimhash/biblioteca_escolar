@@ -4,7 +4,7 @@ import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 import axios from 'axios';
 
-const API = "http://localhost:8001/server/library";
+const API = "http://localhost:8001/server/library/reserva";
 
 class ReserveHistory extends Component {
     constructor(props) {

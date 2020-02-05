@@ -102,12 +102,36 @@ let login = (req,res) =>{
             mensaje: 'no-found'
           })
       })
-  }
+}
+
+// RAW functions
+let reserva = (req, res) => {
+    db.raw(`select reserva.id, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as titulo_id
+    from reserva 
+    join estado_reserva on estado_reserva.id = reserva.estado_reserva_id
+    join persona on persona.id = reserva.persona_id
+    join libro on libro.id = reserva.libro_id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
 
 module.exports = {
     getDatos,
     postDatos,
     updateDatos,
     deleteDatos,
-    login
+    login,
+    // RAW functions
+    reserva,
 }
