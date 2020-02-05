@@ -78,7 +78,7 @@ class AddBook extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center my-5">Bienvenido a la sección para agregar un nuevo libro a la biblioteca virtual.</p>
+                        <p className="text-center my-5 text-2xl">Bienvenido a la sección para agregar un nuevo libro a la biblioteca virtual.</p>
                         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 mx-8" onSubmit={ this.saveData }>
                             <div className="-mx-3 md:flex mb-6">
                                 <div className="md:w-full px-3">

@@ -114,8 +114,86 @@ class Admin extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
+                    <div class="justify-center my-5 select-none flex">
+                        <p className="mt-5 text-center mr-10 text-2xl">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
+                            <button onClick={ this.handleOpenModal } type="button" class="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
+                                    +
+                                </button>
+                                {/* MODAL */}
+                                <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
+                                    className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
+                                    <div className="leading-loose">
+                                        <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
+                                            <p className="text-gray-800 font-medium">Nuevo Registro</p>
+                                                <div className="mt-2">
+                                                    <label className="block text-sm text-gray-600" for="cus_email">Cédula de Identidad</label>
+                                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                        type="text" 
+                                                        placeholder="Ej: 175148795" 
+                                                        name="persona_identificacion"
+                                                        value={ persona_identificacion }
+                                                        onChange={ this.changeHandler } 
+                                                    />
+                                                </div>
+                                                <div className="mt-2">
+                                                    <label className="block text-sm text-gray-600" for="cus_email">Nombre y Apellido</label>
+                                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                        type="text" 
+                                                        placeholder="Ej: Joel Simbaña"
+                                                        name="persona_nombre"
+                                                        value={ persona_nombre }
+                                                        onChange={ this.changeHandler }
+                                                    />
+                                                </div>
+                                                <div className="mt-2">
+                                                    <label className=" block text-sm text-gray-600" for="cus_email">Correo Institucional</label>
+                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                        type="text" 
+                                                        placeholder="@yavirac.edu.ec" 
+                                                        name="persona_email"
+                                                        value={ persona_email }
+                                                        onChange={ this.changeHandler }
+                                                    />
+                                                </div>
+                                                <div className="mt-2">
+                                                    <label className=" block text-sm text-gray-600" for="cus_email">Dirección</label>
+                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                        type="text" 
+                                                        placeholder="Ej: Caupicho city"
+                                                        name="persona_direccion"
+                                                        value={ persona_direccion }
+                                                        onChange={ this.changeHandler }
+                                                    />
+                                                </div>
+                                                <div className="inline-block mt-2 w-1/2 pr-1">
+                                                    <label className="block text-sm text-gray-600" for="cus_email">Teléfono</label>
+                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                        type="text" 
+                                                        placeholder="Ej: 0985461645" 
+                                                        name="persona_telefono"
+                                                        value={ persona_telefono }
+                                                        onChange={ this.changeHandler }
+                                                    />
+                                                </div>
+                                                <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                                    <label className="block text-sm text-gray-600" for="cus_email">Clave</label>
+                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                        type="password" 
+                                                        placeholder="*************" 
+                                                        name="persona_clave"
+                                                        value={ persona_clave }
+                                                        onChange={ this.changeHandler }
+                                                    />
+                                                </div>
+                                                <div className="mt-4">
+                                                    <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
+                                                </div>
+                                        </form>
 
+                                    </div>
+                                </ReactModal>       
+                               {/* MODAL */}
+                    </div>  
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
                                 <thead className="border-b">
@@ -150,86 +228,6 @@ class Admin extends Component {
                             </table>
                         </div>
                     </main>
-
-                    {/* MODAL */}
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-                    <div className="mt-4">
-                        <button onClick={ this.handleOpenModal } type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Nuevo Administrador</button>
-                    </div>
-                        <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                        className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
-                        <div className="leading-loose">
-                            <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
-                                <p className="text-gray-800 font-medium">Nuevo Registro</p>
-                                    <div className="mt-2">
-                                        <label className="block text-sm text-gray-600" for="cus_email">Cédula de Identidad</label>
-                                        <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                            type="text" 
-                                            placeholder="Ej: 175148795" 
-                                            name="persona_identificacion"
-                                            value={ persona_identificacion }
-                                            onChange={ this.changeHandler } 
-                                        />
-                                    </div>
-                                    <div className="mt-2">
-                                        <label className="block text-sm text-gray-600" for="cus_email">Nombre y Apellido</label>
-                                        <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                            type="text" 
-                                            placeholder="Ej: Joel Simbaña"
-                                            name="persona_nombre"
-                                            value={ persona_nombre }
-                                            onChange={ this.changeHandler }
-                                        />
-                                    </div>
-                                    <div className="mt-2">
-                                        <label className=" block text-sm text-gray-600" for="cus_email">Correo Institucional</label>
-                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                            type="text" 
-                                            placeholder="@yavirac.edu.ec" 
-                                            name="persona_email"
-                                            value={ persona_email }
-                                            onChange={ this.changeHandler }
-                                        />
-                                    </div>
-                                    <div className="mt-2">
-                                        <label className=" block text-sm text-gray-600" for="cus_email">Dirección</label>
-                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                            type="text" 
-                                            placeholder="Ej: Caupicho city"
-                                            name="persona_direccion"
-                                            value={ persona_direccion }
-                                            onChange={ this.changeHandler }
-                                        />
-                                    </div>
-                                    <div className="inline-block mt-2 w-1/2 pr-1">
-                                        <label className="block text-sm text-gray-600" for="cus_email">Teléfono</label>
-                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                            type="text" 
-                                            placeholder="Ej: 0985461645" 
-                                            name="persona_telefono"
-                                            value={ persona_telefono }
-                                            onChange={ this.changeHandler }
-                                        />
-                                    </div>
-                                    <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                                        <label className="block text-sm text-gray-600" for="cus_email">Clave</label>
-                                        <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                            type="password" 
-                                            placeholder="*************" 
-                                            name="persona_clave"
-                                            value={ persona_clave }
-                                            onChange={ this.changeHandler }
-                                        />
-                                    </div>
-                                    <div className="mt-4">
-                                        <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
-                                    </div>
-                            </form>
-
-                        </div>
-                        </ReactModal>
-                    </div>
-                    {/* MODAL */}
                 </div>
             </div>
         )

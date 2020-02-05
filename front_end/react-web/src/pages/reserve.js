@@ -33,7 +33,7 @@ class Reserve extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center">Aceptación o rechazo de reserva de libros.</p>
+                        <p className="text-center my-5 text-2xl">Aceptación o rechazo de reserva de libros.</p>
                         { reserves.map(element => 
                             <div className="max-w-md w-full lg:flex" key={ element.id }>
                                 <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="https://tailwindcss.com/img/card-left.jpg" alt="pic" />

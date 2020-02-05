@@ -33,7 +33,7 @@ class VirtualLibrary extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center pb-8">Bienvenido a la biblioteca virtual.</p>
+                        <p className="text-center pb-8 text-2xl my-5">Bienvenido a la biblioteca virtual.</p>
                             { libros.map(element => 
                                 <div className="max-w-md w-full lg:flex px-16" key={ element.id }>
                                     <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="../../assets/book.png" alt={ element.libro_titulo } />
