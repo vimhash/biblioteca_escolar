@@ -15,12 +15,24 @@ class AddBook extends Component {
             libro_año: '',
             libro_titulo: '',
             libro_editorial: '',
-            libro_existencias: ''
+            libro_existencias: '',
+            estado_libro_id: '',
+            estados_libros: [],
         }
     }
 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    componentDidMount() {
+        axios.get(API+"?tabla=estado_libro")
+        .then(response => {
+            this.setState({ estados_libros: response.data.datos})
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     saveData = e => {
@@ -33,7 +45,8 @@ class AddBook extends Component {
                 libro_año: this.state.libro_año,
                 libro_titulo: this.state.libro_titulo,
                 libro_editorial: this.state.libro_editorial,
-                libro_existencias: this.state.libro_existencias
+                libro_existencias: this.state.libro_existencias,
+                estado_libro_id: this.state.estado_libro_id
             }
         }
 
@@ -42,7 +55,8 @@ class AddBook extends Component {
             this.post.datos.libro_año === "" ||
             this.post.datos.libro_titulo === "" ||
             this.post.datos.libro_editorial === "" ||
-            this.post.datos.libro_existencias === ""
+            this.post.datos.libro_existencias === "" ||
+            this.post.datos.estado_libro_id
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
@@ -67,7 +81,9 @@ class AddBook extends Component {
             libro_año, 
             libro_titulo, 
             libro_editorial, 
-            libro_existencias 
+            libro_existencias,
+            estado_libro_id,
+            estados_libros
         } = this.state
         return(
             <div>
@@ -150,9 +166,23 @@ class AddBook extends Component {
                                     <input className="appearance-none block w-1/2 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-2" 
                                         type="number"
                                         name="libro_existencias"
+                                        min="1"
                                         value={ libro_existencias }
                                         onChange={ this.changeHandler } 
                                     />
+                                </div>
+                                <div className="md:w-1/3 px-3">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="libro_año">
+                                        Estado del Libro
+                                    </label>
+                                    <select className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4">
+                                        { estados_libros.map(element => 
+                                            <option key={ element.id }
+                                            name="estado_libro_id"
+                                            value={ estado_libro_id }
+                                            onChange={ this.changeHandler }
+                                            > {element.estado_libro_nombre} </option>) }
+                                    </select> 
                                 </div>
                             </div>
                             <p className="text-red text-xs italic">Por favor complete todos los campos.</p>
