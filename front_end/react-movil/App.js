@@ -3,7 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Switch, Route } from "react-router-native";
 
 import Login from "./pages/Login";
-import Catalogue from './pages/Catalogue';
+import virtualLibrary from './pages/virtualLibrary';
+import Reserve from './pages/reserve';
+
 
 export default class App extends Component {
   render() {
@@ -12,8 +14,8 @@ export default class App extends Component {
         <View style={styles.container}>
           <Switch>
             <Route exact path="/" component={ Login } />
-            <Route exact path="/home" component={ Catalogue } />
-            {/* <Route path="/home" component={ Catalogue } /> */}
+            <Route exact path="/library" component={ virtualLibrary } />
+            <Route path="/reserve" component={ Reserve } /> 
           </Switch>
         </View>
       </NativeRouter>
