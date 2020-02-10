@@ -1,35 +1,61 @@
 import React, { Component } from 'react';
-import { Text,TextInput,View, Image,ImageBackground, StyleSheet } from 'react-native';
-import { Icon,Button, Card } from 'react-native-elements'
+import { Text,TextInput,View, Image,ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { Icon,Button, Card } from 'react-native-elements';
+import HeaderExample from '../components/header';
+
+// const HeaderExample = require('../components/header')
 
 export default class virtualLibrary extends Component {
   
 
   render() {
-    return (
-          <View style={styles.container}>
-            <Text style={styles.text}>Bienvenido a la biblioteca virtual.</Text>
-              <Card
-                title='Name Book'
-                image={require('../assets/hamburger-895831_1280.jpg')}>
-                <Text style={{marginBottom: 10}}>
-                  Autor:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Pais:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año:
-                </Text>
-                <Button
-                  icon={<Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>}
-                  buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,}}
-                  title='Reservar' />
-              </Card>
-          </View>
+    return (    
+      <View style={styles.container}>
+        <HeaderExample />
+      <Text style={styles.text}>Bienvenido a la biblioteca virtual.</Text>
+        <ScrollView vertical={true}>
+        <Card
+          title='Name Book'
+          image={require('../assets/hamburger-895831_1280.jpg')}>
+          <Text style={{marginBottom: 10}}>
+            Autor:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Editorial:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Pais:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Año:
+          </Text>
+          <Button
+            icon={<Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>}
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,}}
+            title='Reservar' />
+        </Card>
+        <Card
+          title='Name Book'
+          image={require('../assets/hamburger-895831_1280.jpg')}>
+          <Text style={{marginBottom: 10}}>
+            Autor:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Editorial:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Pais:
+          </Text>
+          <Text style={{marginBottom: 10}}>
+            Año:
+          </Text>
+          <Button
+            icon={<Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>}
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,}}
+            title='Reservar' />
+        </Card>
+        </ScrollView>
+    </View>
     );
   }
 }
@@ -43,12 +69,6 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'stretch',
     backgroundColor: '#ffffff',
-  },
-  containerIngresar:{
-    height: 60,
-    marginLeft:'25%',
-    marginRight:'25%',
-    paddingTop:'10%',
   },
   containerEmail:{
     height: 60,
@@ -74,13 +94,7 @@ const styles = StyleSheet.create({
     color:'#000000',
     paddingLeft:'10%',
     paddingBottom: '5%',
-    paddingTop: '5%',
+    paddingTop: '8%',
     fontSize: 17,
   },
-  textInput:{
-    backgroundColor:'transparent',
-    flex:5,
-    color:'black',
-    paddingLeft:'15%',
-  }
 })

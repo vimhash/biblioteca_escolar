@@ -13,8 +13,8 @@ export default class App extends Component {
       <NativeRouter>
         <View style={styles.container}>
           <Switch>
-            <Route exact path="/" component={ Login } />
-            <Route exact path="/library" component={ virtualLibrary } />
+            <Route exact path="/library" component={ Login } />
+            <Route exact path="/" component={ virtualLibrary } />
             <Route path="/reserve" component={ Reserve } /> 
           </Switch>
         </View>
