@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text,TextInput,View, Image,ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { Icon,Button, Card } from 'react-native-elements';
 import HeaderExample from '../components/header';
 
@@ -7,7 +7,6 @@ import HeaderExample from '../components/header';
 
 export default class virtualLibrary extends Component {
   
-
   render() {
     return (    
       <View style={styles.container}>
