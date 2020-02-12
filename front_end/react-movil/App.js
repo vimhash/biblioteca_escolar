@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NativeRouter, Switch, Route } from "react-router-native";
 
 import Login from "./pages/Login";
@@ -13,8 +13,8 @@ export default class App extends Component {
       <NativeRouter>
         <View style={styles.container}>
           <Switch>
-            <Route exact path="/library" component={ Login } />
-            <Route exact path="/" component={ virtualLibrary } />
+            <Route exact path="/" component={ Login } />
+            <Route exact path="/library" component={ virtualLibrary } />
             <Route path="/reserve" component={ Reserve } /> 
           </Switch>
         </View>

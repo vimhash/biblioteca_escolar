@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Text,TextInput,View, Image,ImageBackground, StyleSheet } from 'react-native';
-import { Icon,Button } from 'react-native-elements'
+import { Text, TextInput, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Icon,Button } from 'react-native-elements';
+import { Link } from 'react-router-native';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions ={
@@ -23,9 +24,11 @@ export default class LoginScreen extends React.Component {
               style={styles.textInput} secureTextEntry={true}/> 
             </View>
 
-            <View style={styles.containerIngresar}>
-              <Button title='Ingresar' backgroundColor='#718096' />
-            </View>
+            <TouchableHighlight style={styles.containerIngresar}>
+              <Link to="/library" style={ styles.button }>
+                  <Text backgroundColor='#718096'>Ingresar</Text>
+              </Link>
+            </TouchableHighlight>
           </View>
     );
   }
@@ -79,5 +82,16 @@ const styles = StyleSheet.create({
     flex:5,
     color:'black',
     paddingLeft:'15%',
-  }
+  },
+  button: {
+    position: 'relative',
+    bottom: '0%',
+    marginBottom: 20,
+    borderRadius: 100,
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
