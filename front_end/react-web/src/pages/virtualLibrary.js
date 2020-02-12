@@ -34,8 +34,9 @@ class VirtualLibrary extends Component {
                     <hr />
                     <main className="my-8">
                         <p className="text-center pb-8 text-2xl my-5">Bienvenido a la biblioteca virtual.</p>
+                        <div className="flex flex-wrap items-center justify-center">
                             { libros.map(element => 
-                                <div className="max-w-md w-full lg:flex px-16" key={ element.id }>
+                                <div className="max-w-md w-full lg:flex" key={ element.id }>
                                     <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="../../assets/book.png" alt={ element.libro_titulo } />
                                     <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                         <div className="mb-8">
@@ -50,17 +51,10 @@ class VirtualLibrary extends Component {
                                                 <p className="text-grey-dark">Pais: { element.libro_pais }</p>
                                             </div>
                                         </div>
-                                        <div className="m-3">
-                                            <button className="bg-white text-gray-800 font-bold rounded border-b-2 border-blue-500 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-                                            <span className="mr-2">Detalles</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                                <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                                            </svg>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             ) }
+                        </div>
                     </main>
                 </div>
             </div>
