@@ -53,11 +53,12 @@ exports.up = function(knex, Promise) {
     table.integer('estado_reserva_id').references('id').inTable('estado_reserva');
     table.integer('persona_id').references('id').inTable('persona');
     table.integer('libro_id').references('id').inTable('libro');
+    table.date('fecha');
   })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema
+  return knex.schemas
   .dropTableIfExists( 'tipo_persona' )
   .dropTableIfExists( 'estado_persona' )
   .dropTableIfExists( 'estado_reserva' )
