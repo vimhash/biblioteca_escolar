@@ -201,7 +201,7 @@ class Admin extends Component {
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_identificacion }</th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_nombre }</th>
                                         <th className="text-left p-3 px-5">{ this.state.table_header.persona_email }</th>
-                                        <th></th>
+                                        {/* <th></th> */}
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -217,9 +217,9 @@ class Admin extends Component {
                                         <td>
                                             { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_email} </p>) }
                                         </td>
-                                        <td>
+                                        {/* <td>
                                             { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
-                                        </td>
+                                        </td> */}
                                         <td>
                                             { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>

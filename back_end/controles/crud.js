@@ -1,11 +1,11 @@
 ;
-let config = require('../knexfile')
-let env = 'development'
-let db = require('knex')(config[env])
+const config = require('../knexfile')
+const env = 'development'
+const db = require('knex')(config[env])
 
-let getDatos = (req, res) => {
-    let tabla = req.query.tabla
-    let campo = req.query.campo
+const getDatos = (req, res) => {
+    const tabla = req.query.tabla
+    const campo = req.query.campo
     db.select(campo).from(tabla)
     .then( resultado => {
         return res.status(200).json({
@@ -22,9 +22,9 @@ let getDatos = (req, res) => {
     })
 }
 
-let postDatos = (req, res) => {
-    let tabla = req.body.tabla
-    let datos = req.body.datos
+const postDatos = (req, res) => {
+    const tabla = req.body.tabla
+    const datos = req.body.datos
     db(tabla).returning('id').insert(datos)
     .then(resultado => {
         return res.status(200).json({
@@ -41,9 +41,9 @@ let postDatos = (req, res) => {
     })
 }
 
-let updateDatos = (req, res) => {
-    let tabla = req.body.tabla
-    let datos = req.body.datos
+const updateDatos = (req, res) => {
+    const tabla = req.body.tabla
+    const datos = req.body.datos
     datos.forEach( element => {
         db(tabla).where('id', element.id).update(element)
         .then( resultado => {
@@ -62,9 +62,9 @@ let updateDatos = (req, res) => {
     })
 }
 
-let deleteDatos = (req, res) => {
-    let tabla = req.query.tabla
-    let id = req.query.id
+const deleteDatos = (req, res) => {
+    const tabla = req.query.tabla
+    const id = req.query.id
     db(tabla).where('id', id).delete()
     .then(resultado => {
         return res.status(200).json({
@@ -81,11 +81,11 @@ let deleteDatos = (req, res) => {
     })
 }
 
-let login = (req,res) =>{
-    let tabla = 'persona';
-    let correo = req.body.correo;
-    let clave = req.body.clave;
-    let campo = req.query.campo;
+const login = (req,res) =>{
+    const tabla = 'persona';
+    const correo = req.body.correo;
+    const clave = req.body.clave;
+    const campo = req.query.campo;
   
     db.select(campo).from(tabla)
       .then(resultado => {
@@ -105,12 +105,30 @@ let login = (req,res) =>{
 }
 
 // RAW functions
-let reserva = (req, res) => {
-    db.raw(`select reserva.id, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as titulo_id
+const reserva = (req, res) => {
+    db.raw(`select reserva.id, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as libro_id
     from reserva 
     join estado_reserva on estado_reserva.id = reserva.estado_reserva_id
     join persona on persona.id = reserva.persona_id
     join libro on libro.id = reserva.libro_id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+const raw_crud = (req, res) => {
+    const query = req.body.query
+    db.raw(query)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -133,5 +151,6 @@ module.exports = {
     deleteDatos,
     login,
     // RAW functions
+    raw_crud,
     reserva,
 }

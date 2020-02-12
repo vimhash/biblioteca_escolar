@@ -11,6 +11,7 @@ api.delete('/library', control.deleteDatos)
 api.post('/login', control.login)
 
 // RAW routes
+api.get('/library/raw_crud', control.raw_crud)
 api.get('/library/reserva', control.reserva)
 
 module.exports = api
