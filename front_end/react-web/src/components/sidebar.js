@@ -13,14 +13,14 @@ const Sidebar = () => (
             </div>
             <div className="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded">
                 <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-                    <li className="items-center">
+                    {/* <li className="items-center">
                         <Link to="/home">
                             <button className="text-pink-500 hover:text-pink-600 text-xs uppercase py-3 font-bold block">
                                 <i className="fas fa-tv opacity-75 mr-2 text-sm"></i>
                                 Inicio
                             </button>
                         </Link>
-                    </li>
+                    </li> */}
                     <li className="items-center">
                         <Link to="/admins">
                             <button className="text-gray-800 text-xs uppercase py-3 font-bold block">
@@ -41,7 +41,7 @@ const Sidebar = () => (
                                     </li>
                                 </Link>
                                 <Link to="/virtual_library">
-                                    <li className="mx-8 hover:text-gray-600">
+                                    <li className="text-pink-500 mx-8 hover:text-gray-600">
                                         <i className="fas fa-arrow-circle-right"></i>
                                         Biblioteca Virtual
                                     </li>
