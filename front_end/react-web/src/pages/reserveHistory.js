@@ -15,14 +15,23 @@ class ReserveHistory extends Component {
                 persona_id: 'Estudiante',
                 libro_id: 'Nombre del libro'
             },
-            reservas: [],
+            reservas_aprobadas: [],
+            reservas_rechazadas: [],
         }
     }
 
     componentDidMount() {
-        axios.get(API+"?tabla=reserva")
+        axios.get(API+"?estado_reserva=2")
         .then(response => {
-            this.setState({ reservas: response.data.datos })
+            this.setState({ reservas_aprobadas: response.data.datos })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+        axios.get(API+"?estado_reserva=3")
+        .then(response => {
+            this.setState({ reservas_rechazadas: response.data.datos })
         })
         .catch(error => {
             console.log(error)
@@ -30,7 +39,7 @@ class ReserveHistory extends Component {
     }
 
     render() {
-        const { reservas } = this.state
+        const { reservas_aprobadas, reservas_rechazadas } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -38,8 +47,11 @@ class ReserveHistory extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <div class="justify-center my-5 select-none flex">
+                        <div className="justify-center my-5 select-none flex">
                             <p className="mt-5 text-center mr-10 text-2xl">Historial de Reservas realizadas por los estudiantes.</p>
+                        </div>  
+                        <div className="justify-center my-5 select-none flex">
+                            <p className="mt-5 text-center mr-10 text-2xl">Aprobados.</p>
                         </div>  
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -54,13 +66,42 @@ class ReserveHistory extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { reservas.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_id} </p>) }
                                         </td>
                                         <td>
-                                            { reservas.map(element => <p className="p-2 px-5" key={ element.id }> {element.libro_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.libro_id} </p>) }
                                         </td>
                                         <td>
-                                            { reservas.map(element => <p className="p-2 px-5" key={ element.id }> {element.estado_reserva_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.estado_reserva_id} </p>) }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="justify-center my-5 select-none flex">
+                            <p className="mt-5 text-center mr-10 text-2xl">Rechazados.</p>
+                        </div>  
+                        <div className="px-3 py-4 flex justify-center">
+                            <table className="w-full text-md bg-white shadow-md rounded mb-4">
+                                <thead className="border-b">
+                                    <tr>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.persona_id }</th>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.libro_id }</th>
+                                        <th className="text-left p-3 px-5">{ this.state.table_header.estado_reserva_id }</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr className="border-b hover:bg-orange-100 bg-gray-100">
+                                        <td>
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_id} </p>) }
+                                        </td>
+                                        <td>
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.libro_id} </p>) }
+                                        </td>
+                                        <td>
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.estado_reserva_id} </p>) }
                                         </td>
                                     </tr>
                                 </tbody>

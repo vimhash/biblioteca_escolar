@@ -42,7 +42,7 @@ const postDatos = (req, res) => {
 }
 
 const updateDatos = (req, res) => {
-    const tabla = req.body.tabla
+    const tabla = req.query.tabla
     const datos = req.body.datos
     datos.forEach( element => {
         db(tabla).where('id', element.id).update(element)
@@ -106,11 +106,13 @@ const login = (req,res) =>{
 
 // RAW functions
 const reserva = (req, res) => {
-    db.raw(`select reserva.id, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as libro_id
+    const estado_reserva = req.query.estado_reserva
+    db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as libro_id
     from reserva 
     join estado_reserva on estado_reserva.id = reserva.estado_reserva_id
     join persona on persona.id = reserva.persona_id
-    join libro on libro.id = reserva.libro_id`)
+    join libro on libro.id = reserva.libro_id
+    where estado_reserva.id = ${ estado_reserva }`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,

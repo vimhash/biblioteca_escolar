@@ -88,23 +88,6 @@ class Admin extends Component {
         window.location.assign("http://localhost:3000/admins");
     }
 
-    // updateData = () => {
-    //     axios.put(API+"?tabla=persona", {
-    //         persona_identificacion: this.state.persona_identificacion,
-    //         persona_nombre: this.state.persona_nombre,
-    //         persona_email: this.state.persona_email,
-    //         persona_direccion: this.state.persona_direccion,
-    //         persona_telefono: this.state.persona_telefono,
-    //         persona_clave: this.state.persona_clave
-    //     })
-    //     .then(response => {
-    //         console.log(response);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-    // }
-
     render() {
         const { admins, persona_identificacion, persona_nombre, persona_email, persona_direccion, persona_telefono, persona_clave } = this.state
         return(
@@ -114,9 +97,9 @@ class Admin extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                    <div class="justify-center my-5 select-none flex">
+                    <div className  ="justify-center my-5 select-none flex">
                         <p className="mt-5 text-center mr-10 text-2xl">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
-                            <button onClick={ this.handleOpenModal } type="button" class="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
+                            <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
                                     +
                                 </button>
                                 {/* MODAL */}
