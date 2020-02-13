@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Text,TextInput,View, Image,ImageBackground, StyleSheet, Platform } from 'react-native';
 import { Icon,Button, Card } from 'react-native-elements'
+import HeaderExample from '../components/header';
+
 
 export default class Reserve extends Component {
 
   render() {
     return (
         <View style={styles.container}>
+          <HeaderExample />
             <Text style={styles.text}>Bienvenido a la Reservacion.</Text>
               <Card
                 title='Name Book'
-                image={require('../assets/hamburger-895831_1280.jpg')}>
+                image={require('../assets/iconos-libros.png')}>
                     {/* <Text style={styles.text}>Correo Intitucional</Text>
                     <TextInput  
                         placeholder="Enter Your Mobile Number"  

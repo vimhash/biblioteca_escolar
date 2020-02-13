@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import { Icon,Button, Card } from 'react-native-elements';
 import HeaderExample from '../components/header';
+import { Link } from 'react-router-native';
 
 // const HeaderExample = require('../components/header')
 
@@ -15,7 +16,7 @@ export default class virtualLibrary extends Component {
         <ScrollView vertical={true}>
         <Card
           title='Name Book'
-          image={require('../assets/hamburger-895831_1280.jpg')}>
+          image={require('../assets/iconos-libros.png')}>
           <Text style={{marginBottom: 10}}>
             Autor:
           </Text>
@@ -29,13 +30,13 @@ export default class virtualLibrary extends Component {
             Año:
           </Text>
           <Button
-            icon={<Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>}
+            icon={<Icon type="font-awesome" name="book" color="white" containerStyle={styles.icon}/>}
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,}}
             title='Reservar' />
         </Card>
         <Card
           title='Name Book'
-          image={require('../assets/hamburger-895831_1280.jpg')}>
+          image={require('../assets/iconos-libros.png')}>
           <Text style={{marginBottom: 10}}>
             Autor:
           </Text>
@@ -48,10 +49,11 @@ export default class virtualLibrary extends Component {
           <Text style={{marginBottom: 10}}>
             Año:
           </Text>
-          <Button
-            icon={<Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>}
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,}}
-            title='Reservar' />
+          <TouchableHighlight style={styles.containerIngresar}>
+              <Link to="/reserve" style={ styles.button }>
+                  <Text >Ingresar</Text>
+              </Link>
+            </TouchableHighlight>
         </Card>
         </ScrollView>
     </View>
@@ -68,6 +70,12 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'stretch',
     backgroundColor: '#ffffff',
+  },
+  containerIngresar:{
+    height: 60,
+    marginLeft:'25%',
+    marginRight:'25%',
+    paddingTop:'10%',
   },
   containerEmail:{
     height: 60,
@@ -95,5 +103,16 @@ const styles = StyleSheet.create({
     paddingBottom: '5%',
     paddingTop: '8%',
     fontSize: 17,
+  },
+  button: {
+    position: 'relative',
+    bottom: '0%',
+    marginBottom: 20,
+    borderRadius: 100,
+    backgroundColor: 'pink',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
