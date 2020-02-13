@@ -37,7 +37,7 @@ class VirtualLibrary extends Component {
                         <div className="flex flex-wrap items-center justify-center">
                             { libros.map(element => 
                                 <div className="max-w-md w-full lg:flex" key={ element.id }>
-                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="../../assets/book.png" alt={ element.libro_titulo } />
+                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYDQiy5f0N6e2bPhKGKsadkeiR2gt2yoxJPjklOvZ8wUY984mX" alt={ element.libro_titulo } />
                                     <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                         <div className="mb-8">
                                             <div className="text-black font-bold text-xl mb-2">Libro: { element.libro_titulo }</div>

@@ -88,23 +88,6 @@ class Admin extends Component {
         window.location.assign("http://localhost:3000/admins");
     }
 
-    // updateData = () => {
-    //     axios.put(API+"?tabla=persona", {
-    //         persona_identificacion: this.state.persona_identificacion,
-    //         persona_nombre: this.state.persona_nombre,
-    //         persona_email: this.state.persona_email,
-    //         persona_direccion: this.state.persona_direccion,
-    //         persona_telefono: this.state.persona_telefono,
-    //         persona_clave: this.state.persona_clave
-    //     })
-    //     .then(response => {
-    //         console.log(response);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-    // }
-
     render() {
         const { admins, persona_identificacion, persona_nombre, persona_email, persona_direccion, persona_telefono, persona_clave } = this.state
         return(
