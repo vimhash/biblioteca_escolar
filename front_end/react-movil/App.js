@@ -5,6 +5,8 @@ import { NativeRouter, Switch, Route } from "react-router-native";
 import Login from "./pages/Login";
 import virtualLibrary from './pages/virtualLibrary';
 import Reserve from './pages/reserve';
+import Detalle from './pages/detalle_reserva';
+import Menu from './components/sidebar';
 
 
 export default class App extends Component {
@@ -16,6 +18,7 @@ export default class App extends Component {
             <Route exact path="/" component={ Login } />
             <Route exact path="/library" component={ virtualLibrary } />
             <Route path="/reserve" component={ Reserve } /> 
+            <Route path="/detalle" component={ Detalle } /> 
           </Switch>
         </View>
       </NativeRouter>

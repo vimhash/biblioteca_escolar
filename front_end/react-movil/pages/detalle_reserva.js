@@ -12,7 +12,7 @@ export default class virtualLibrary extends Component {
     return (    
       <View style={styles.container}>
             <HeaderExample />
-        <Text style={styles.text}>Bienvenido a la biblioteca virtual.</Text>
+        <Text style={styles.text}>Detalle de su reserva.</Text>
             <ScrollView vertical={true}>
               <Card
                 title='Name Book'
@@ -34,48 +34,6 @@ export default class virtualLibrary extends Component {
                         <Text >Detalle</Text>
                     </Link>
                 </TouchableHighlight>
-              </Card>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
-                <Text style={{marginBottom: 10}}>
-                  Autor:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Pais:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año:
-                </Text>
-                  <TouchableHighlight style={styles.containerIngresar}>
-                      <Link to="/detalle" style={ styles.button }>
-                          <Text >Detalle</Text>
-                      </Link>
-                  </TouchableHighlight>
-              </Card>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
-                <Text style={{marginBottom: 10}}>
-                  Autor:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Pais:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año:
-                </Text>
-                  <TouchableHighlight style={styles.containerIngresar}>
-                      <Link to="/reserve" style={ styles.button }>
-                          <Text >Detalle</Text>
-                      </Link>
-                  </TouchableHighlight>
               </Card>
             </ScrollView>
       </View>

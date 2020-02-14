@@ -1,42 +1,57 @@
 import React, { Component } from 'react';
-import { Text,TextInput,View, Image,ImageBackground, StyleSheet, Platform } from 'react-native';
-import { Icon,Button, Card } from 'react-native-elements'
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import { Table, TableWrapper, Row } from 'react-native-table-component';
 import HeaderExample from '../components/header';
+import { Link } from 'react-router-native';
 
-
-export default class Reserve extends Component {
+export default class ExampleThree extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableHead: ['Name book', 'Fecha de reserva', 'Estado'],
+      widthArr: [40, 60, 80]
+    }
+  }
 
   render() {
+    const state = this.state;
+    const tableData = [];
+    for (let i = 0; i < 30; i += 1) {
+      const rowData = [];
+      for (let j = 0; j < 9; j += 1) {
+        rowData.push(`${i}${j}`);
+      }
+      tableData.push(rowData);
+    }
+
     return (
-        <View style={styles.container}>
-          <HeaderExample />
-            <Text style={styles.text}>Bienvenido a la Reservacion.</Text>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
-                    {/* <Text style={styles.text}>Correo Intitucional</Text>
-                    <TextInput  
-                        placeholder="Enter Your Mobile Number"  
-                        underlineColorAndroid='transparent'  
-                        style={styles.TextInputStyle}
-                        keyboardType={'numeric'}
-                    />  
-                        <View style={styles.containerEmail}>
-                            <TextInput type='number' placeholder="@yavirac.edu.ec" placeholderTextColor="gray"
-                        style={styles.textInput}/> 
-                        </View>
-                    <Text style={styles.text}>Contraseña</Text>
-                    <View style={styles.containerPassword}>
-                        <Icon type="entypo" name="key" color="gray" containerStyle={styles.icon}/>
-                        <TextInput placeholder="*******" placeholderTextColor="gray"
-                        style={styles.textInput} secureTextEntry={true}/> 
-                    </View>
-                    <View style={styles.containerIngresar}>
-                    <Button title='Comprar' backgroundColor='#718096' />
-                    </View> */}
-              </Card>
+      <View style={styles.container}>
+            <HeaderExample />
+        <Text style={styles.text}>Detalle de su reserva.</Text>
+        <ScrollView horizontal={true}>
+          <View>
+            <Table borderStyle={{borderColor: '#C1C0B9', width: '100%'}}>
+              <Row data={state.tableHead} widthArr={state.widthArr} style={styles.header} textStyle={styles.textHeader}/>
+            </Table>
+            <ScrollView style={styles.dataWrapper}>
+              <Table borderStyle={{borderColor: '#C1C0B9'}}>
+                {
+                  tableData.map((rowData, index) => (
+                    <Row
+                      key={index}
+                      data={rowData}
+                      widthArr={state.widthArr}
+                      style={[styles.row, index%2 && {backgroundColor: '#F7F6E7'}]}
+                      textStyle={styles.textTable}
+                    />
+                  ))
+                }
+              </Table>
+            </ScrollView>
           </View>
-    );
+        </ScrollView>
+      </View>
+    )
   }
 }
 
@@ -48,55 +63,33 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent:'center',
     alignItems: 'stretch',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#4fd1c5',
   },
-  containerIngresar:{
-    height: 60,
-    marginLeft:'25%',
-    marginRight:'25%',
-    paddingTop:'10%',
+  header: { 
+    height: 70, 
+    backgroundColor: 'black' 
   },
-  containerEmail:{
-    height: 60,
-    flexDirection:'row',
-    justifyContent:'center',
-    backgroundColor:'#ffffff',
-    marginLeft:'10%',
-    marginRight:'10%',
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+  textHeader: { 
+    textAlign: 'center', 
+    fontWeight: '100',
+    color: 'white' 
   },
-  containerPassword:{
-    height: 60,
-    flexDirection:'row',
-    justifyContent:'center',
-    backgroundColor:'#ffffff',
-    marginLeft:'10%',
-    marginRight:'10%',
-  },
-  icon:{
-    flex:1,
-    paddingTop: '5%',
+  textTable: { 
+    textAlign: 'center', 
+    fontWeight: '100' 
   },
   text:{
-    color:'#000000',
-    paddingLeft:'5%',
+    color:'white',
+    paddingLeft:'10%',
     paddingBottom: '5%',
-    paddingTop: '5%',
+    paddingTop: '8%',
+    fontSize: 18,
   },
-  textInput:{
-    backgroundColor:'transparent',
-    flex:5,
-    color:'black',
-    paddingLeft:'15%',
-  },  
-  TextInputStyle: {  
-      textAlign: 'center',  
-      height: 40,  
-      borderRadius: 10,  
-      borderWidth: 2,  
-      borderColor: '#009688',  
-      marginBottom: 10  
+  dataWrapper: { 
+    marginTop: -1 
+  },
+  row: { 
+    height: 40, 
+    backgroundColor: '#E7E6E1' 
   }
-})
+});
