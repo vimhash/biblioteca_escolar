@@ -6,7 +6,29 @@ const db = require('knex')(config[env])
 const getDatos = (req, res) => {
     const tabla = req.query.tabla
     const campo = req.query.campo
+
     db.select(campo).from(tabla)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+const getDatosByID = (req, res) => {
+    const tabla = req.query.tabla
+    const campo = req.query.campo
+    const id = req.query.id
+
+    db.select(campo).from(tabla).where('id', id)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -167,6 +189,7 @@ const raw_crud = (req, res) => {
 
 module.exports = {
     getDatos,
+    getDatosByID,
     postDatos,
     updateDatos,
     deleteDatos,

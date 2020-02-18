@@ -51,8 +51,7 @@ class AddBook extends Component {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                alert("Agregado exitosamente")
-                window.location.assign("http://localhost:3000/add_book");
+                window.location.assign("http://localhost:3000/virtual_library");
             }
           })
           .catch(error => {

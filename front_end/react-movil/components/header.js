@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableHighlight, Text, TouchableOpacity} from 'react-native';
+import { View, StyleSheet, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
 import { Link } from 'react-router-native';
 import MenuDrawer from 'react-native-side-drawer';
 
-export default class HeaderExample extends Component {
+export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,21 +18,26 @@ export default class HeaderExample extends Component {
   drawerContent = () => {
     return (
       <TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
-        <Text>Close</Text>
-        <View style={ styles.menu }>
-          <TouchableHighlight>
-            <Link to="/library" style={ styles.buttonMenu }>
-                <Text backgroundColor='white'>Biblioteca</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
-        <View style={ styles.menu }>
-          <TouchableHighlight>
-            <Link to="/reserve" style={ styles.buttonMenu }>
-                <Text backgroundColor='white'>Reservaciones</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
+        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
+          <View>
+          <Image
+          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
+          source={require('../assets/book.jpg')}
+        />
+        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+            <TouchableHighlight>
+              <Link to="/library" style={styles.menuButton}>
+                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight>
+              <Link to="/reserve" style={styles.menuButton}>
+                  <Text style={{color: '#fff'}}>Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
       </TouchableOpacity>
     );
   };
@@ -57,7 +62,7 @@ export default class HeaderExample extends Component {
           </View>
           <TouchableHighlight style={styles.menu}>
                 <Link to="/" style={styles.openButton}>
-                    <Text backgroundColor='white'>Salir</Text>
+                  <Text backgroundColor='white'>Salir</Text>
                 </Link>
               </TouchableHighlight>
           </View>

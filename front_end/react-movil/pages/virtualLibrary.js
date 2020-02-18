@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
 
+const API = 'http://192.168.1.16:8001/server/library'
 
 export default class virtualLibrary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      libros: [],
     };
+  }
+
+  componentDidMount() {
+    axios.get(API+"?tabla=libro")
+    .then( response => {
+      this.setState({ libros: response.data.datos })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  asyncstorageSave = async (item) => {
+    try {
+      await AsyncStorage.setItem('libro_id', item.toString())
+    } catch (err) {
+      alert(err)
+    }
   }
 
   toggleOpen = () => {
@@ -37,16 +58,16 @@ export default class virtualLibrary extends Component {
           <View>
             <TouchableHighlight>
               <Link to="/reserve" style={styles.menuButton}>
-                  <Text style={{color: '#fff'}}>Reservaciones</Text>
+                <Text style={{color: '#fff'}}>Reservaciones</Text>
               </Link>
             </TouchableHighlight>
           </View>
       </TouchableOpacity>
-      
     );
   };
   
   render() {
+    const { libros } = this.state
     return (
       <View style={styles.container}>
         <MenuDrawer 
@@ -74,71 +95,29 @@ export default class virtualLibrary extends Component {
             <Text style={styles.text}>Bienvenido (Nombre).</Text>
             <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', backgroundColor:'#fbb6ce', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Bienvenido al catálogo, selecciona el libro que deseas resrevar, para mas infromación has click en "DETALLE".</Text>
           <ScrollView vertical={true}>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
+            { libros.map( element => 
+              <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
-                  Autor:
+                  Autor: { element.libro_autor }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Editorial:
+                  Editorial: { element.libro_editorial }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Pais:
+                  País: { element.libro_pais }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Año:
+                  Año: { element.libro_año }
                 </Text>
                 <TouchableHighlight style={styles.button}>
-                    <Link to="/detalle" >
+                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
                         <Text style={{marginHorizontal: 20}} >
-                        <Icon name="book" size={20} color="#fff" />Detalle
+                          <Icon name="book" size={20} color="#fff" /> Detalle
                         </Text>
                     </Link>
                 </TouchableHighlight>
-              </Card>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
-                <Text style={{marginBottom: 10}}>
-                  Autor:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Pais:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año:
-                </Text>
-                  <TouchableHighlight style={styles.button}>
-                      <Link to="/detalle" >
-                          <Text >Detalle</Text>
-                      </Link>
-                  </TouchableHighlight>
-              </Card>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
-                <Text style={{marginBottom: 10}}>
-                  Autor:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Pais:
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año:
-                </Text>
-                  <TouchableHighlight style={styles.button}>
-                      <Link to="/reserve">
-                          <Text >Detalle</Text>
-                      </Link>
-                  </TouchableHighlight>
-              </Card>
+              </Card> ) 
+              }
             </ScrollView>
           </View>   
         </MenuDrawer> 

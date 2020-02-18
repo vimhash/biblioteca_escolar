@@ -6,7 +6,6 @@ import Login from "./pages/Login";
 import virtualLibrary from './pages/virtualLibrary';
 import Reserve from './pages/reserve';
 import Detalle from './pages/detalle_reserva';
-import Menu from './components/sidebar';
 
 
 export default class App extends Component {

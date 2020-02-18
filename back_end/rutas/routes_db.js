@@ -4,6 +4,7 @@ let api = express.Router(),
   control = require('../controles/crud')
 
 api.get('/library', control.getDatos)
+api.get('/library_byID', control.getDatosByID)
 api.post('/library', control.postDatos)
 api.put('/library', control.updateDatos)
 api.delete('/library', control.deleteDatos)

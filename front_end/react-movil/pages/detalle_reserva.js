@@ -1,15 +1,44 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, AsyncStorage } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
+import axios from 'axios';
+
+const API = 'http://192.168.1.16:8001/server/library_byID'
 
 export default class detalleBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      libros: [],
+      libro_id: '',
     };
+  }
+
+  componentDidMount() {
+    this.asyncstorageGet()
+  }
+
+  getData = () => {
+    axios.get(`${ API }?tabla=libro&&id=${ this.state.libro_id }`)
+    .then(response => {
+      this.setState({ libros: response.data.datos })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+ 
+  asyncstorageGet = async () => {
+    try {
+      const id = await AsyncStorage.getItem('libro_id')
+      this.setState({ libro_id: id})
+      this.getData()
+    } catch (e) {
+      alert(e)
+    }
   }
 
   toggleOpen = () => {
@@ -40,6 +69,7 @@ export default class detalleBook extends Component {
   };
   
   render() {
+    const { libros } = this.state
     return (
       <View style={styles.container}>
         <MenuDrawer 
@@ -67,27 +97,22 @@ export default class detalleBook extends Component {
           <Text style={styles.text}>Detalle de su Reservación.</Text>
           <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', backgroundColor:'#fbb6ce', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
           <ScrollView vertical={true}>
-              <Card
-                title='Name Book'
-                image={require('../assets/iconos-libros.png')}>
+            { libros.map(element => 
+              <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
-                  Autor:
+                  Autor: { element.libro_autor }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Editorial:
+                  Editorial: { element.libro_editorial }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Pais:
+                  País: { element.libro_pais }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Año:
+                  Año: { element.libro_año }
                 </Text>
-                <TouchableHighlight style={styles.button}>
-                    <Link to="/detalle" >
-                        <Text >Detalle</Text>
-                    </Link>
-                </TouchableHighlight>
-              </Card>
+              </Card>)
+            }
             </ScrollView>
           </View>   
         </MenuDrawer> 
