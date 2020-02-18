@@ -111,7 +111,6 @@ const loginAPI_yavirac = (req,res) =>{
   
     API.forEach(element => {
         if(element.correo == estudiante_correo && element.cedula == estudiante_cedula){
-            console.log("ok")
             res.status(200).json({
                 ok: true,
                 mensaje: "found"

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, TextInput, View, StyleSheet, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import axios from 'axios';
 
@@ -61,9 +61,9 @@ export default class LoginScreen extends React.Component {
           style={styles.textInput} secureTextEntry={true}/> 
         </View>
 
-        <TouchableHighlight style={styles.containerIngresar} onPress={ this.login }>
-            <Button title="Ingresar" />
-        </TouchableHighlight>
+        <View style={styles.containerIngresar}>
+            <Button title="Ingresar" onPress={ this.login } />
+        </View>
 
       </View>
     );
