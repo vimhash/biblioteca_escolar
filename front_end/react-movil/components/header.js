@@ -39,49 +39,33 @@ export default class HeaderExample extends Component {
 
   render() {
     return (
-      <View style={ styles.container }>
-         <View style={styles.containerMenu}>
-            <MenuDrawer 
-              open={this.state.open} 
-              drawerContent={this.drawerContent()}
-              drawerPercentage={45}
-              animationTime={250}
-              overlay={true}
-              opacity={0.4}
-            >
-              <TouchableOpacity onPress={this.toggleOpen} >
-                <Text backgroundColor='white'>Menu</Text>
-              </TouchableOpacity>
-            </MenuDrawer>
-            <View>
-              <Text style={ styles.text }>Sistema de Bibliioteca</Text>
-            </View>
-            <View style={ styles.menu }>
-              <TouchableHighlight>
-                <Link to="/" style={ styles.button }>
+      <View style={styles.container}>
+        <MenuDrawer 
+          open={this.state.open} 
+          drawerContent={this.drawerContent()}
+          drawerPercentage={45}
+          animationTime={250}
+          overlay={true}
+          opacity={0.4}
+        >
+          <View style={{flex: 1, flexDirection: 'row'}}>
+          <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
+            <Text style={styles.openButton}>Menu</Text>
+          </TouchableOpacity>
+          <View style={styles.header} >
+          <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+          </View>
+          <TouchableHighlight style={styles.menu}>
+                <Link to="/" style={styles.openButton}>
                     <Text backgroundColor='white'>Salir</Text>
                 </Link>
               </TouchableHighlight>
-            </View>
-        </View>
+          </View>
+          </MenuDrawer> 
       </View>
     );
   }
 };
-
-// export default class HeaderExample extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//       <TouchableHighlight>
-//         <Link to="/library" style={ styles.button }>
-//             <Text backgroundColor='#718096'>Ingresar</Text>
-//         </Link>
-//       </TouchableHighlight>
-//     </View>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
    container:{
