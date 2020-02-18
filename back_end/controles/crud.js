@@ -2,7 +2,6 @@
 const config = require('../knexfile')
 const env = 'development'
 const db = require('knex')(config[env])
-const request = require('request');
 
 const getDatos = (req, res) => {
     const tabla = req.query.tabla
@@ -112,6 +111,7 @@ const loginAPI_yavirac = (req,res) =>{
   
     API.forEach(element => {
         if(element.correo == estudiante_correo && element.cedula == estudiante_cedula){
+            console.log("ok")
             res.status(200).json({
                 ok: true,
                 mensaje: "found"

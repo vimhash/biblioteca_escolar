@@ -1,35 +1,71 @@
 import * as React from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableHighlight } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
-import { Link } from 'react-router-native';
+import axios from 'axios';
+
+const API = 'http://172.16.24.36:8001/server/login_estudiantes'
 
 export default class LoginScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      estudiante_correo: '',
+      estudiante_cedula: '',
+    }
+  }
+
+  estudiante_correo_Handler = text => {
+    this.setState({ estudiante_correo: text })
+  }
+
+  estudiante_cedula_Handler = text => {
+    this.setState({ estudiante_cedula: text })
+  }
+
   static navigationOptions ={
     header: null
   }
 
-  render() {
-    return (
-          <View style={styles.container}>
-            <Text style={styles.text}>Correo Intitucional</Text>
-            <View style={styles.containerEmail}>
-              <Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>
-              <TextInput placeholder="@yavirac.edu.ec" placeholderTextColor="gray"
-              style={styles.textInput}/> 
-            </View>
-            <Text style={styles.text}>Contraseña</Text>
-            <View style={styles.containerPassword}>
-              <Icon type="entypo" name="key" color="gray" containerStyle={styles.icon}/>
-              <TextInput placeholder="*******" placeholderTextColor="gray"
-              style={styles.textInput} secureTextEntry={true}/> 
-            </View>
+  login = () => {
+    if (this.state.estudiante_correo === "" || this.state.estudiante_cedula === "") {
+      alert("Complete todos los datos para continuar...");
+    } else {
+      axios.post(API, this.state)
+      .then(response => {
+        if ( response.data.mensaje === "found" ) {
+          return this.props.history.push("library");
+        }
+      })
+      .catch(error => {
+        alert("Datos Incorrectos")
+      })
+    }
+  }
 
-            <TouchableHighlight style={styles.containerIngresar}>
-              <Link to="/library" style={ styles.button }>
-                  <Text backgroundColor='#718096'>Ingresar</Text>
-              </Link>
-            </TouchableHighlight>
-          </View>
+  render() {
+    const { estudiante_correo, estudiante_cedula } = this.state
+    return (
+      <View style={styles.container}>
+
+        <Text style={styles.text}>Correo Intitucional</Text>
+        <View style={styles.containerEmail}>
+          <Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>
+          <TextInput placeholder="@yavirac.edu.ec" placeholderTextColor="gray" name="estudiante_correo" value={ estudiante_correo } onChangeText={ this.estudiante_correo_Handler }
+          style={styles.textInput}/> 
+        </View>
+
+        <Text style={styles.text}>Contraseña</Text>
+        <View style={styles.containerPassword}>
+          <Icon type="entypo" name="key" color="gray" containerStyle={styles.icon}/>
+          <TextInput placeholder="*******" placeholderTextColor="gray" name="estudiante_cedula" value={ estudiante_cedula } onChangeText={ this.estudiante_cedula_Handler }
+          style={styles.textInput} secureTextEntry={true}/> 
+        </View>
+
+        <TouchableHighlight style={styles.containerIngresar} onPress={ this.login }>
+            <Button title="Ingresar" />
+        </TouchableHighlight>
+
+      </View>
     );
   }
 }
