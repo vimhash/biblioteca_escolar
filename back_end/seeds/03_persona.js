@@ -5,11 +5,11 @@ exports.seed = function(knex) {
       return knex('persona').insert([
         {
           id: 1, 
-          tipo_persona_id: 1,
-          estado_persona_id: 1,
-          persona_nombre: 'Administrador',
-          persona_email: 'admin@gmail.com',
-          persona_clave: '1234'
+          id_tipo_persona: 1,
+          id_estado_persona: 1,
+          nombre: 'Administrador',
+          email: 'admin@gmail.com',
+          clave: '1234'
         },
       ]);
     });

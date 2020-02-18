@@ -43,7 +43,7 @@ const Sidebar = () => (
                                 <Link to="/virtual_library">
                                     <li className="text-pink-500 mx-8 hover:text-gray-600">
                                         <i className="fas fa-arrow-circle-right"></i>
-                                        Biblioteca Virtual
+                                        Catálogo de libros
                                     </li>
                                 </Link>
                             </ul>
@@ -67,7 +67,7 @@ const Sidebar = () => (
                     </li>
                 </ul>
                 <hr />
-                {/* <li className="items-center">
+                <li className="items-center">
                     <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
                         <i className="fas fa-cog text-gray-900 mr-2 text-sm"></i>
                         Configuraciones
@@ -98,7 +98,7 @@ const Sidebar = () => (
                             </Link>
                         </ul>
                     </div>
-                </li> */}
+                </li>
             </div>
         </div>
     </nav>

@@ -5,7 +5,10 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('estado_persona').insert([
-        {id: 1, estado_persona_nombre: 'Activo'}
+        {
+          id: 1, 
+          nombre: 'Activo'
+        }
       ]);
     });
 };

@@ -112,7 +112,7 @@ const login = (req,res) =>{
     db.select(campo).from(tabla)
       .then(resultado => {
         resultado.forEach(element => {
-          if(element.persona_email == correo && element.persona_clave == clave){
+          if(element.email == correo && element.clave == clave){
             res.status(200).json({
               ok: true,
               mensaje: "found"
@@ -148,11 +148,11 @@ const loginAPI_yavirac = (req,res) =>{
 // RAW functions
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
-    db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.estado_reserva_nombre as estado_reserva_id, persona.persona_nombre as persona_id, libro.libro_titulo as libro_id
+    db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, persona.nombre as id_persona, libro.titulo as id_libro
     from reserva 
-    join estado_reserva on estado_reserva.id = reserva.estado_reserva_id
-    join persona on persona.id = reserva.persona_id
-    join libro on libro.id = reserva.libro_id
+    join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
+    join persona on persona.id = reserva.id_persona
+    join libro on libro.id = reserva.id_libro
     where estado_reserva.id = ${ estado_reserva }`)
     .then( resultado => {
         return res.status(200).json({

@@ -49,7 +49,8 @@ class Login extends Component {
                   placeholder="correo@yavirac.edu.ec"
                   name="correo"
                   value={ correo }
-                  onChange={ this.changeHandler } 
+                  onChange={ this.changeHandler }
+                  autoComplete="off"
                   />
                 </div>
 

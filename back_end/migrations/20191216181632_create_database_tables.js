@@ -3,57 +3,58 @@ exports.up = function(knex, Promise) {
   return knex.schema
   .createTable( 'tipo_persona', function( table ) {
     table.increments('id');
-    table.string('tipo_persona_nombre').notNullable().unique();
-    table.string('tipo_persona_descripcion');
+    table.string('nombre').notNullable().unique();
+    table.string('descripcion');
   })
 
   .createTable( 'estado_persona', function( table ) {
     table.increments('id');
-    table.string('estado_persona_nombre').notNullable().unique();
-    table.string('estado_persona_descripcion');
+    table.string('nombre').notNullable().unique();
+    table.string('descripcion');
   })
 
   .createTable( 'estado_reserva', function( table ) {
     table.increments('id');
-    table.string('estado_reserva_nombre').notNullable().unique();
-    table.string('estado_reserva_descripcion');
+    table.string('nombre').notNullable().unique();
+    table.string('descripcion');
   })
 
   .createTable( 'estado_libro', function( table ) {
     table.increments('id');
-    table.string('estado_libro_nombre').notNullable().unique();
-    table.string('estado_libro_descripcion');
+    table.string('nombre').notNullable().unique();
+    table.string('descripcion');
   })
 
   .createTable( 'libro', function( table ) {
     table.increments('id');
-    table.integer('estado_libro_id').references('id').inTable('estado_libro');
-    table.string('libro_autor');
-    table.string('libro_pais');
-    table.string('libro_año');
-    table.string('libro_titulo');
-    table.string('libro_editorial');
-    table.string('libro_existencias');
+    table.integer('id_libro').references('id').inTable('estado_libro');
+    table.string('autor');
+    table.string('pais');
+    table.string('año');
+    table.string('titulo');
+    table.string('editorial');
+    table.string('existencias');
   })
 
   .createTable( 'persona', function( table ) {
     table.increments('id');
-    table.integer('tipo_persona_id').references('id').inTable('tipo_persona');
-    table.integer('estado_persona_id').references('id').inTable('estado_persona');
-    table.string('persona_identificacion').unique();
-    table.string('persona_nombre');
-    table.string('persona_email').unique();
-    table.string('persona_direccion');
-    table.string('persona_telefono');
-    table.string('persona_clave');
+    table.integer('id_tipo_persona').references('id').inTable('tipo_persona');
+    table.integer('id_estado_persona').references('id').inTable('estado_persona');
+    table.string('identificacion').unique();
+    table.string('nombre');
+    table.string('email').unique();
+    table.string('direccion');
+    table.string('telefono');
+    table.string('clave');
   })
   
   .createTable( 'reserva', function( table ) {
     table.increments('id');
-    table.integer('estado_reserva_id').references('id').inTable('estado_reserva');
-    table.integer('persona_id').references('id').inTable('persona');
-    table.integer('libro_id').references('id').inTable('libro');
-    table.date('fecha');
+    table.integer('id_estado_reserva').references('id').inTable('estado_reserva');
+    table.integer('id_libro').references('id').inTable('libro');
+    table.integer('id_estudiante')
+    table.date('fecha_pedido');
+    table.date('fecha_entrega');
   })
 };
 

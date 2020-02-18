@@ -20,12 +20,12 @@ class Admin extends Component {
                 persona_email:'Correo Electrónico'
             },
             admins: [],
-            persona_identificacion: '',
-            persona_nombre: '',
-            persona_email: '',
-            persona_direccion: '',
-            persona_telefono: '',
-            persona_clave: ''
+            identificacion: '',
+            nombre: '',
+            email: '',
+            direccion: '',
+            telefono: '',
+            clave: ''
         }
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -38,7 +38,7 @@ class Admin extends Component {
     componentDidMount() {
         axios.get(API+"?tabla=persona")
         .then(response => {
-            this.setState({admins: response.data.datos})
+            this.setState({ admins: response.data.datos })
         })
         .catch(error => {
             console.log(error)
@@ -50,28 +50,27 @@ class Admin extends Component {
         this.post = {
             tabla: "persona",
             datos: {
-                persona_identificacion: this.state.persona_identificacion,
-                persona_nombre: this.state.persona_nombre,
-                persona_email: this.state.persona_email,
-                persona_direccion: this.state.persona_direccion,
-                persona_telefono: this.state.persona_telefono,
-                persona_clave: this.state.persona_clave
+                identificacion: this.state.identificacion,
+                nombre: this.state.nombre,
+                email: this.state.email,
+                direccion: this.state.direccion,
+                telefono: this.state.telefono,
+                clave: this.state.clave
             }
         }
 
-        if (this.post.datos.persona_identificacion === "" ||
-            this.post.datos.persona_nombre === "" ||
-            this.post.datos.persona_email === "" ||
-            this.post.datos.persona_direccion === "" ||
-            this.post.datos.persona_telefono === "" ||
-            this.post.datos.persona_clave === ""
+        if (this.post.datos.identificacion === "" ||
+            this.post.datos.nombre === "" ||
+            this.post.datos.email === "" ||
+            this.post.datos.direccion === "" ||
+            this.post.datos.telefono === "" ||
+            this.post.datos.clave === ""
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                alert("Administrador registrado exitosamente")
                 window.location.assign("http://localhost:3000/admins");
             }
           })
@@ -89,7 +88,7 @@ class Admin extends Component {
     }
 
     render() {
-        const { admins, persona_identificacion, persona_nombre, persona_email, persona_direccion, persona_telefono, persona_clave } = this.state
+        const { admins, identificacion, nombre, email, direccion, telefono, clave } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -98,7 +97,7 @@ class Admin extends Component {
                     <hr />
                     <main className="my-8">
                     <div className  ="justify-center my-5 select-none flex">
-                        <p className="mt-5 text-center mr-10 text-2xl">Bienvenido a la sección para visualizar, modificar y eliminar a los administradores.</p>
+                        <p className="mt-5 text-center mr-10 text-2xl">Administradores.</p>
                             <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
                                     +
                                 </button>
@@ -109,62 +108,67 @@ class Admin extends Component {
                                         <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
                                             <p className="text-gray-800 font-medium">Nuevo Registro</p>
                                                 <div className="mt-2">
-                                                    <label className="block text-sm text-gray-600" for="cus_email">Cédula de Identidad</label>
+                                                    <label className="block text-sm text-gray-600" htmlFor="identificacion">Cédula de Identidad</label>
                                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                                         type="text" 
                                                         placeholder="Ej: 175148795" 
-                                                        name="persona_identificacion"
-                                                        value={ persona_identificacion }
-                                                        onChange={ this.changeHandler } 
+                                                        name="identificacion"
+                                                        value={ identificacion }
+                                                        onChange={ this.changeHandler }
+                                                        autoComplete="off"
                                                     />
                                                 </div>
                                                 <div className="mt-2">
-                                                    <label className="block text-sm text-gray-600" for="cus_email">Nombre y Apellido</label>
+                                                    <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre y Apellido</label>
                                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                                         type="text" 
                                                         placeholder="Ej: Joel Simbaña"
-                                                        name="persona_nombre"
-                                                        value={ persona_nombre }
+                                                        name="nombre"
+                                                        value={ nombre }
                                                         onChange={ this.changeHandler }
+                                                        autoComplete="off"
                                                     />
                                                 </div>
                                                 <div className="mt-2">
-                                                    <label className=" block text-sm text-gray-600" for="cus_email">Correo Institucional</label>
+                                                    <label className=" block text-sm text-gray-600" htmlFor="email">Correo Institucional</label>
                                                     <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                                         type="text" 
                                                         placeholder="@yavirac.edu.ec" 
-                                                        name="persona_email"
-                                                        value={ persona_email }
+                                                        name="email"
+                                                        value={ email }
                                                         onChange={ this.changeHandler }
+                                                        autoComplete="off"
                                                     />
                                                 </div>
                                                 <div className="mt-2">
-                                                    <label className=" block text-sm text-gray-600" for="cus_email">Dirección</label>
+                                                    <label className=" block text-sm text-gray-600" htmlFor="direccion">Dirección</label>
                                                     <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                                         type="text" 
                                                         placeholder="Ej: Caupicho city"
-                                                        name="persona_direccion"
-                                                        value={ persona_direccion }
+                                                        name="direccion"
+                                                        value={ direccion }
                                                         onChange={ this.changeHandler }
+                                                        autoComplete="off"
                                                     />
                                                 </div>
                                                 <div className="inline-block mt-2 w-1/2 pr-1">
-                                                    <label className="block text-sm text-gray-600" for="cus_email">Teléfono</label>
+                                                    <label className="block text-sm text-gray-600" htmlFor="telefono">Teléfono</label>
                                                     <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                                         type="text" 
                                                         placeholder="Ej: 0985461645" 
-                                                        name="persona_telefono"
-                                                        value={ persona_telefono }
+                                                        name="telefono"
+                                                        value={ telefono }
                                                         onChange={ this.changeHandler }
+                                                        autoComplete="off"
                                                     />
                                                 </div>
                                                 <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                                                    <label className="block text-sm text-gray-600" for="cus_email">Clave</label>
+                                                    <label className="block text-sm text-gray-600" htmlFor="clave">Clave</label>
                                                     <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                                         type="password" 
                                                         placeholder="*************" 
-                                                        name="persona_clave"
-                                                        value={ persona_clave }
+                                                        name="clave"
+                                                        value={ clave }
                                                         onChange={ this.changeHandler }
                                                     />
                                                 </div>
@@ -192,13 +196,13 @@ class Admin extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_identificacion} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.identificacion} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_nombre} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.nombre} </p>) }
                                         </td>
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_email} </p>) }
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }> {element.email} </p>) }
                                         </td>
                                         {/* <td>
                                             { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
