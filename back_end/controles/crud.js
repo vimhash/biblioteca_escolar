@@ -2,7 +2,6 @@
 const config = require('../knexfile')
 const env = 'development'
 const db = require('knex')(config[env])
-const request = require('request');
 
 const getDatos = (req, res) => {
     const tabla = req.query.tabla
