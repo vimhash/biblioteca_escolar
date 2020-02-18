@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollVie
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 export default class virtualLibrary extends Component {
   constructor(props) {
@@ -19,11 +21,11 @@ export default class virtualLibrary extends Component {
   drawerContent = () => {
     return (
       <TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
-        <Text style={styles.closeButton}> -> </Text>
+        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
           <View>
           <Image
           style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
-          source={require('../assets/iconos-libros.png')}
+          source={require('../assets/book.jpg')}
         />
         <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
             <TouchableHighlight>
@@ -56,17 +58,17 @@ export default class virtualLibrary extends Component {
           opacity={0.4}
         >
           <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
-            <Text style={styles.openButton}>Menu</Text>
-          </TouchableOpacity>
-          <View style={styles.header} >
-          <Text style={styles.textHeader}>Sistema de biblioteca</Text>
-          </View>
-          <TouchableHighlight style={styles.menu}>
-                <Link to="/" style={styles.openButton}>
-                    <Text backgroundColor='white'>Salir</Text>
-                </Link>
-              </TouchableHighlight>
+            <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
+              <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
+            </TouchableOpacity>
+              <View style={styles.header} >
+                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+              </View>
+                <TouchableHighlight style={styles.menu}>
+                  <Link to="/">
+                    <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" />
+                  </Link>
+                </TouchableHighlight>
           </View>
           <View style={styles.body}>
             <Text style={styles.text}>Bienvenido (Nombre).</Text>
@@ -89,7 +91,9 @@ export default class virtualLibrary extends Component {
                 </Text>
                 <TouchableHighlight style={styles.button}>
                     <Link to="/detalle" >
-                        <Text >Detalle</Text>
+                        <Text style={{marginHorizontal: 20}} >
+                        <Icon name="book" size={20} color="#fff" />Detalle
+                        </Text>
                     </Link>
                 </TouchableHighlight>
               </Card>
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 2, 
-    height: 75, 
+    height: 80, 
     backgroundColor: '#2c7a7b',
   },
   body: {
@@ -185,26 +189,18 @@ const styles = StyleSheet.create({
   },
   menu: {
     flex: 0.5, 
-    height: 75, 
+    height: 80, 
     backgroundColor: '#2c7a7b',
   },
   openButton: {
-    color: 'black',
     marginTop: '50%',
-    marginHorizontal: '5%',
-    borderRadius: 100,
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
+    marginHorizontal: '15%',
   },  
   closeButton: {
-    color: 'black',
     marginTop: '15%',
     marginBottom: '20%',
     marginLeft: '5%',
     marginRight: '60%',
-    borderRadius: 100,
-    backgroundColor: 'white',
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
