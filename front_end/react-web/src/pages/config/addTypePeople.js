@@ -98,13 +98,13 @@ class AddTypePeople extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { stateTypePeople.map(element => <p className="p-2 px-5"> {element.nombre} </p>) }
+                                            { stateTypePeople.map(element => <p key={ element.id } className="p-2 px-5"> {element.nombre} </p>) }
                                         </td>
                                         <td>
-                                            { stateTypePeople.map(element => <p className="p-2 px-5"> {element.descripcion} </p>) }
+                                            { stateTypePeople.map(element => <p key={ element.id }className="p-2 px-5"> {element.descripcion} </p>) }
                                         </td>
                                         <td>
-                                            { stateTypePeople.map(element => <p className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
+                                            { stateTypePeople.map(element => <p key={ element.id } className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>
                                     </tr>
                                 </tbody>

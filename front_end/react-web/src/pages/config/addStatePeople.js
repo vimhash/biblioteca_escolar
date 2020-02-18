@@ -19,8 +19,8 @@ class AddStatePeople extends Component {
                 estado_persona_descripcion:'Descripción'
             },
             statePeople: [],
-            estado_persona_nombre: '',
-            estado_persona_descripcion: ''
+            nombre: '',
+            descripcion: ''
         }
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);

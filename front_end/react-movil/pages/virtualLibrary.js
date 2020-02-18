@@ -98,16 +98,16 @@ export default class virtualLibrary extends Component {
             { libros.map( element => 
               <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
-                  Autor: { element.libro_autor }
+                  Autor: { element.autor }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Editorial: { element.libro_editorial }
+                  Editorial: { element.editorial }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  País: { element.libro_pais }
+                  País: { element.pais }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Año: { element.libro_año }
+                  Año: { element.año }
                 </Text>
                 <TouchableHighlight style={styles.button}>
                     <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
