@@ -3,20 +3,34 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollVie
 import { Table, Row, Rows } from 'react-native-table-component';
 import MenuDrawer from 'react-native-side-drawer';
 import { Link } from 'react-router-native';
+import axios from 'axios';
+
+const API = 'http://192.168.1.16:8001/server/library'
 
 export default class ExampleOne extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableHead: ['Name Book', 'Fecha', 'Estado'],
+      tableHead: ['Libro', 'Fecha', 'Estado'],
       tableData: [
         ['1', '2', '3'],
         ['a', 'b', 'c'],
         ['1', '2', '3'],
         ['a', 'b', 'c']
       ],
-      open: false
+      reserva: [],
+      open: false,
     }
+  }
+
+  componentDidMount() {
+    axios.get(API+"?tabla=reserva")
+    .then( response => {
+      this.setState({ reserva: response.data.datos })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   toggleOpen = () => {
