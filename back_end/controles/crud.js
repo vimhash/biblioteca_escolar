@@ -2,6 +2,7 @@
 const config = require('../knexfile')
 const env = 'development'
 const db = require('knex')(config[env])
+const request = require('request');
 
 const getDatos = (req, res) => {
     const tabla = req.query.tabla
@@ -104,6 +105,25 @@ const login = (req,res) =>{
       })
 }
 
+const loginAPI_yavirac = (req,res) =>{
+    const API = require('../estudiantes.json').estudiantes
+    const estudiante_correo = req.body.estudiante_correo;
+    const estudiante_cedula = req.body.estudiante_cedula;
+  
+    API.forEach(element => {
+        if(element.correo == estudiante_correo && element.cedula == estudiante_cedula){
+            res.status(200).json({
+                ok: true,
+                mensaje: "found"
+            })
+        }
+    })
+    return res.status(500).json({
+        ok: false,
+        mensaje: 'no-found'
+    })
+}
+
 // RAW functions
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
@@ -152,6 +172,7 @@ module.exports = {
     updateDatos,
     deleteDatos,
     login,
+    loginAPI_yavirac,
     // RAW functions
     raw_crud,
     reserva,
