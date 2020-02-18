@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
@@ -20,20 +20,25 @@ export default class virtualLibrary extends Component {
     return (
       <TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
         <Text style={styles.closeButton}> -> </Text>
-        <View>
-          <TouchableHighlight>
-            <Link to="/library" style={styles.menuButton}>
-                <Text backgroundColor='white'>Biblioteca</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
-        <View>
-          <TouchableHighlight>
-            <Link to="/reserve" style={styles.menuButton}>
-                <Text backgroundColor='white'>Reservaciones</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
+          <View>
+          <Image
+          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
+          source={require('../assets/iconos-libros.png')}
+        />
+        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+            <TouchableHighlight>
+              <Link to="/library" style={styles.menuButton}>
+                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight>
+              <Link to="/reserve" style={styles.menuButton}>
+                  <Text style={{color: '#fff'}}>Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
       </TouchableOpacity>
       
     );
@@ -150,7 +155,6 @@ const styles = StyleSheet.create({
   animatedBox: {
     flex: 1,
     backgroundColor: '#2c7a7b',
-    padding: 10
   },
   header: {
     flex: 2, 
@@ -205,12 +209,10 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   menuButton: {
-    color: 'black',
-    marginTop: '5%',
-    marginHorizontal: '5%',
-    borderRadius: 100,
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
+    padding: 10,
+    borderWidth: 2,
+    color: '#fff',
+    borderColor: '#fff',
+    backgroundColor: 'rgba(255,255,255, .1)',
   },
 })
