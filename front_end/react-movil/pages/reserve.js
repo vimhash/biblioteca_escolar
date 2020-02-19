@@ -1,32 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableHighlight, TouchableOpacity, ScrollView, Image, FlatList } from 'react-native';
-
+import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Image } from 'react-native';
+import { Card } from 'react-native-elements';
 import MenuDrawer from 'react-native-side-drawer';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.100.6:8001/server/library'
+const API = 'http://192.168.1.16:8001/server/library'
 
-const table = [
-  { key: 'Nombre'}, { key: 'Fecha'}, { key: 'Estado'},  { key: 'A'}, { key: 'B'}, { key: 'C'}
-];
-
-// const formatData = (data, numColumns) => {
-//   const numberOfFullRows = Math.floor(data.length / numColumns);
-
-//   let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-//   while (numberOfElementsLastRow !== numColumns) {
-//     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-//     numberOfElementsLastRow = numberOfElementsLastRow + 1
-//   }
-
-//   return data;
-// }
-
-const numColumns = 3;
-
-export default class Reserva extends React.Component {
+export default class Reserva extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,41 +34,36 @@ export default class Reserva extends React.Component {
   drawerContent = () => {
     return (
       <View style={styles.animatedBox}>
-      <TouchableOpacity onPress={this.toggleOpen} >
-        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
-      </TouchableOpacity>
-      <View>
-          <Image
-          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
-          source={require('../assets/book.jpg')}
-        />
-        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
-            <TouchableHighlight>
-              <Link to="/library" style={styles.menuButton}>
-                  <Text style={{color: '#fff'}}>Biblioteca</Text>
-              </Link>
-            </TouchableHighlight>
-          </View>
-          <View>
-            <TouchableHighlight>
-              <Link to="/reserve" style={styles.menuButton}>
-                <Text style={{color: '#fff'}}>Reservaciones</Text>
-              </Link>
-            </TouchableHighlight>
-          </View>
-        </View>
-    );
-  };
+        <TouchableOpacity onPress={this.toggleOpen} >
+          <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
+        </TouchableOpacity>
 
-  renderItem = ({ item, index }) => {
-    return (
-      <View style={styles.item}>
-        <Text style={styles.itemText}>{item.key}</Text>
+        <View>
+          <Image
+            style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
+            source={require('../assets/book.jpg')}
+          />
+          <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+          <TouchableHighlight>
+            <Link to="/library" style={styles.menuButton}>
+              <Text style={{color: '#fff'}}>Biblioteca</Text>
+            </Link>
+          </TouchableHighlight>
+        </View>
+
+        <View>
+          <TouchableHighlight>
+            <Link to="/reserve" style={styles.menuButton}>
+              <Text style={{color: '#fff'}}>Reservaciones</Text>
+            </Link>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   };
 
   render() {
+    const { reserva } = this.state
     return (
       <View style={styles.container}>
         <MenuDrawer 
@@ -101,23 +78,35 @@ export default class Reserva extends React.Component {
             <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
             </TouchableOpacity>
-              <View style={styles.header} >
-                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
-              </View>
-                <TouchableHighlight style={styles.menu}>
-                  <Link to="/library">
-                    <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
-                  </Link>
-                </TouchableHighlight>
+
+            <View style={styles.header} >
+              <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+            </View>
+
+            <TouchableHighlight style={styles.menu}>
+              <Link to="/library">
+                <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+              </Link>
+            </TouchableHighlight>
           </View>
+
           <View style={styles.body}>
             <Text style={styles.text}>Reservaciones Realizadas.</Text>
-                <FlatList
-                data={table}
-                style={styles.containerTable}
-                renderItem={this.renderItem}
-                numColumns={numColumns}
-                />
+            { reserva.map( element => 
+              <Card title={ element.id_libro+"" } image={require('../assets/iconos-libros.png')} key={ element.id }>
+                <Text style={{marginBottom: 10}}>
+                  Fecha Pedido: { element.fecha_pedido }
+                </Text>
+                <Text style={{marginBottom: 10}}>
+                  Fecha Aprobacion/Rechazo: { element.feecha_aprobacion_rechazo }
+                </Text>
+                <TouchableHighlight style={styles.button}>
+                  <Text style={{marginHorizontal: 20, color: '#000'}} >
+                    <Icon name="book" size={20} color="#000" /> { element.id_estado_reserva }
+                  </Text>
+                </TouchableHighlight>
+              </Card> ) 
+            }
           </View>
         </MenuDrawer> 
       </View>

@@ -187,6 +187,24 @@ const reserva = (req, res) => {
     })
 }
 
+const reserva_estudiante = (req, res) => {
+    const id_estudiante = req.query.id_estudiante
+    db.raw(``)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 const raw_crud = (req, res) => {
     const query = req.body.query
     db.raw(query)
