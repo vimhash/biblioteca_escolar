@@ -3,7 +3,7 @@ import { Text, TextInput, View, StyleSheet, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/login_estudiantes'
+const API = 'http://192.168.100.6:8001/server/login_estudiantes'
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -49,14 +49,14 @@ export default class LoginScreen extends React.Component {
 
         <Text style={styles.text}>Correo Intitucional</Text>
         <View style={styles.containerEmail}>
-          <Icon type="font-awesome" name="user" color="gray" containerStyle={styles.icon}/>
+          <Icon type="font-awesome" name="user" color="black" containerStyle={styles.icon}/>
           <TextInput placeholder="@yavirac.edu.ec" placeholderTextColor="gray" name="estudiante_correo" value={ estudiante_correo } onChangeText={ this.estudiante_correo_Handler }
           style={styles.textInput}/> 
         </View>
 
         <Text style={styles.text}>Contraseña</Text>
         <View style={styles.containerPassword}>
-          <Icon type="entypo" name="key" color="gray" containerStyle={styles.icon}/>
+          <Icon type="entypo" name="key" color="black" containerStyle={styles.icon}/>
           <TextInput placeholder="*******" placeholderTextColor="gray" name="estudiante_cedula" value={ estudiante_cedula } onChangeText={ this.estudiante_cedula_Handler }
           style={styles.textInput} secureTextEntry={true}/> 
         </View>

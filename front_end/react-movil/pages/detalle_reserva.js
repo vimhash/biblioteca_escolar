@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, AsyncStorage, Image } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/library_byID'
+const API = 'http://192.168.100.6:8001/server/library_byID'
 
 export default class detalleBook extends Component {
   constructor(props) {
@@ -47,24 +48,30 @@ export default class detalleBook extends Component {
 
   drawerContent = () => {
     return (
-      <TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
-        <Text style={styles.closeButton}> -> </Text>
-        <View>
-          <TouchableHighlight>
-            <Link to="/library" style={styles.menuButton}>
-                <Text backgroundColor='white'>Biblioteca</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
-        <View>
-          <TouchableHighlight>
-            <Link to="/reserve" style={styles.menuButton}>
-                <Text backgroundColor='white'>Reservaciones</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
+      <View style={styles.animatedBox}>
+      <TouchableOpacity onPress={this.toggleOpen} >
+        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
       </TouchableOpacity>
-      
+      <View>
+          <Image
+          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
+          source={require('../assets/book.jpg')}
+        />
+        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+            <TouchableHighlight>
+              <Link to="/library" style={styles.menuButton}>
+                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight>
+              <Link to="/reserve" style={styles.menuButton}>
+                <Text style={{color: '#fff'}}>Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+        </View>
     );
   };
   
@@ -81,37 +88,45 @@ export default class detalleBook extends Component {
           opacity={0.4}
         >
           <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
-            <Text style={styles.openButton}>Menu</Text>
-          </TouchableOpacity>
-          <View style={styles.header} >
-          <Text style={styles.textHeader}>Sistema de biblioteca</Text>
-          </View>
-          <TouchableHighlight style={styles.menu}>
-                <Link to="/library" style={styles.openButton}>
-                    <Text backgroundColor='white'>Volver</Text>
-                </Link>
-              </TouchableHighlight>
+            <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
+              <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
+            </TouchableOpacity>
+              <View style={styles.header} >
+                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+              </View>
+                <TouchableHighlight style={styles.menu}>
+                  <Link to="/library">
+                    <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+                  </Link>
+                </TouchableHighlight>
           </View>
           <View style={styles.body}>
-          <Text style={styles.text}>Detalle de su Reservación.</Text>
-          <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', backgroundColor:'#fbb6ce', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
           <ScrollView vertical={true}>
+          <Text style={styles.text}>Detalle de su Reservación.</Text>
+          <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
             { libros.map(element => 
-              <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
+              <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
-                  Autor: { element.libro_autor }
+                  Autor: { element.autor }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Editorial: { element.libro_editorial }
+                  Editorial: { element.editorial }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  País: { element.libro_pais }
+                  País: { element.pais }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Año: { element.libro_año }
+                  Año: { element.año }
                 </Text>
-              </Card>)
+                <TouchableOpacity style={styles.button}>
+                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
+                        <Text style={{marginHorizontal: 20, color: '#000'}} >
+                          <Icon name="bookmark" size={20} color="#000" /> Realizar Reservación
+                        </Text>
+                    </Link>
+                </TouchableOpacity>
+              </Card>
+              )
             }
             </ScrollView>
           </View>   
@@ -128,12 +143,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%', 
     height: '100%',
-    backgroundColor: '#4fd1c5',
+    backgroundColor: '#fff',
   },
   animatedBox: {
     flex: 1,
     backgroundColor: '#2c7a7b',
-    padding: 10
   },
   header: {
     flex: 2, 
@@ -144,7 +158,7 @@ const styles = StyleSheet.create({
     flex: 6,
   },
   text:{
-    color:'white',
+    color:'#000',
     paddingLeft:'10%',
     paddingBottom: '5%',
     paddingTop: '8%',
@@ -168,31 +182,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#2c7a7b',
   },
   openButton: {
-    color: '#000',
     marginTop: '50%',
-    borderRadius: 100,
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
+    marginHorizontal: '15%',
   },  
   closeButton: {
-    color: 'black',
     marginTop: '15%',
     marginBottom: '20%',
     marginLeft: '5%',
     marginRight: '60%',
-    borderRadius: 100,
-    backgroundColor: 'white',
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
   menuButton: {
-    color: 'black',
-    marginTop: '5%',
-    marginHorizontal: '5%',
-    borderRadius: 100,
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: '#fff',
+    backgroundColor: 'rgba(255,255,255, .1)',
   },
 })
