@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const API = 'http://192.168.1.16:8001/server/library'
 
-export default class ExampleOne extends Component {
+export default class Reserve extends Component {
   constructor(props) {
     super(props);
     this.state = {
