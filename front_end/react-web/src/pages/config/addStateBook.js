@@ -19,8 +19,8 @@ class AddStateBook extends Component {
                 estado_libro_descripcion:'Descripción'
             },
             stateBooks: [],
-            estado_libro_nombre: '',
-            estado_libro_descripcion: ''
+            nombre: '',
+            descripcion: ''
         }
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -45,20 +45,19 @@ class AddStateBook extends Component {
         this.post = {
             tabla: "estado_libro",
             datos: {
-                estado_libro_nombre: this.state.estado_libro_nombre,
-                estado_libro_descripcion: this.state.estado_libro_descripcion
+                nombre: this.state.nombre,
+                descripcion: this.state.descripcion
             }
         }
 
-        if (this.post.datos.estado_libro_nombre === "" ||
-            this.post.datos.estado_libro_descripcion === ""
+        if (this.post.datos.nombre === "" ||
+            this.post.datos.descripcion === ""
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                alert("Estado registrado exitosamente")
                 window.location.assign("http://localhost:3000/config/state_books");
             }
           })
@@ -76,7 +75,7 @@ class AddStateBook extends Component {
     }
 
     render() {
-        const { stateBooks, estado_libro_nombre, estado_libro_descripcion } = this.state
+        const { stateBooks, nombre, descripcion } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -84,7 +83,7 @@ class AddStateBook extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center">Bienvenido a la sección para visualizar y eliminar los estados de libros.</p>
+                        <p className="text-center">Estaddos de los libros en el Sistema.</p>
 
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -99,13 +98,13 @@ class AddStateBook extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { stateBooks.map(element => <p className="p-2 px-5"> {element.estado_libro_nombre} </p>) }
+                                            { stateBooks.map(element => <p key={ element.id } className="p-2 px-5"> {element.nombre} </p>) }
                                         </td>
                                         <td>
-                                            { stateBooks.map(element => <p className="p-2 px-5"> {element.estado_libro_descripcion} </p>) }
+                                            { stateBooks.map(element => <p key={ element.id } className="p-2 px-5"> {element.descripcion} </p>) }
                                         </td>
                                         <td>
-                                            { stateBooks.map(element => <p className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
+                                            { stateBooks.map(element => <p key={ element.id } className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -124,22 +123,22 @@ class AddStateBook extends Component {
                             <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
                                 <p className="text-gray-800 font-medium">Nuevo Registro</p>
                                 <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" for="cus_email">Nombre</label>
+                                    <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre</label>
                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                         type="text"
                                         placeholder="Ej: 175148795" 
-                                        name="estado_libro_nombre"
-                                        value={ estado_libro_nombre }
+                                        name="nombre"
+                                        value={ nombre }
                                         onChange={ this.changeHandler } 
                                     />
                                 </div>
                                 <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" for="cus_email">Descripción</label>
+                                    <label className="block text-sm text-gray-600" htmlFor="descripcion">Descripción</label>
                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                         type="text" 
                                         placeholder="Ej: Joel Simbaña"
-                                        name="estado_libro_descripcion"
-                                        value={ estado_libro_descripcion }
+                                        name="descripcion"
+                                        value={ descripcion }
                                         onChange={ this.changeHandler }
                                     />
                                 </div>

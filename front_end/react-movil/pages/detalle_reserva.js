@@ -14,7 +14,7 @@ export default class detalleBook extends Component {
     this.state = {
       open: false,
       libros: [],
-      libro_id: '',
+      id_libro: '',
     };
   }
 
@@ -23,7 +23,7 @@ export default class detalleBook extends Component {
   }
 
   getData = () => {
-    axios.get(`${ API }?tabla=libro&&id=${ this.state.libro_id }`)
+    axios.get(`${ API }?tabla=libro&&id=${ this.state.id_libro }`)
     .then(response => {
       this.setState({ libros: response.data.datos })
     })
@@ -35,7 +35,7 @@ export default class detalleBook extends Component {
   asyncstorageGet = async () => {
     try {
       const id = await AsyncStorage.getItem('libro_id')
-      this.setState({ libro_id: id})
+      this.setState({ id_libro: id})
       this.getData()
     } catch (e) {
       alert(e)
@@ -79,14 +79,7 @@ export default class detalleBook extends Component {
     const { libros } = this.state
     return (
       <View style={styles.container}>
-        <MenuDrawer 
-          open={this.state.open} 
-          drawerContent={this.drawerContent()}
-          drawerPercentage={45}
-          animationTime={250}
-          overlay={true}
-          opacity={0.4}
-        >
+        <MenuDrawer open={this.state.open} drawerContent={this.drawerContent()} drawerPercentage={45} animationTime={250} overlay={true} opacity={0.4}>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
@@ -100,6 +93,7 @@ export default class detalleBook extends Component {
                   </Link>
                 </TouchableHighlight>
           </View>
+
           <View style={styles.body}>
           <ScrollView vertical={true}>
           <Text style={styles.text}>Detalle de su Reservación.</Text>

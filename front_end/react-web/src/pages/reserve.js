@@ -15,7 +15,7 @@ class Reserve extends Component {
     }
 
     componentDidMount() {
-        axios.get(API+"/reserva?tabla=reserva&&estado_reserva=4")
+        axios.get(API+"/reserva?estado_reserva=3")
         .then(response => {
             this.setState({ reserves: response.data.datos })
         })
@@ -25,11 +25,10 @@ class Reserve extends Component {
     }
 
     aprobarReserva = (id) => {
-        alert(id)
         axios.put(API+"?tabla=reserva", {
             datos: [{
                 id: id,
-                estado_reserva_id: 2
+                id_estado_reserva: 1
             }],
         })
         .then(response => {
@@ -44,7 +43,7 @@ class Reserve extends Component {
         axios.put(API+"?tabla=reserva", {
             datos: [{
                 id: id,
-                estado_reserva_id: 3
+                id_estado_reserva: 2
             }],
         })
         .then(response => {
@@ -70,14 +69,14 @@ class Reserve extends Component {
                                 <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="https://tailwindcss.com/img/card-left.jpg" alt="pic" />
                                 <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                     <div className="mb-8">
-                                        <div className="text-black font-bold text-xl mb-2">Libro: { element.libro_id }</div>
-                                        <p className="text-grey-darker text-base">Estado: { element.estado_reserva_id }</p>
+                                        <div className="text-black font-bold text-xl mb-2">Libro: { element.id_libro }</div>
+                                        <p className="text-grey-darker text-base">Estado: { element.id_estado_reserva }</p>
                                     </div>
                                     <div className="flex items-center">
                                         <img className="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="profile_pic" />
                                         <div className="text-sm">
-                                            <p className="text-black leading-none">Estudiante: { element.persona_id }</p>
-                                            <p className="text-grey-dark">Fecha pedido: Aug 18</p>
+                                            <p className="text-black leading-none">Estudiante: { element.id_estudiante }</p>
+                                            <p className="text-grey-dark">Fecha pedido: { element.fecha_pedido }</p>
                                         </div>
                                     </div>
                                     <div className="m-3">
