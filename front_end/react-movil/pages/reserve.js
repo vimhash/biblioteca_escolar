@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image } from 'react-native';
-import { Table, Row, Rows } from 'react-native-table-component';
+import { View, Text, StyleSheet, Dimensions, TouchableHighlight, TouchableOpacity, ScrollView, Image, FlatList } from 'react-native';
+
 import MenuDrawer from 'react-native-side-drawer';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/library'
+const API = 'http://192.168.100.6:8001/server/library'
 
-export default class Reserve extends Component {
+const table = [
+  { key: 'Nombre'}, { key: 'Fecha'}, { key: 'Estado'},  { key: 'A'}, { key: 'B'}, { key: 'C'}
+];
+
+// const formatData = (data, numColumns) => {
+//   const numberOfFullRows = Math.floor(data.length / numColumns);
+
+//   let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+//   while (numberOfElementsLastRow !== numColumns) {
+//     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+//     numberOfElementsLastRow = numberOfElementsLastRow + 1
+//   }
+
+//   return data;
+// }
+
+const numColumns = 3;
+
+export default class Reserva extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableHead: ['Libro', 'Fecha', 'Estado'],
-      tableData: [
-        ['1', '2', '3'],
-        ['a', 'b', 'c'],
-        ['1', '2', '3'],
-        ['a', 'b', 'c']
-      ],
       reserva: [],
       open: false,
     }
@@ -67,17 +78,15 @@ export default class Reserve extends Component {
     );
   };
 
-  render() {
-    const state = this.state;
-    const tableData = [];
-    for (let i = 0; i < 30; i += 1) {
-      const rowData = [];
-      for (let j = 0; j < 9; j += 1) {
-        rowData.push(`${i}${j}`);
-      }
-      tableData.push(rowData);
-    }
+  renderItem = ({ item, index }) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.itemText}>{item.key}</Text>
+      </View>
+    );
+  };
 
+  render() {
     return (
       <View style={styles.container}>
         <MenuDrawer 
@@ -103,24 +112,19 @@ export default class Reserve extends Component {
           </View>
           <View style={styles.body}>
             <Text style={styles.text}>Reservaciones Realizadas.</Text>
-              <ScrollView horizontal={true}>
-                <View style={styles.table}>
-                  <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                    <Row data={state.tableHead} style={styles.headerTable} textStyle={styles.textTable}/>
-                  </Table>
-                  <ScrollView >
-                  <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Rows data={state.tableData} style={styles.row} textStyle={styles.textTable}/>
-                  </Table>
-                  </ScrollView>
-                </View>
-              </ScrollView>
+                <FlatList
+                data={table}
+                style={styles.containerTable}
+                renderItem={this.renderItem}
+                numColumns={numColumns}
+                />
           </View>
         </MenuDrawer> 
       </View>
     )
+    }
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -185,13 +189,29 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     backgroundColor: 'rgba(255,255,255, .1)',
   },
-  headerTable: { 
-    height: 50,
-    backgroundColor: '#537791',
+  containerTable: {
+    marginHorizontal: 20
   },
-  textTable: { 
-    textAlign: 'center', 
-    fontWeight: '100',
-    color: 'white' 
+  item: {
+    backgroundColor: '#000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 1,
+    height: 30,
+  },
+  itemInvisible: {
+    backgroundColor: 'transparent'
+  },
+  itemText: {
+    color: '#fff'
+  },
+  itemContent: {
+    backgroundColor: '#000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 1,
+    height: 30,
   },
 });

@@ -6,7 +6,11 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
+<<<<<<< HEAD
 const API = 'http://192.168.1.16:8001/server/'
+=======
+const API = 'http://192.168.100.6:8001/server/library'
+>>>>>>> d6d2fa55a1b564896d06576b20cf01e85b6d9894
 
 export default class virtualLibrary extends Component {
   constructor(props) {
