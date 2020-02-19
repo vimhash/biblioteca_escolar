@@ -85,8 +85,8 @@ export default class virtualLibrary extends Component {
               <View style={styles.header} >
                 <Text style={styles.textHeader}>Sistema de biblioteca</Text>
               </View>
-                <TouchableHighlight style={styles.menu}>
-                  <Link to="/">
+                <TouchableHighlight>
+                  <Link to="/" style={styles.menu}>
                     <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" />
                   </Link>
                 </TouchableHighlight>
@@ -109,8 +109,8 @@ export default class virtualLibrary extends Component {
                 <Text style={{marginBottom: 10}}>
                   Año: { element.año }
                 </Text>
-                <TouchableHighlight style={styles.button}>
-                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
+                <TouchableHighlight>
+                    <Link to="/detalle" style={styles.button} onPress={ () => this.asyncstorageSave(element.id) }>
                         <Text style={{marginHorizontal: 20}} >
                           <Icon name="book" size={20} color="#fff" /> Detalle
                         </Text>

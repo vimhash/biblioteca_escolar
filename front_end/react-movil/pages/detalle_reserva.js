@@ -72,47 +72,43 @@ export default class detalleBook extends Component {
     const { libros } = this.state
     return (
       <View style={styles.container}>
-        <MenuDrawer 
-          open={this.state.open} 
-          drawerContent={this.drawerContent()}
-          drawerPercentage={45}
-          animationTime={250}
-          overlay={true}
-          opacity={0.4}
-        >
+        <MenuDrawer open={this.state.open} drawerContent={this.drawerContent()} drawerPercentage={45} animationTime={250} overlay={true} opacity={0.4}>
           <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
-            <Text style={styles.openButton}>Menu</Text>
-          </TouchableOpacity>
-          <View style={styles.header} >
-          <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+            <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
+              <Text style={styles.openButton}>Menu</Text>
+            </TouchableOpacity>
+
+            <View style={styles.header} >
+              <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+            </View>
+
+            <TouchableHighlight>
+              <Link to="/library" style={styles.openButton}>
+                <Text backgroundColor='white'>Volver</Text>
+              </Link>
+            </TouchableHighlight>
           </View>
-          <TouchableHighlight style={styles.menu}>
-                <Link to="/library" style={styles.openButton}>
-                    <Text backgroundColor='white'>Volver</Text>
-                </Link>
-              </TouchableHighlight>
-          </View>
+
           <View style={styles.body}>
-          <Text style={styles.text}>Detalle de su Reservación.</Text>
-          <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', backgroundColor:'#fbb6ce', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
-          <ScrollView vertical={true}>
-            { libros.map(element => 
-              <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
-                <Text style={{marginBottom: 10}}>
-                  Autor: { element.libro_autor }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial: { element.libro_editorial }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  País: { element.libro_pais }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año: { element.libro_año }
-                </Text>
-              </Card>)
-            }
+            <Text style={styles.text}>Detalle de su Reservación.</Text>
+            <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', backgroundColor:'#fbb6ce', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
+            <ScrollView vertical={true}>
+              { libros.map(element => 
+                <Card title={ element.libro_titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
+                  <Text style={{marginBottom: 10}}>
+                    Autor: { element.autor }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    Editorial: { element.editorial }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    País: { element.pais }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    Año: { element.año }
+                  </Text>
+                </Card>)
+              }
             </ScrollView>
           </View>   
         </MenuDrawer> 
