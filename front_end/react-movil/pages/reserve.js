@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Card } from 'react-native-elements';
 import MenuDrawer from 'react-native-side-drawer';
 import { Link } from 'react-router-native';
@@ -14,11 +14,12 @@ export default class Reserva extends Component {
     this.state = {
       reserva: [],
       open: false,
+      id_estudiante: '',
     }
   }
 
-  componentDidMount() {
-    axios.get(API+"?tabla=reserva")
+  getData = () => {
+    axios.get(`${ API }/reserva_estudiante?id_estudiante='${ this.state.id_estudiante }'`)
     .then( response => {
       this.setState({ reserva: response.data.datos })
     })
@@ -27,10 +28,24 @@ export default class Reserva extends Component {
     })
   }
 
+  componentDidMount() {
+    this.asyncstorageGet()
+  }
+
   toggleOpen = () => {
     this.setState({ open: !this.state.open });
   };
 
+  asyncstorageGet = async () => {
+    try {
+      const id = await AsyncStorage.getItem('id_estudiante')
+      this.setState({ id_estudiante: id})
+      this.getData()
+    } catch (e) {
+      alert(e)
+    }
+  }
+  
   drawerContent = () => {
     return (
       <View style={styles.animatedBox}>
