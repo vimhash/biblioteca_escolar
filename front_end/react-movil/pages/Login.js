@@ -33,11 +33,12 @@ export default class LoginScreen extends React.Component {
       axios.post(API, this.state)
       .then(response => {
         if ( response.data.mensaje === "found" ) {
+          AsyncStorage.setItem('id_estudiante', this.state.estudiante_cedula.toString());
           return this.props.history.push("library");
         }
       })
       .catch(error => {
-        alert("Datos Incorrectos" + error)
+        alert("Datos Incorrectos")
       })
     }
   }

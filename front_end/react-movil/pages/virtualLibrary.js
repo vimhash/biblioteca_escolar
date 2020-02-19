@@ -6,7 +6,7 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/library'
+const API = 'http://192.168.1.16:8001/server/'
 
 export default class virtualLibrary extends Component {
   constructor(props) {
@@ -14,22 +14,48 @@ export default class virtualLibrary extends Component {
     this.state = {
       open: false,
       libros: [],
+      estudiantes: [],
+      id_estudiante: '',
+      nombre_estudiante: '',
     };
   }
 
-  componentDidMount() {
-    axios.get(API+"?tabla=libro")
+  getData = () => {
+    axios.get(API+"library?tabla=libro")
     .then( response => {
       this.setState({ libros: response.data.datos })
     })
     .catch(error => {
       console.log(error)
     })
+
+    axios.get(`${API}login_estudiantes?identificacion=${ this.state.id_estudiante }`)
+    .then( response => {
+      this.setState({ nombre_estudiante: response.data.datos.nombre1 + " " + response.data.datos.apellido1 })
+      AsyncStorage.setItem('nombre_estudiante', this.state.nombre_estudiante.toString());
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  componentDidMount() {
+    this.asyncstorageGet()
+  }
+
+  asyncstorageGet = async () => {
+    try {
+      const id = await AsyncStorage.getItem('id_estudiante')
+      this.setState({ id_estudiante: id})
+      this.getData()
+    } catch (e) {
+      alert(e)
+    }
   }
 
   asyncstorageSave = async (item) => {
     try {
-      await AsyncStorage.setItem('libro_id', item.toString())
+      await AsyncStorage.setItem('id_libro', item.toString())
     } catch (err) {
       alert(err)
     }
@@ -95,8 +121,8 @@ export default class virtualLibrary extends Component {
           </View>
           <View style={styles.body}>
             <ScrollView vertical={true}>
-            <Text style={styles.text}>Bienvenido (Nombre).</Text>
-            <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Bienvenido al catálogo, selecciona el libro que deseas reservar, para mas infromación has click en "DETALLES".</Text>
+            <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
+            <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
             { libros.map( element => 
               <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
                 <TouchableHighlight style={styles.button}>

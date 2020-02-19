@@ -52,9 +52,12 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.integer('id_estado_reserva').references('id').inTable('estado_reserva');
     table.integer('id_libro').references('id').inTable('libro');
-    table.integer('id_estudiante')
+    table.string('id_estudiante');
+    table.string('nombre_estudiante');
     table.date('fecha_pedido');
+    table.date('fecha_aprobacion_rechazo');
     table.date('fecha_entrega');
+    table.date('fecha_devolucion');
   })
 };
 

@@ -75,7 +75,9 @@ class Reserve extends Component {
                                     <div className="flex items-center">
                                         <img className="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="profile_pic" />
                                         <div className="text-sm">
-                                            <p className="text-black leading-none">Estudiante: { element.id_estudiante }</p>
+                                            <p className="text-black leading-none">Estudiante: { element.nombre_estudiante }</p>
+                                            <p className="text-black leading-none">Identificación: { element.id_estudiante }</p>
+                                            <hr />
                                             <p className="text-grey-dark">Fecha pedido: { element.fecha_pedido }</p>
                                         </div>
                                     </div>

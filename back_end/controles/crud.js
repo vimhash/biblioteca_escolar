@@ -145,11 +145,30 @@ const loginAPI_yavirac = (req,res) =>{
     })
 }
 
+const getloginAPI_yavirac = (req,res) =>{
+    const API = require('../estudiantes.json').estudiantes
+    const identificacion = req.query.identificacion;
+  
+    API.forEach(element => {
+        if(element.cedula == identificacion){
+            res.status(200).json({
+                ok: true,
+                datos: element
+            })
+        }
+    })
+    return res.status(500).json({
+        ok: false,
+        mensaje: 'no-found'
+    })
+}
+
 // RAW functions
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
     db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, reserva.id_estudiante, libro.titulo as id_libro,
-    reserva.fecha_pedido, reserva.fecha_entrega from reserva 
+    reserva.fecha_pedido, reserva.fecha_entrega, reserva.nombre_estudiante, reserva.fecha_aprobacion_rechazo, reserva.fecha_entrega, reserva.fecha_devolucion 
+    from reserva 
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro
     where estado_reserva.id = ${ estado_reserva }`)
@@ -194,6 +213,7 @@ module.exports = {
     deleteDatos,
     login,
     loginAPI_yavirac,
+    getloginAPI_yavirac,
     // RAW functions
     raw_crud,
     reserva,

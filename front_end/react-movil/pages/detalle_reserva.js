@@ -6,7 +6,7 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/library_byID'
+const API = 'http://192.168.1.16:8001/server/'
 
 export default class detalleBook extends Component {
   constructor(props) {
@@ -15,6 +15,8 @@ export default class detalleBook extends Component {
       open: false,
       libros: [],
       id_libro: '',
+      id_estudiante: '',
+      nombre_estudiante: '',
     };
   }
 
@@ -23,7 +25,7 @@ export default class detalleBook extends Component {
   }
 
   getData = () => {
-    axios.get(`${ API }?tabla=libro&&id=${ this.state.id_libro }`)
+    axios.get(`${ API }library_byID?tabla=libro&&id=${ this.state.id_libro }`)
     .then(response => {
       this.setState({ libros: response.data.datos })
     })
@@ -34,8 +36,12 @@ export default class detalleBook extends Component {
  
   asyncstorageGet = async () => {
     try {
-      const id = await AsyncStorage.getItem('libro_id')
-      this.setState({ id_libro: id})
+      const id_libro = await AsyncStorage.getItem('id_libro')
+      this.setState({ id_libro: id_libro })
+      const id_estudiante = await AsyncStorage.getItem('id_estudiante')
+      this.setState({ id_estudiante: id_estudiante })
+      const nombre_estudiante = await AsyncStorage.getItem('nombre_estudiante')
+      this.setState({ nombre_estudiante: nombre_estudiante })
       this.getData()
     } catch (e) {
       alert(e)
@@ -74,55 +80,89 @@ export default class detalleBook extends Component {
         </View>
     );
   };
+
+  postData = () => {
+    this.post = {
+      tabla: "reserva",
+      datos: {
+        id_estado_reserva: 3,
+        id_libro: this.state.id_libro,
+        id_estudiante: this.state.id_estudiante,
+        nombre_estudiante: this.state.nombre_estudiante,
+        fecha_pedido: '2020-02-18'
+      }
+    }
+
+    if (
+      this.post.datos.id_libro === "" || 
+      this.post.datos.id_estudiante === "" ||
+      this.post.datos.nombre_estudiante === ""
+      ) 
+      { alert("Algo salio mal, vuelva a intentarlo...")
+    } else {
+      axios.post(API+"library", this.post)
+      .then(response => {
+        if ( response.data.ok === true ) {
+          alert("Se envió su petición de reserva, por favor estar pendiente de su aprobacion o rechazo del mismo en la página de 'RESERVACIONES'")
+          return this.props.history.push("reserve");
+        }
+      })
+      .catch(error => {
+        alert("Datos Incorrectos")
+      })
+    }
+  }
   
   render() {
     const { libros } = this.state
     return (
-      <View style={styles.container}>
-        <MenuDrawer open={this.state.open} drawerContent={this.drawerContent()} drawerPercentage={45} animationTime={250} overlay={true} opacity={0.4}>
+      <View style={ styles.container }>
+        <MenuDrawer open={ this.state.open } drawerContent={ this.drawerContent() } drawerPercentage={ 45 } animationTime={ 250 } overlay={ true } opacity={ 0.4 }>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
             </TouchableOpacity>
-              <View style={styles.header} >
-                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
-              </View>
-                <TouchableHighlight style={styles.menu}>
-                  <Link to="/library">
-                    <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
-                  </Link>
-                </TouchableHighlight>
+
+            <View style={styles.header} >
+              <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+            </View>
+
+            <TouchableHighlight style={styles.menu}>
+              <Link to="/library">
+                <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+              </Link>
+            </TouchableHighlight>
           </View>
 
           <View style={styles.body}>
-          <ScrollView vertical={true}>
-          <Text style={styles.text}>Detalle de su Reservación.</Text>
-          <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
-            { libros.map(element => 
-              <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
-                <Text style={{marginBottom: 10}}>
-                  Autor: { element.autor }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Editorial: { element.editorial }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  País: { element.pais }
-                </Text>
-                <Text style={{marginBottom: 10}}>
-                  Año: { element.año }
-                </Text>
-                <TouchableOpacity style={styles.button}>
-                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
-                        <Text style={{marginHorizontal: 20, color: '#000'}} >
-                          <Icon name="bookmark" size={20} color="#000" /> Realizar Reservación
-                        </Text>
+            <ScrollView vertical={true}>
+              <Text style={styles.text}>Detalle de su Reservación.</Text>
+              <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
+              { libros.map(element => 
+                <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
+                  <Text style={{marginBottom: 10}}>
+                    Autor: { element.autor }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    Editorial: { element.editorial }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    País: { element.pais }
+                  </Text>
+                  <Text style={{marginBottom: 10}}>
+                    Año: { element.año }
+                  </Text>
+                  <TouchableOpacity style={styles.button}>
+                    <Link to="/detalle" onPress={ () => this.postData() }>
+                      <Text style={{marginHorizontal: 20, color: '#000'}} >
+                        <Icon name="bookmark" size={20} color="#000" /> Realizar Reservación
+                      </Text>
                     </Link>
-                </TouchableOpacity>
-              </Card>
-              )
-            }
-            </ScrollView>
+                  </TouchableOpacity>
+                </Card>
+                )
+              }
+              </ScrollView>
           </View>   
         </MenuDrawer> 
       </View>
