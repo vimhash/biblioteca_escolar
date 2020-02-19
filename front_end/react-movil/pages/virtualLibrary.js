@@ -87,9 +87,9 @@ export default class virtualLibrary extends Component {
               <View style={styles.header} >
                 <Text style={styles.textHeader}>Sistema de biblioteca</Text>
               </View>
-                <TouchableHighlight>
-                  <Link to="/" style={styles.menu}>
-                    <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+                <TouchableHighlight style={styles.menu}>
+                  <Link to="/" >
+                    <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" />
                   </Link>
                 </TouchableHighlight>
           </View>
