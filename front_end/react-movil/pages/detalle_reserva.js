@@ -13,7 +13,7 @@ export default class detalleBook extends Component {
     this.state = {
       open: false,
       libros: [],
-      libro_id: '',
+      id_libro: '',
     };
   }
 
@@ -22,7 +22,7 @@ export default class detalleBook extends Component {
   }
 
   getData = () => {
-    axios.get(`${ API }?tabla=libro&&id=${ this.state.libro_id }`)
+    axios.get(`${ API }?tabla=libro&&id=${ this.state.id_libro }`)
     .then(response => {
       this.setState({ libros: response.data.datos })
     })
@@ -34,7 +34,7 @@ export default class detalleBook extends Component {
   asyncstorageGet = async () => {
     try {
       const id = await AsyncStorage.getItem('libro_id')
-      this.setState({ libro_id: id})
+      this.setState({ id_libro: id})
       this.getData()
     } catch (e) {
       alert(e)
