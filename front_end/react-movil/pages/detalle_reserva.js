@@ -6,7 +6,7 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/'
+const API = 'http://192.168.100.6:8001/server/'
 
 export default class detalleBook extends Component {
   constructor(props) {
