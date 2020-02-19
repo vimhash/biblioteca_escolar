@@ -6,7 +6,7 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.100.6:8001/server/library'
+const API = 'http://192.168.1.16:8001/server/library'
 
 const table = [
   { key: 'Nombre'}, { key: 'Fecha'}, { key: 'Estado'},  { key: 'A'}, { key: 'B'}, { key: 'C'}
