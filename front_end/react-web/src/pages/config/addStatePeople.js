@@ -45,20 +45,19 @@ class AddStatePeople extends Component {
         this.post = {
             tabla: "estado_persona",
             datos: {
-                estado_persona_nombre: this.state.estado_persona_nombre,
-                estado_persona_descripcion: this.state.estado_persona_descripcion
+                nombre: this.state.nombre,
+                descripcion: this.state.descripcion
             }
         }
 
-        if (this.post.datos.estado_persona_nombre === "" ||
-            this.post.datos.estado_persona_descripcion === ""
+        if (this.post.datos.nombre === "" ||
+            this.post.datos.descripcion === ""
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                alert("Estado registrado exitosamente")
                 window.location.assign("http://localhost:3000/config/state_people");
             }
           })
@@ -76,7 +75,7 @@ class AddStatePeople extends Component {
     }
 
     render() {
-        const { statePeople, estado_persona_nombre, estado_persona_descripcion } = this.state
+        const { statePeople, nombre, descripcion } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -84,7 +83,7 @@ class AddStatePeople extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center">Bienvenido a la sección para visualizar y eliminar los estados de personas.</p>
+                        <p className="text-center">Tipo de personas en el Sistema.</p>
 
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -99,13 +98,13 @@ class AddStatePeople extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { statePeople.map(element => <p className="p-2 px-5"> {element.estado_persona_nombre} </p>) }
+                                            { statePeople.map(element => <p key={ element.id } className="p-2 px-5"> {element.nombre} </p>) }
                                         </td>
                                         <td>
-                                            { statePeople.map(element => <p className="p-2 px-5"> {element.estado_persona_descripcion} </p>) }
+                                            { statePeople.map(element => <p key={ element.id } className="p-2 px-5"> {element.descripcion} </p>) }
                                         </td>
                                         <td>
-                                            { statePeople.map(element => <p className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
+                                            { statePeople.map(element => <p key={ element.id } className="p-2 px-5"><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -124,22 +123,22 @@ class AddStatePeople extends Component {
                             <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
                                 <p className="text-gray-800 font-medium">Nuevo Registro</p>
                                 <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" for="cus_email">Nombre</label>
+                                    <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre</label>
                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                         type="text"
                                         placeholder="Ej: 175148795" 
-                                        name="estado_persona_nombre"
-                                        value={ estado_persona_nombre }
+                                        name="nombre"
+                                        value={ nombre }
                                         onChange={ this.changeHandler } 
                                     />
                                 </div>
                                 <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" for="cus_email">Descripción</label>
+                                    <label className="block text-sm text-gray-600" htmlFor="descripcion">Descripción</label>
                                     <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                         type="text" 
                                         placeholder="Ej: Joel Simbaña"
-                                        name="estado_persona_descripcion"
-                                        value={ estado_persona_descripcion }
+                                        name="descripcion"
+                                        value={ descripcion }
                                         onChange={ this.changeHandler }
                                     />
                                 </div>

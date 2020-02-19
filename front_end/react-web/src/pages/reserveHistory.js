@@ -21,7 +21,7 @@ class ReserveHistory extends Component {
     }
 
     componentDidMount() {
-        axios.get(API+"?estado_reserva=2")
+        axios.get(API+"?estado_reserva=1")
         .then(response => {
             this.setState({ reservas_aprobadas: response.data.datos })
         })
@@ -29,7 +29,7 @@ class ReserveHistory extends Component {
             console.log(error)
         })
 
-        axios.get(API+"?estado_reserva=3")
+        axios.get(API+"?estado_reserva=2")
         .then(response => {
             this.setState({ reservas_rechazadas: response.data.datos })
         })
@@ -66,13 +66,13 @@ class ReserveHistory extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_estudiante } </p>) }
                                         </td>
                                         <td>
-                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.libro_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_libro } </p>) }
                                         </td>
                                         <td>
-                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.estado_reserva_id} </p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_estado_reserva } </p>) }
                                         </td>
                                     </tr>
                                 </tbody>
@@ -95,13 +95,13 @@ class ReserveHistory extends Component {
                                 <tbody>
                                     <tr className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td>
-                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.persona_id} </p>) }
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_estudiante } </p>) }
                                         </td>
                                         <td>
-                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.libro_id} </p>) }
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_libro } </p>) }
                                         </td>
                                         <td>
-                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> {element.estado_reserva_id} </p>) }
+                                            { reservas_rechazadas.map(element => <p className="p-2 px-5" key={ element.id }> { element.id_estado_reserva } </p>) }
                                         </td>
                                     </tr>
                                 </tbody>
