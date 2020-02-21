@@ -27,13 +27,14 @@ exports.up = function(knex, Promise) {
 
   .createTable( 'libro', function( table ) {
     table.increments('id');
-    table.integer('id_libro').references('id').inTable('estado_libro');
+    table.integer('id_estado_libro').references('id').inTable('estado_libro');
     table.string('autor');
     table.string('pais');
     table.string('año');
     table.string('titulo');
     table.string('editorial');
     table.string('existencias');
+    table.text('portada');
   })
 
   .createTable( 'persona', function( table ) {
@@ -56,8 +57,6 @@ exports.up = function(knex, Promise) {
     table.string('nombre_estudiante');
     table.date('fecha_pedido');
     table.date('fecha_aprobacion_rechazo');
-    table.date('fecha_entrega');
-    table.date('fecha_devolucion');
   })
 };
 

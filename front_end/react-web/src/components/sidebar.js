@@ -67,7 +67,7 @@ const Sidebar = () => (
                     </li>
                 </ul>
                 <hr />
-                <li className="items-center">
+                {/* <li className="items-center">
                     <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
                         <i className="fas fa-cog text-gray-900 mr-2 text-sm"></i>
                         Configuraciones
@@ -96,9 +96,9 @@ const Sidebar = () => (
                                     Estado Libro
                                 </li>
                             </Link>
-                        </ul>
+                        </ul> 
                     </div>
-                </li>
+                </li>*/}
             </div>
         </div>
     </nav>

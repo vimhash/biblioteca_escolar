@@ -56,6 +56,8 @@ class Reserve extends Component {
 
     render() {
         const { reserves } = this.state
+        const assets1 = require("../assets/book.png")
+
         return(
             <div>
                 <Sidebar />,
@@ -67,10 +69,10 @@ class Reserve extends Component {
                         <div className="flex flex-wrap items-center justify-center">
                             { reserves.map(element => 
                                 <div className="max-w-md w-full lg:flex" key={ element.id }>
-                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png" alt="pic" />
+                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src={ assets1 } alt="pic" />
                                     <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                         <div className="mb-8">
-                                            <div className="text-black font-bold text-xl mb-2">Libro: { element.id_libro }</div>
+                                            <div className="text-black font-bold text-xl mb-2">{ element.id_libro }</div>
                                             <p className="text-grey-darker text-base">Estado: { element.id_estado_reserva }</p>
                                         </div>
                                         <div className="flex items-center">

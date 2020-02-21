@@ -6,7 +6,8 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/'
+// const API = 'http://192.168.1.16:8001/server/'
+const API = 'http://172.16.11.140:8001/server/'
 
 export default class detalleBook extends Component {
   constructor(props) {
@@ -139,7 +140,7 @@ export default class detalleBook extends Component {
               <Text style={styles.text}>Detalle de su Reservación.</Text>
               <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Para poder realizar una reservación deberá de llenar los siguientes campos.</Text>
               { libros.map(element => 
-                <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
+                <Card title={ element.titulo } image={ {uri: `${element.portada}` } } key={ element.id }>
                   <Text style={{marginBottom: 10}}>
                     Autor: { element.autor }
                   </Text>

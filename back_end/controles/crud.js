@@ -7,7 +7,7 @@ const getDatos = (req, res) => {
     const tabla = req.query.tabla
     const campo = req.query.campo
 
-    db.select(campo).from(tabla)
+    db.select(campo).from(tabla).orderBy("id", "desc")
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -167,7 +167,7 @@ const getloginAPI_yavirac = (req,res) =>{
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
     db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, reserva.id_estudiante, libro.titulo as id_libro,
-    reserva.fecha_pedido, reserva.fecha_entrega, reserva.nombre_estudiante, reserva.fecha_aprobacion_rechazo, reserva.fecha_entrega, reserva.fecha_devolucion 
+    reserva.fecha_pedido, reserva.nombre_estudiante, reserva.fecha_aprobacion_rechazo
     from reserva 
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro

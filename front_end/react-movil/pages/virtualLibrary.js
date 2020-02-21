@@ -6,7 +6,8 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/'
+// const API = 'http://192.168.1.16:8001/server/'
+const API = 'http://172.16.11.140:8001/server/'
 
 export default class virtualLibrary extends Component {
   constructor(props) {
@@ -124,7 +125,7 @@ export default class virtualLibrary extends Component {
             <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
             <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
             { libros.map( element => 
-              <Card title={ element.titulo } image={require('../assets/iconos-libros.png')} key={ element.id }>
+              <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
                 <TouchableHighlight style={styles.button}>
                     <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
                         <Text style={{marginHorizontal: 20, color: '#000'}} >

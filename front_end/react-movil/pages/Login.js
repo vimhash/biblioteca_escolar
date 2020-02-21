@@ -3,7 +3,8 @@ import { Text, TextInput, View, StyleSheet, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import axios from 'axios';
 
-const API = 'http://192.168.1.16:8001/server/login_estudiantes'
+// const API = 'http://192.168.1.16:8001/server/login_estudiantes'
+const API = 'http://172.16.11.140:8001/server/login_estudiantes'
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4fd1c5',
   },
   containerIngresar:{
-    height: 60,
+    height: 100,
     marginLeft:'25%',
     marginRight:'25%',
     paddingTop:'10%',
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 100,
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',

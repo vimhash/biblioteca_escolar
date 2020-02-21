@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-class AddBook extends Component {
+export default class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,6 +16,7 @@ class AddBook extends Component {
             titulo: '',
             editorial: '',
             existencias: '',
+            portada: '',
         }
     }
 
@@ -34,6 +35,8 @@ class AddBook extends Component {
                 titulo: this.state.titulo,
                 editorial: this.state.editorial,
                 existencias: this.state.existencias,
+                portada: this.state.portada,
+                id_estado_libro: 1,
             }
         }
 
@@ -42,7 +45,8 @@ class AddBook extends Component {
             this.post.datos.año === "" ||
             this.post.datos.titulo === "" ||
             this.post.datos.editorial === "" ||
-            this.post.datos.existencias === ""
+            this.post.datos.existencias === "" ||
+            this.post.datos.portada === ""
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
@@ -58,9 +62,19 @@ class AddBook extends Component {
         }
     };
 
+    onFileChange = (e) => {
+        const file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            this.setState({ portada: reader.result })
+            console.log(reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
+
 
     render() {
-        const { autor, pais, año, titulo, editorial, existencias } = this.state
+        const { autor, pais, año, titulo, editorial, existencias, portada } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -152,6 +166,18 @@ class AddBook extends Component {
                                         onChange={ this.changeHandler } 
                                     />
                                 </div>
+                                <div className="md:w-1/3 px-3">
+                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="portada">
+                                        Portada
+                                    </label>
+                                    <input 
+                                        className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                        name="portada"
+                                        type="file"
+                                        defaultValue={ portada }
+                                        onChange={ this.onFileChange }
+                                    />
+                                </div>
                             </div>
                             <div className="mt-4">
                                 <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
@@ -163,5 +189,3 @@ class AddBook extends Component {
         )
     }
 }
-
-export default AddBook;
