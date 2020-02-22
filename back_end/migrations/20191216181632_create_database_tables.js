@@ -34,6 +34,7 @@ exports.up = function(knex, Promise) {
     table.string('titulo');
     table.string('editorial');
     table.string('existencias');
+    table.boolean('disponible');
     table.text('portada');
   })
 

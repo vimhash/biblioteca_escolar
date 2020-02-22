@@ -166,8 +166,9 @@ const getloginAPI_yavirac = (req,res) =>{
 // RAW functions
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
-    db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, reserva.id_estudiante, libro.titulo as id_libro,
-    reserva.fecha_pedido, reserva.nombre_estudiante, reserva.fecha_aprobacion_rechazo
+    db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, reserva.id_estudiante, 
+    reserva.nombre_estudiante, libro.titulo as id_libro, reserva.fecha_pedido, reserva.nombre_estudiante, 
+    reserva.fecha_aprobacion_rechazo
     from reserva 
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro

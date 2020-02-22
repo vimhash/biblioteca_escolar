@@ -32,7 +32,7 @@ class Reserve extends Component {
             }],
         })
         .then(response => {
-            window.location.assign("http://localhost:3000/reserve_history");
+            window.location.assign("http://localhost:3000/approved_orders");
         })
         .catch(error => {
             console.log(error);
@@ -47,7 +47,7 @@ class Reserve extends Component {
             }],
         })
         .then(response => {
-            window.location.assign("http://localhost:3000/reserve_history");
+            window.location.assign("http://localhost:3000/rejected_orders");
         })
         .catch(error => {
             console.log(error);

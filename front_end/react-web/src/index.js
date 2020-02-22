@@ -14,9 +14,8 @@ import AddStateBook from './pages/config/addStateBook';
 import AddStatePeople from './pages/config/addStatePeople';
 import AddStateReserve from './pages/config/addStateReserve';
 import AddTypePeople from './pages/config/addTypePeople';
-import ReserveHistory from './pages/reserveHistory';
-
-window.$URL = 'http://localhost:8001/server/library'
+import ApprovedOrders from './pages/approved_orders';
+import RejectedOrders from './pages/rejected_orders';
 
 render(
   <Router>
@@ -26,7 +25,8 @@ render(
         <Route path="/admins" component={ Admin } />
         <Route path="/add_book" component={ AddBook } />
         <Route path="/reserve" component={ Reserve } />
-        <Route path="/reserve_history" component={ ReserveHistory } />
+        <Route path="/approved_orders" component={ ApprovedOrders } />
+        <Route path="/rejected_orders" component={ RejectedOrders } />
         <Route path="/config/state_books" component={ AddStateBook } />
         <Route path="/config/state_people" component={ AddStatePeople } />
         <Route path="/config/state_reserve" component={ AddStateReserve } />
