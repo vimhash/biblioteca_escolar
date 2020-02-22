@@ -15,7 +15,6 @@ export default class AddBook extends Component {
             año: '',
             titulo: '',
             editorial: '',
-            existencias: '',
             portada: '',
         }
     }
@@ -34,7 +33,6 @@ export default class AddBook extends Component {
                 año: this.state.año,
                 titulo: this.state.titulo,
                 editorial: this.state.editorial,
-                existencias: this.state.existencias,
                 portada: this.state.portada,
                 id_estado_libro: 1,
             }
@@ -45,7 +43,6 @@ export default class AddBook extends Component {
             this.post.datos.año === "" ||
             this.post.datos.titulo === "" ||
             this.post.datos.editorial === "" ||
-            this.post.datos.existencias === "" ||
             this.post.datos.portada === ""
             ) {
           alert("Complete todos los datos para continuar...");
@@ -74,7 +71,7 @@ export default class AddBook extends Component {
 
 
     render() {
-        const { autor, pais, año, titulo, editorial, existencias, portada } = this.state
+        const { autor, pais, año, titulo, editorial, portada } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -154,19 +151,7 @@ export default class AddBook extends Component {
                                         autoComplete="off"
                                     />
                                 </div>
-                                <div className="md:w-1/2 px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="existencias">
-                                        Existencias
-                                    </label>
-                                    <input className="appearance-none block w-1/2 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-2" 
-                                        type="number"
-                                        name="existencias"
-                                        min="1"
-                                        value={ existencias }
-                                        onChange={ this.changeHandler } 
-                                    />
-                                </div>
-                                <div className="md:w-1/3 px-3">
+                                <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="portada">
                                         Portada
                                     </label>

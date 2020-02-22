@@ -24,6 +24,18 @@ export default class VirtualLibrary extends Component {
         })
     }
 
+    updateBook = (p_id, p_id_estado_libro, p_autor, p_pais, p_año, p_titulo, p_editorial, p_portada) => {
+        localStorage.setItem('id', p_id);
+        localStorage.setItem('id_estado_libro', p_id_estado_libro);
+        localStorage.setItem('autor', p_autor);
+        localStorage.setItem('pais', p_pais);
+        localStorage.setItem('año', p_año);
+        localStorage.setItem('titulo', p_titulo);
+        localStorage.setItem('editorial', p_editorial);
+        localStorage.setItem('portada', p_portada);
+        window.location.assign("http://localhost:3000/update_book");
+    }
+
     render() {
         const { libros } = this.state
         const assets1 = require('../assets/logoLibro.jpg');
@@ -52,6 +64,15 @@ export default class VirtualLibrary extends Component {
                                                 <p className="text-black leading-none">Año: { element.año }</p>
                                                 <p className="text-grey-dark">Pais: { element.pais }</p>
                                             </div>
+                                        </div>
+                                        <div className="m-3">
+                                            <button className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
+                                                onClick={ () => this.updateBook(element.id, element.id_estado_libro, element.autor, element.pais, element.año, element.titulo, element.editorial, element.portada) }>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                    <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                                                </svg>
+                                                <span className="mr-2">Actualizar</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

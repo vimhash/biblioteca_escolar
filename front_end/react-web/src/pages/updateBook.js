@@ -6,16 +6,17 @@ import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-export default class AddBook extends Component {
+export default class UpdateBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            autor: '',
-            pais: '',
-            año: '',
-            titulo: '',
-            editorial: '',
-            existencias: '',
+            id: localStorage.getItem('id'),
+            id_estado_libro: localStorage.getItem('id_estado_libro'),
+            autor: localStorage.getItem('autor'),
+            pais: localStorage.getItem('pais'),
+            año: localStorage.getItem('año'),
+            titulo: localStorage.getItem('titulo'),
+            editorial: localStorage.getItem('editorial'),
             portada: '',
         }
     }
@@ -24,33 +25,31 @@ export default class AddBook extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    saveData = e => {
+    updateData = e => {
         e.preventDefault()
-        this.post = {
-            tabla: "libro",
-            datos: {
+        this.update = {
+            datos: [{
+                id: this.state.id,
                 autor: this.state.autor,
                 pais: this.state.pais,
                 año: this.state.año,
                 titulo: this.state.titulo,
                 editorial: this.state.editorial,
-                existencias: this.state.existencias,
                 portada: this.state.portada,
-                id_estado_libro: 1,
-            }
+            }]
         }
 
-        if (this.post.datos.autor === "" ||
-            this.post.datos.pais === "" ||
-            this.post.datos.año === "" ||
-            this.post.datos.titulo === "" ||
-            this.post.datos.editorial === "" ||
-            this.post.datos.existencias === "" ||
-            this.post.datos.portada === ""
+        if (this.update.datos[0].id === "" ||
+            this.update.datos[0].autor === "" ||
+            this.update.datos[0].pais === "" ||
+            this.update.datos[0].año === "" ||
+            this.update.datos[0].titulo === "" ||
+            this.update.datos[0].editorial === "" ||
+            this.update.datos[0].portada === ""
             ) {
           alert("Complete todos los datos para continuar...");
         } else {
-          axios.post(API, this.post)
+          axios.put(`${API}?tabla=libro`, this.update)
           .then(response => {
             if ( response.data.ok === true ) {
                 window.location.assign("http://localhost:3000/virtual_library");
@@ -67,14 +66,13 @@ export default class AddBook extends Component {
         const reader = new FileReader();
         reader.onloadend = () => {
             this.setState({ portada: reader.result })
-            console.log(reader.result)
         }
         reader.readAsDataURL(file);
     }
 
 
     render() {
-        const { autor, pais, año, titulo, editorial, existencias, portada } = this.state
+        const { autor, pais, año, titulo, editorial, portada } = this.state
         return(
             <div>
                 <Sidebar />,
@@ -82,8 +80,8 @@ export default class AddBook extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center my-5 text-2xl">Agregar un nuevo libro al catálogo.</p>
-                        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 mx-8" onSubmit={ this.saveData }>
+                        <p className="text-center my-5 text-2xl">Actualizar datos del libro.</p>
+                        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 mx-8" onSubmit={ this.updateData }>
                             <div className="-mx-3 md:flex mb-6">
                                 <div className="md:w-full px-3">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="titulo">
@@ -154,19 +152,7 @@ export default class AddBook extends Component {
                                         autoComplete="off"
                                     />
                                 </div>
-                                <div className="md:w-1/2 px-3">
-                                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="existencias">
-                                        Existencias
-                                    </label>
-                                    <input className="appearance-none block w-1/2 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-2" 
-                                        type="number"
-                                        name="existencias"
-                                        min="1"
-                                        value={ existencias }
-                                        onChange={ this.changeHandler } 
-                                    />
-                                </div>
-                                <div className="md:w-1/3 px-3">
+                                <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="portada">
                                         Portada
                                     </label>
@@ -180,7 +166,7 @@ export default class AddBook extends Component {
                                 </div>
                             </div>
                             <div className="mt-4">
-                                <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
+                                <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Actualizar</button>
                             </div>
                         </form>
                     </main>

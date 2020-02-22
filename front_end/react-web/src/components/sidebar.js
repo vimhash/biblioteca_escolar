@@ -56,7 +56,7 @@ const Sidebar = () => (
                         <Link to="/approved_orders">
                             <li className="text-gray-400 mx-8 hover:text-gray-700">
                                 <i className="fas fa-arrow-circle-right"></i>
-                                Aprovados
+                                Aprobados
                             </li>
                         </Link>
                         <Link to="/rejected_orders">

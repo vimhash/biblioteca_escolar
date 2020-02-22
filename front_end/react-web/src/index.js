@@ -16,6 +16,7 @@ import AddStateReserve from './pages/config/addStateReserve';
 import AddTypePeople from './pages/config/addTypePeople';
 import ApprovedOrders from './pages/approved_orders';
 import RejectedOrders from './pages/rejected_orders';
+import UpdateBook from './pages/updateBook';
 
 render(
   <Router>
@@ -27,6 +28,7 @@ render(
         <Route path="/reserve" component={ Reserve } />
         <Route path="/approved_orders" component={ ApprovedOrders } />
         <Route path="/rejected_orders" component={ RejectedOrders } />
+        <Route path="/update_book" component={ UpdateBook } />
         <Route path="/config/state_books" component={ AddStateBook } />
         <Route path="/config/state_people" component={ AddStatePeople } />
         <Route path="/config/state_reserve" component={ AddStateReserve } />
