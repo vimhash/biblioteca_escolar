@@ -28,13 +28,14 @@ export default class AddBook extends Component {
         this.post = {
             tabla: "libro",
             datos: {
+                id_estado_libro: 1,
                 autor: this.state.autor,
                 pais: this.state.pais,
                 año: this.state.año,
                 titulo: this.state.titulo,
                 editorial: this.state.editorial,
+                disponible: 1,
                 portada: this.state.portada,
-                id_estado_libro: 1,
             }
         }
 
