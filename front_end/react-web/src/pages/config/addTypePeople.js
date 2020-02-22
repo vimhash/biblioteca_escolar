@@ -83,7 +83,45 @@ class AddTypePeople extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center">Tipos de Usuarios en el Sistema.</p>
+                        <div className  ="justify-center my-5 select-none flex">
+                            <p className="mt-5 text-center mr-10 text-2xl">Tipos de Usuarios en el Sistema.</p>
+                                <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
+                                        +
+                                    </button>
+                                {/* MODAL */}
+                                <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
+                                    className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
+                                    <div className="leading-loose">
+                                        <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
+                                            <p className="text-gray-800 font-medium">Nuevo Registro</p>
+                                            <div className="mt-2">
+                                                <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre</label>
+                                                <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                    type="text"
+                                                    placeholder="Ej: 175148795" 
+                                                    name="nombre"
+                                                    value={ nombre }
+                                                    onChange={ this.changeHandler } 
+                                                />
+                                            </div>
+                                            <div className="mt-2">
+                                                <label className="block text-sm text-gray-600" htmlFor="descripcion">Descripción</label>
+                                                <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                    type="text" 
+                                                    placeholder="Ej: Joel Simbaña"
+                                                    name="descripcion"
+                                                    value={ descripcion }
+                                                    onChange={ this.changeHandler }
+                                                />
+                                            </div>
+                                            <div className="mt-4">
+                                                <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </ReactModal>
+                                {/* MODAL */}
+                        </div>
 
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -111,45 +149,6 @@ class AddTypePeople extends Component {
                             </table>
                         </div>
                     </main>
-
-                    {/* MODAL */}
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-                    <div className="mt-4">
-                        <button onClick={ this.handleOpenModal } type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Nuevo Tipo de Persona</button>
-                    </div>
-                        <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                        className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
-                        <div className="leading-loose">
-                            <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
-                                <p className="text-gray-800 font-medium">Nuevo Registro</p>
-                                <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre</label>
-                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                        type="text"
-                                        placeholder="Ej: 175148795" 
-                                        name="nombre"
-                                        value={ nombre }
-                                        onChange={ this.changeHandler } 
-                                    />
-                                </div>
-                                <div className="mt-2">
-                                    <label className="block text-sm text-gray-600" htmlFor="descripcion">Descripción</label>
-                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                        type="text" 
-                                        placeholder="Ej: Joel Simbaña"
-                                        name="descripcion"
-                                        value={ descripcion }
-                                        onChange={ this.changeHandler }
-                                    />
-                                </div>
-                                <div className="mt-4">
-                                    <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
-                                </div>
-                            </form>
-                        </div>
-                        </ReactModal>
-                    </div>
-                    {/* MODAL */}
                 </div>
             </div>
         )
