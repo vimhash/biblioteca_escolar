@@ -14,28 +14,20 @@ const Sidebar = () => (
             <div className="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded">
                 <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                     <li className="items-center">
-                        <Link to="/admins">
-                            <button className="text-gray-400 text-xs uppercase py-3 font-bold block hover:text-gray-700">
-                                <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
-                                Administradores
-                            </button>
-                        </Link>
-                    </li>
-                    <li className="items-center">
-                        <div className="text-gray-800 text-xs uppercase py-3 font-bold block">
+                        <div className="text-black-900 text-xs uppercase py-3 font-bold block">
                             <i className="fas fa-book-open text-gray-900 mr-2 text-sm"></i>
-                            Libros y catálogos
+                            Catálogo y Libros
                             <ul>
-                                <Link to="/add_book">
-                                    <li className="text-gray-400 mx-8 hover:text-gray-700">
-                                        <i className="fas fa-arrow-circle-right"></i>
-                                        Agregar Libro
-                                    </li>
-                                </Link>
                                 <Link to="/virtual_library">
-                                    <li className="text-pink-400 mx-8 hover:text-pink-700">
+                                    <li className="text-pink-700 mx-8 hover:text-pink-400">
                                         <i className="fas fa-arrow-circle-right"></i>
                                         Catálogo de libros
+                                    </li>
+                                </Link>
+                                <Link to="/add_book">
+                                    <li className="text-black-900 mx-8 hover:text-gray-600">
+                                        <i className="fas fa-arrow-circle-right"></i>
+                                        Agregar Libro
                                     </li>
                                 </Link>
                             </ul>
@@ -43,29 +35,37 @@ const Sidebar = () => (
                     </li>
                     <li className="items-center">
                         <Link to="/reserve">
-                            <button className="text-gray-400 text-xs uppercase py-3 font-bold block hover:text-gray-700">
+                            <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
                                 <i className="fas fa-check text-gray-900 mr-2 text-sm"></i>
                                 Pedidos de Reservas
                             </button>
                         </Link>
                     </li>
                     <li className="items-center">
-                        <i className="fas fa-archive text-gray-900 mr-2 text-sm"></i>
+                        <i className="text-black-900 fas fa-archive mr-2 text-sm"></i>
                         Historial de Reservas
                         <ul>
-                        <Link to="/approved_orders">
-                            <li className="text-gray-400 mx-8 hover:text-gray-700">
-                                <i className="fas fa-arrow-circle-right"></i>
-                                Aprobados
-                            </li>
+                            <Link to="/approved_orders">
+                                <li className="text-black-900 mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Aprobados
+                                </li>
+                            </Link>
+                            <Link to="/rejected_orders">
+                                <li className="text-black-900 mx-8 hover:text-gray-600">
+                                    <i className="fas fa-arrow-circle-right"></i>
+                                    Rechazados
+                                </li>
+                            </Link>
+                        </ul>
+                    </li>
+                    <li className="items-center">
+                        <Link to="/admins">
+                            <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
+                                <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
+                                Administradores
+                            </button>
                         </Link>
-                        <Link to="/rejected_orders">
-                            <li className="text-gray-400 mx-8 hover:text-gray-700">
-                                <i className="fas fa-arrow-circle-right"></i>
-                                Rechazados
-                            </li>
-                        </Link>
-                    </ul>
                     </li>
                 </ul>
 
