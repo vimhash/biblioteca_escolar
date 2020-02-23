@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-class Admin extends Component {
+export default class Admin extends Component {
     handleOpenModal () { this.setState({ showModal: true }) }      
     handleCloseModal () { this.setState({ showModal: false }) }
 
@@ -220,5 +220,3 @@ class Admin extends Component {
         )
     }
 }
-
-export default Admin;

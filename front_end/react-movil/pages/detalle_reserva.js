@@ -113,6 +113,15 @@ export default class detalleBook extends Component {
       })
     }
   }
+
+  updateData = (item) => {
+    axios.put(API+"library?tabla=libro", {
+      datos: [{
+        id: item,
+        disponible: true
+      }]
+    })
+  }
   
   render() {
     const { libros } = this.state
@@ -125,11 +134,11 @@ export default class detalleBook extends Component {
             </TouchableOpacity>
 
             <View style={styles.header} >
-              <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+              <Text style={styles.textHeader}>Sistema de Bibliotecario</Text>
             </View>
 
             <TouchableHighlight style={styles.menu}>
-              <Link to="/library">
+              <Link to="/library" onPress={ () => this.updateData( this.state.id_libro )}>
                 <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
               </Link>
             </TouchableHighlight>

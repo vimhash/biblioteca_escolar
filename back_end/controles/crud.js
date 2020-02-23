@@ -44,6 +44,27 @@ const getDatosByID = (req, res) => {
     })
 }
 
+const getDatosLibros = (req, res) => {
+    const tabla = req.query.tabla
+    const campo = req.query.campo
+    const disponible = req.query.disponible
+
+    db.select(campo).from(tabla).where('disponible', disponible).orderBy("id", "desc")
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 const postDatos = (req, res) => {
     const tabla = req.body.tabla
     const datos = req.body.datos
@@ -231,6 +252,7 @@ const raw_crud = (req, res) => {
 module.exports = {
     getDatos,
     getDatosByID,
+    getDatosLibros,
     postDatos,
     updateDatos,
     deleteDatos,

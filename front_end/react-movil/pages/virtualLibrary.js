@@ -22,7 +22,7 @@ export default class virtualLibrary extends Component {
   }
 
   getData = () => {
-    axios.get(API+"library?tabla=libro")
+    axios.get(API+"library_librosdisponibles?tabla=libro&&disponible=true")
     .then( response => {
       this.setState({ libros: response.data.datos })
     })
@@ -57,6 +57,12 @@ export default class virtualLibrary extends Component {
   asyncstorageSave = async (item) => {
     try {
       await AsyncStorage.setItem('id_libro', item.toString())
+      axios.put(API+"library?tabla=libro", {
+        datos: [{
+          id: item,
+          disponible: false
+        }]
+      })
     } catch (err) {
       alert(err)
     }

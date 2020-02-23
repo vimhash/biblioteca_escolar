@@ -4,18 +4,19 @@ import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 import axios from 'axios';
 
-const API = "http://localhost:8001/server/library";
+const API = "http://localhost:8001/server/";
 
-class Reserve extends Component {
+export default class Reserve extends Component {
     constructor(props) {
         super(props);
         this.state = {
             reserves: [],
+            id_libro: '',
         }
     }
 
     componentDidMount() {
-        axios.get(API+"/reserva?estado_reserva=3")
+        axios.get(API+"library/reserva?estado_reserva=3")
         .then(response => {
             this.setState({ reserves: response.data.datos })
         })
@@ -25,7 +26,7 @@ class Reserve extends Component {
     }
 
     aprobarReserva = (id) => {
-        axios.put(API+"?tabla=reserva", {
+        axios.put(API+"library?tabla=reserva", {
             datos: [{
                 id: id,
                 id_estado_reserva: 1
@@ -40,7 +41,7 @@ class Reserve extends Component {
     }
 
     denegarReserva = (id) => {
-        axios.put(API+"?tabla=reserva", {
+        axios.put(API+"library?tabla=reserva", {
             datos: [{
                 id: id,
                 id_estado_reserva: 2
@@ -48,6 +49,21 @@ class Reserve extends Component {
         })
         .then(response => {
             window.location.assign("http://localhost:3000/rejected_orders");
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    stateBook = (id, state) => {
+        axios.get(`${API}library_byID?tabla=reserva&&id=${ id }&&campo=id_libro`)
+        .then(response => {
+            axios.put(API+"library?tabla=libro", {
+                datos: [{
+                    id: JSON.stringify(response.data.datos[0].id_libro),
+                    disponible: state
+                }]
+            })
         })
         .catch(error => {
             console.log(error);
@@ -85,7 +101,7 @@ class Reserve extends Component {
                                             </div>
                                         </div>
                                         <div className="m-3">
-                                            <button onClick={ () => this.aprobarReserva(element.id) } className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                                            <button onClick={ () => {this.stateBook(element.id, 'false'); this.aprobarReserva(element.id)} } className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                                                 <span className="mr-2">Aprobar</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                                     <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
@@ -93,7 +109,7 @@ class Reserve extends Component {
                                             </button>
                                         </div>
                                         <div className="m-3">
-                                            <button onClick={ () => this.denegarReserva(element.id) } className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                                            <button onClick={ () => {this.stateBook(element.id, 'true'); this.denegarReserva(element.id)} } className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                                             <span className="mr-2">Rechazar</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentcolor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
@@ -110,5 +126,3 @@ class Reserve extends Component {
         )
     }
 }
-
-export default Reserve;

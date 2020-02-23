@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API_LOGIN = "http://localhost:8001/server/login";
 
-class Login extends Component {
+export default class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -79,5 +79,3 @@ class Login extends Component {
     )
   }
 }
-
-export default Login;
