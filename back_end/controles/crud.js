@@ -212,7 +212,7 @@ const reserva = (req, res) => {
 const reserva_estudiante = (req, res) => {
     const id_estudiante = req.query.id_estudiante
     db.raw(`select reserva.id, estado_reserva.nombre as id_estado_reserva, libro.titulo as id_libro, reserva.id_estudiante, reserva.fecha_pedido,
-    reserva.fecha_aprobacion_rechazo from reserva
+    reserva.fecha_aprobacion_rechazo, libro.portada from reserva
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro
     where id_estudiante = ${ id_estudiante };`)

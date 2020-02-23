@@ -109,7 +109,7 @@ export default class Reserva extends Component {
           <View style={styles.body}>
             <Text style={styles.text}>Reservaciones Realizadas.</Text>
             { reserva.map( element => 
-              <Card title={ element.id_libro+"" } image={require('../assets/iconos-libros.png')} key={ element.id }>
+              <Card title={ element.id_libro+"" } image={{ uri: `${element.portada}` }} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
                   Fecha Pedido: { element.fecha_pedido }
                 </Text>
