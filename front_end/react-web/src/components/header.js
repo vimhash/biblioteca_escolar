@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from'react';
+import { withRouter } from "react-router-dom";
 import ReactModal from 'react-modal';
-import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/library_searchbook";
 
-export default class Header extends Component {
+class Header extends Component {
     handleOpenModal () { this.setState({ showModal: true }) }      
     handleCloseModal () { this.setState({ showModal: false }) }
 
@@ -44,6 +45,21 @@ export default class Header extends Component {
         window.location.assign("http://localhost:3000/update_book");
     }
 
+    logout = () => {
+        Swal.fire({
+            title: '¿Cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Salir',
+            cancelButtonText: 'Volver'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire('Sesión cerrada exitosamente!')
+                .then(() => this.props.history.push('/'))
+            }
+        })
+    }
+
     render() {
         const { titulo, libros } = this.state
         return(
@@ -65,11 +81,11 @@ export default class Header extends Component {
                     </form>
                 </div>
                 <div>
-                    <Link to="/">
-                        <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                    {/* <Link to="/"> */}
+                        <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" onClick={ () => this.logout() }>
                         Salir
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
 
                 {/* MODAL */}
@@ -98,3 +114,5 @@ export default class Header extends Component {
         )
     }
 }
+
+export default withRouter(Header)

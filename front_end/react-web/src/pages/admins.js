@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import ReactModal from 'react-modal';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-export default class Admin extends Component {
+class Admin extends Component {
     handleOpenModal () { this.setState({ showModal: true }) }      
     handleCloseModal () { this.setState({ showModal: false }) }
 
@@ -66,12 +68,22 @@ export default class Admin extends Component {
             this.post.datos.telefono === "" ||
             this.post.datos.clave === ""
             ) {
-          alert("Complete todos los datos para continuar...");
+            Swal.fire(
+                '',
+                'Complete todos los datos para continuar...!'
+            )
         } else {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                window.location.assign("http://localhost:3000/admins");
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Agregado exitosamente',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                .then( () => window.location.assign("http://localhost:3000/admins"))
             }
           })
           .catch(error => {
@@ -81,10 +93,26 @@ export default class Admin extends Component {
     };
 
     deleteData = (value) => {
-        axios.delete(`${API}?tabla=persona&&id=${value}`, {
-            data: { id: value }
+        Swal.fire({
+            title: '¿Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                axios.delete(`${API}?tabla=persona&&id=${value}`, {
+                    data: { id: value }
+                })
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado exitosamente!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                .then( () => window.location.assign("http://localhost:3000/admins"))
+            }
         })
-        window.location.assign("http://localhost:3000/admins");
     }
 
     render() {
@@ -96,91 +124,91 @@ export default class Admin extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                    <div className  ="justify-center my-5 select-none flex">
-                        <p className="mt-5 text-center mr-10 text-2xl">Administradores.</p>
+                        <div className  ="justify-center my-5 select-none flex">
+                            <p className="mt-5 text-center mr-10 text-2xl">Administradores.</p>
                             <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
-                                    +
-                                </button>
-                                {/* MODAL */}
-                                <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                                    className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
-                                    <div className="leading-loose">
-                                        <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
-                                            <p className="text-gray-800 font-medium">Nuevo Registro</p>
-                                                <div className="mt-2">
-                                                    <label className="block text-sm text-gray-600" htmlFor="identificacion">Cédula de Identidad</label>
-                                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                                        type="text" 
-                                                        placeholder="Ej: 175148795" 
-                                                        name="identificacion"
-                                                        value={ identificacion }
-                                                        onChange={ this.changeHandler }
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                                <div className="mt-2">
-                                                    <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre y Apellido</label>
-                                                    <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                                        type="text" 
-                                                        placeholder="Ej: Joel Simbaña"
-                                                        name="nombre"
-                                                        value={ nombre }
-                                                        onChange={ this.changeHandler }
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                                <div className="mt-2">
-                                                    <label className=" block text-sm text-gray-600" htmlFor="email">Correo Institucional</label>
-                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                                        type="text" 
-                                                        placeholder="@yavirac.edu.ec" 
-                                                        name="email"
-                                                        value={ email }
-                                                        onChange={ this.changeHandler }
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                                <div className="mt-2">
-                                                    <label className=" block text-sm text-gray-600" htmlFor="direccion">Dirección</label>
-                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                                        type="text" 
-                                                        placeholder="Ej: Caupicho city"
-                                                        name="direccion"
-                                                        value={ direccion }
-                                                        onChange={ this.changeHandler }
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                                <div className="inline-block mt-2 w-1/2 pr-1">
-                                                    <label className="block text-sm text-gray-600" htmlFor="telefono">Teléfono</label>
-                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                                        type="text" 
-                                                        placeholder="Ej: 0985461645" 
-                                                        name="telefono"
-                                                        value={ telefono }
-                                                        onChange={ this.changeHandler }
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                                <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                                                    <label className="block text-sm text-gray-600" htmlFor="clave">Clave</label>
-                                                    <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
-                                                        type="password" 
-                                                        placeholder="*************" 
-                                                        name="clave"
-                                                        value={ clave }
-                                                        onChange={ this.changeHandler }
-                                                    />
-                                                </div>
-                                                <div className="mt-4">
-                                                    <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
-                                                </div>
-                                        </form>
+                                +
+                            </button>
+                            {/* MODAL */}
+                            <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
+                                className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
+                                <div className="leading-loose">
+                                    <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
+                                        <p className="text-gray-800 font-medium">Nuevo Adminsitrador</p>
+                                        <div className="mt-2">
+                                            <label className="block text-sm text-gray-600" htmlFor="identificacion">Cédula de Identidad</label>
+                                            <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                type="text" 
+                                                placeholder="Ej: 175148795" 
+                                                name="identificacion"
+                                                value={ identificacion }
+                                                onChange={ this.changeHandler }
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="mt-2">
+                                            <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre y Apellido</label>
+                                            <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
+                                                type="text" 
+                                                placeholder="Ej: Joel Simbaña"
+                                                name="nombre"
+                                                value={ nombre }
+                                                onChange={ this.changeHandler }
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="mt-2">
+                                            <label className=" block text-sm text-gray-600" htmlFor="email">Correo Institucional</label>
+                                            <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                type="text" 
+                                                placeholder="@yavirac.edu.ec" 
+                                                name="email"
+                                                value={ email }
+                                                onChange={ this.changeHandler }
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="mt-2">
+                                            <label className=" block text-sm text-gray-600" htmlFor="direccion">Dirección</label>
+                                            <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                type="text" 
+                                                placeholder="Ej: Caupicho city"
+                                                name="direccion"
+                                                value={ direccion }
+                                                onChange={ this.changeHandler }
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="inline-block mt-2 w-1/2 pr-1">
+                                            <label className="block text-sm text-gray-600" htmlFor="telefono">Teléfono</label>
+                                            <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                type="text" 
+                                                placeholder="Ej: 0985461645" 
+                                                name="telefono"
+                                                value={ telefono }
+                                                onChange={ this.changeHandler }
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                            <label className="block text-sm text-gray-600" htmlFor="clave">Clave</label>
+                                            <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                                                type="password" 
+                                                placeholder="*************" 
+                                                name="clave"
+                                                value={ clave }
+                                                onChange={ this.changeHandler }
+                                            />
+                                        </div>
+                                        <div className="mt-4">
+                                            <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </ReactModal>       
+                            {/* MODAL */}
+                        </div>
 
-                                    </div>
-                                </ReactModal>       
-                               {/* MODAL */}
-                    </div>  
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
                                 <thead className="border-b">
@@ -220,3 +248,5 @@ export default class Admin extends Component {
         )
     }
 }
+
+export default withRouter(Admin);

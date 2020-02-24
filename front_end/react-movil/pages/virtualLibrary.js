@@ -133,11 +133,11 @@ export default class virtualLibrary extends Component {
             { libros.map( element => 
               <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
                 <TouchableHighlight style={styles.button}>
-                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
-                        <Text style={{marginHorizontal: 20, color: '#000'}} >
-                          <Icon name="book" size={20} color="#000" /> Detalles
-                        </Text>
-                    </Link>
+                  <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
+                    <Text style={{marginHorizontal: 20, color: '#000'}} >
+                      <Icon name="book" size={20} color="#000" /> Detalles
+                    </Text>
+                  </Link>
                 </TouchableHighlight>
               </Card> ) 
               }

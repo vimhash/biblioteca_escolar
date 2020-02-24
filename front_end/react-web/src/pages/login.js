@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API_LOGIN = "http://localhost:8001/server/login";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -19,16 +21,19 @@ export default class Login extends Component {
   loginAccess = e => {
     e.preventDefault()
     if (this.state.correo === "" || this.state.clave === "") {
-      alert("Complete todos los datos para continuar...");
+      Swal.fire(
+        '',
+        'Complete todos los datos para continuar...!'
+      )
     } else {
       axios.post(API_LOGIN, this.state)
       .then(response => {
         if ( response.data.mensaje === "found" ) {
-          window.location.assign("http://localhost:3000/virtual_library");
+          this.props.history.push('/virtual_library')
         }
       })
       .catch(error => {
-        alert("Datos Incorrectos")
+        Swal.fire('Oops... Datos incorrectos!', 'Vuelve a intentarlo', 'error')
       })
     }
   };
@@ -58,7 +63,7 @@ export default class Login extends Component {
                   <label className="font-bold text-gray-700 block mb-2">Contraseña</label>
                   <input className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
                   type="password"
-                  placeholder="******************"
+                  placeholder="*************"
                   name="clave"
                   value={ clave }
                   onChange={ this.changeHandler } 
@@ -79,3 +84,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default withRouter(Login)

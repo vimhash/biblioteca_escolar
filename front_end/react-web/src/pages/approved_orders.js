@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/";
 
-export default class ApprovedOrders extends Component {
+class ApprovedOrders extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,6 +41,14 @@ export default class ApprovedOrders extends Component {
                     disponible: state
                 }]
             })
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Libro disponible para reservar nuevamente',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            .then( () => this.props.history.push('/virtual_library'))
         })
         .catch(error => {
             console.log(error);
@@ -92,3 +102,5 @@ export default class ApprovedOrders extends Component {
         )
     }
 }
+
+export default withRouter(ApprovedOrders);

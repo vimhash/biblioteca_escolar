@@ -114,7 +114,7 @@ export default class Reserva extends Component {
                   Fecha Pedido: { element.fecha_pedido }
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                  Fecha Aprobacion/Rechazo: { element.feecha_aprobacion_rechazo }
+                  Fecha Aprobacion/Rechazo: { element.fecha_aprobacion_rechazo }
                 </Text>
                 <TouchableHighlight style={styles.button}>
                   <Text style={{marginHorizontal: 20, color: '#000'}} >

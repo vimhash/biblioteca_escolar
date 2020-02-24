@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/";
 
-export default class Reserve extends Component {
+class Reserve extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +35,14 @@ export default class Reserve extends Component {
             }],
         })
         .then(response => {
-            window.location.assign("http://localhost:3000/approved_orders");
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Reserva aprobada',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            .then( () => this.props.history.push('/approved_orders'))
         })
         .catch(error => {
             console.log(error);
@@ -48,7 +57,14 @@ export default class Reserve extends Component {
             }],
         })
         .then(response => {
-            window.location.assign("http://localhost:3000/rejected_orders");
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Reserva rechazada',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            .then( () => this.props.history.push('/rejected_orders'))
         })
         .catch(error => {
             console.log(error);
@@ -81,18 +97,18 @@ export default class Reserve extends Component {
                 <div className="ml-64">
                     <hr />
                     <main className="my-8">
-                        <p className="text-center pb-8 text-2xl my-5">Aceptación o rechazo de reserva de libros.</p>
+                        <p className="text-center pb-8 text-2xl my-5">Aprobación o rechazo de reserva de libros.</p>
                         <div className="flex flex-wrap items-center justify-center">
                             { reserves.map(element => 
                                 <div className="max-w-md w-full lg:flex" key={ element.id }>
-                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src={ assets1 } alt="pic" />
+                                    <img className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src={ element.portada } alt="pic" />
                                     <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                         <div className="mb-8">
                                             <div className="text-black font-bold text-xl mb-2">{ element.id_libro }</div>
                                             <p className="text-grey-darker text-base">Estado: { element.id_estado_reserva }</p>
                                         </div>
                                         <div className="flex items-center">
-                                            <img className="w-10 h-10 rounded-full mr-4" src="https://image.flaticon.com/icons/png/512/44/44948.png" alt="profile_pic" />
+                                            <img className="w-10 h-10 rounded-full mr-4" src={ assets1 } alt="profile_pic" />
                                             <div className="text-sm">
                                                 <p className="text-black leading-none">Estudiante: { element.nombre_estudiante }</p>
                                                 <p className="text-black leading-none">Identificación: { element.id_estudiante }</p>
@@ -126,3 +142,5 @@ export default class Reserve extends Component {
         )
     }
 }
+
+export default withRouter(Reserve);

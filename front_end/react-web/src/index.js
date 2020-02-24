@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import './styles/tailwind.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import '../node_modules/@fortawesome/fontawesome-free/css/all.css'; 
 
 import Login from './pages/login';
 import Admin from './pages/admins';

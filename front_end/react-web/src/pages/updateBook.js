@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-export default class UpdateBook extends Component {
+class UpdateBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,16 +49,26 @@ export default class UpdateBook extends Component {
             this.update.datos[0].editorial === "" ||
             this.update.datos[0].portada === ""
             ) {
-          alert("Complete todos los datos para continuar...");
+            Swal.fire(
+                '',
+                'Complete todos los datos para continuar...!'
+            )
         } else {
           axios.put(`${API}?tabla=libro`, this.update)
           .then(response => {
             if ( response.data.ok === true ) {
-                window.location.assign("http://localhost:3000/virtual_library");
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                .then( () => this.props.history.push('/virtual_library'))
             }
           })
           .catch(error => {
-            alert(error)
+            console.log(error)
           })
         }
     };
@@ -175,3 +187,5 @@ export default class UpdateBook extends Component {
         )
     }
 }
+
+export default withRouter(UpdateBook);

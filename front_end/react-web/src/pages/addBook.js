@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-export default class AddBook extends Component {
+class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,12 +48,22 @@ export default class AddBook extends Component {
             this.post.datos.editorial === "" ||
             this.post.datos.portada === ""
             ) {
-          alert("Complete todos los datos para continuar...");
+            Swal.fire(
+                '',
+                'Complete todos los datos para continuar...!'
+            )
         } else {
           axios.post(API, this.post)
           .then(response => {
             if ( response.data.ok === true ) {
-                window.location.assign("http://localhost:3000/virtual_library");
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Agregado exitosamente',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                .then( () => this.props.history.push('/virtual_library'))
             }
           })
           .catch(error => {
@@ -175,3 +187,5 @@ export default class AddBook extends Component {
         )
     }
 }
+
+export default withRouter(AddBook);

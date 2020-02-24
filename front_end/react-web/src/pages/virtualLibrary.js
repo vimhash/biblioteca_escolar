@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 import axios from 'axios';
 
 const API = "http://localhost:8001/server/library";
 
-export default class VirtualLibrary extends Component {
+class VirtualLibrary extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +34,7 @@ export default class VirtualLibrary extends Component {
         localStorage.setItem('titulo', p_titulo);
         localStorage.setItem('editorial', p_editorial);
         localStorage.setItem('portada', p_portada);
-        window.location.assign("http://localhost:3000/update_book");
+        this.props.history.push('/update_book')
     }
 
     render() {
@@ -84,3 +85,5 @@ export default class VirtualLibrary extends Component {
         )
     }
 }
+
+export default withRouter(VirtualLibrary);
