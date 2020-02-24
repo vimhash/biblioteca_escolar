@@ -81,11 +81,9 @@ class Header extends Component {
                     </form>
                 </div>
                 <div>
-                    {/* <Link to="/"> */}
-                        <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" onClick={ () => this.logout() }>
-                        Salir
-                        </button>
-                    {/* </Link> */}
+                    <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={ () => this.logout() }>
+                        <i class="fas fa-sign-out-alt"></i>Salir
+                    </button>
                 </div>
 
                 {/* MODAL */}

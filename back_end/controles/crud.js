@@ -145,7 +145,7 @@ const deleteDatos = (req, res) => {
     })
 }
 
-const login = (req,res) =>{
+const login = (req,res) => {
     const tabla = 'persona';
     const correo = req.body.correo;
     const clave = req.body.clave;
@@ -154,18 +154,19 @@ const login = (req,res) =>{
     db.select(campo).from(tabla)
       .then(resultado => {
         resultado.forEach(element => {
-          if(element.email == correo && element.clave == clave){
-            res.status(200).json({
-              ok: true,
-              mensaje: "found"
-            })
-          }
+            if(element.email == correo && element.clave == clave) {
+                res.status(200).json({
+                    ok: true,
+                    mensaje: "found"
+                })
+            } else { 
+                res.status(500).json({
+                    ok: true,
+                    mensaje: "no-found"
+                })
+            }
         })
-        return res.status(500).json({
-            ok: false,
-            mensaje: 'no-found'
-          })
-      })
+    })
 }
 
 const loginAPI_yavirac = (req,res) =>{

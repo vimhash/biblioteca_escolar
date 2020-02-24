@@ -90,7 +90,13 @@ class ApprovedOrders extends Component {
                                             { reservas_aprobadas.map(element => <p className="p-2 px-5 text-center" key={ element.id }> { element.id_libro } </p>) }
                                         </td>
                                         <td>
-                                            { reservas_aprobadas.map(element => <p className="p-2 px-5 text-center" key={ element.id }><button onClick={ () => this.stateBook(element.id, 'true') } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">SI</button></p>) }
+                                            { reservas_aprobadas.map(element => <p className="p-2 px-5 text-center" key={ element.id }>
+                                                <button 
+                                                    onClick={ () => this.stateBook(element.id, 'true') } 
+                                                    className="mr-3 text-sm bg-green-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                                        <i class="fas fa-thumbs-up"></i>SI
+                                                </button></p>) 
+                                            }
                                         </td>
                                     </tr>
                                 </tbody>

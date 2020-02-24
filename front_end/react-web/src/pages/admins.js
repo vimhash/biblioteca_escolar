@@ -126,8 +126,8 @@ class Admin extends Component {
                     <main className="my-8">
                         <div className  ="justify-center my-5 select-none flex">
                             <p className="mt-5 text-center mr-10 text-2xl">Administradores.</p>
-                            <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-pink-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-pink-500 focus:outline-none active:shadow-none">
-                                +
+                            <button onClick={ this.handleOpenModal } type="button" className="mr-8 shadow-md no-underline font-black text-2xl rounded-full h-12 w-12 flex items-center justify-center bg-green-400 text-white text-sm border-blue btn-primary hover:text-white hover:bg-green-500 focus:outline-none active:shadow-none">
+                                <i class="fas fa-user-plus"></i>
                             </button>
                             {/* MODAL */}
                             <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
@@ -236,7 +236,12 @@ class Admin extends Component {
                                             { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ this.handleOpenModal } className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Editar</button></p> )}
                                         </td> */}
                                         <td>
-                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }><button onClick={ () => this.deleteData(element.id) } className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Eliminar</button></p> )}
+                                            { admins.map(element => <p className="p-2 px-5" key={ element.id }>
+                                                <button onClick={ () => this.deleteData(element.id) } 
+                                                    className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                </button></p> )
+                                            }
                                         </td>
                                     </tr>
                                 </tbody>
