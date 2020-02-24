@@ -60,6 +60,27 @@ const getDatosLibros = (req, res) => {
         return res.status(500).json({
             ok: false,
             datos: null,
+            mensaje: `Error del servidor: ${error}`
+        })
+    })
+}
+
+const searchBook = (req, res) => {
+    const tabla = "libro"
+    const campo = req.query.campo
+    const titulo = req.query.titulo
+
+    db.select(campo).from(tabla).where('titulo', 'like', `%${ titulo }%`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
             mensaje: `Error del servidor: ${error}` 
         })
     })
@@ -253,6 +274,7 @@ module.exports = {
     getDatos,
     getDatosByID,
     getDatosLibros,
+    searchBook,
     postDatos,
     updateDatos,
     deleteDatos,
