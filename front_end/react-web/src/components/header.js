@@ -55,7 +55,7 @@ class Header extends Component {
         }).then((result) => {
             if (result.value) {
                 Swal.fire('Sesión cerrada exitosamente!')
-                .then(() => this.props.history.push('/'))
+                .then(() => {localStorage.clear(); this.props.history.push('/')})
             }
         })
     }
@@ -63,11 +63,11 @@ class Header extends Component {
     render() {
         const { titulo, libros } = this.state
         return(
-            <div className="flex-grow flex mr-2 ml-64">
-                <div className="flex-grow flex">
-                    <form className="relative text-gray-600 block mt-4 lg:inline-block lg:mt-0 mr-4" onSubmit={ this.searchBook }>
+            <div className="flex flex-wrap justify-between mr-2 ml-64 relative bg-white">
+                <div>
+                    <form className="relative text-gray-600 block lg:inline-block lg:mt-0 mr-4" onSubmit={ this.searchBook }>
                         <input 
-                            className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+                            className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none border-blue-700 border"
                             type="search" 
                             placeholder="Buscar Libro" 
                             name="titulo" 
@@ -75,20 +75,20 @@ class Header extends Component {
                             onChange={ this.changeHandler }
                             autoComplete="off" 
                         />
-                        <button type="submit" className="absolute right-0 top-0 mt-3 mr-4" onClick={ this.handleOpenModal }>
+                        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4" onClick={ this.handleOpenModal }>
                             <i className="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
                 <div>
                     <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={ () => this.logout() }>
-                        <i class="fas fa-sign-out-alt"></i>Salir
+                        <i className="fas fa-sign-out-alt"></i>Salir
                     </button>
                 </div>
 
                 {/* MODAL */}
                 <ReactModal isOpen={this.state.showModal} contentLabel="onRequestClose Example" onRequestClose={this.handleCloseModal}
-                className="flex-1 text-white text-center pl-48 py  py-0 my-10 mr-40 ml-64">
+                className="flex-1 text-white text-center pl-48 py py-0 my-10 mr-40 ml-64">
                     <div className="leading-loose">
                         <div className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
                             <div className="flex flex-wrap items-center justify-center">

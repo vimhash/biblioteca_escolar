@@ -18,6 +18,8 @@ import AddTypePeople from './pages/config/addTypePeople';
 import ApprovedOrders from './pages/approved_orders';
 import RejectedOrders from './pages/rejected_orders';
 import UpdateBook from './pages/updateBook';
+import addAdmin from './pages/addAdmin';
+import updateAdmin from './pages/updateAdmin';
 
 render(
   <Router>
@@ -26,10 +28,12 @@ render(
         <Route exact path="/virtual_library" component={ VirtualLibrary } />
         <Route path="/admins" component={ Admin } />
         <Route path="/add_book" component={ AddBook } />
+        <Route path="/add_admin" component={ addAdmin } />
         <Route path="/reserve" component={ Reserve } />
         <Route path="/approved_orders" component={ ApprovedOrders } />
         <Route path="/rejected_orders" component={ RejectedOrders } />
         <Route path="/update_book" component={ UpdateBook } />
+        <Route path="/update_admin" component={ updateAdmin } />
         <Route path="/config/state_books" component={ AddStateBook } />
         <Route path="/config/state_people" component={ AddStatePeople } />
         <Route path="/config/state_reserve" component={ AddStateReserve } />

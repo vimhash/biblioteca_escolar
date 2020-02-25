@@ -64,7 +64,7 @@ class UpdateBook extends Component {
                     showConfirmButton: false,
                     timer: 1000
                 })
-                .then( () => this.props.history.push('/virtual_library'))
+                .then( () => {localStorage.clear(); this.props.history.push('/virtual_library')})
             }
           })
           .catch(error => {
@@ -97,7 +97,7 @@ class UpdateBook extends Component {
                             <div className="-mx-3 md:flex mb-6">
                                 <div className="md:w-full px-3">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="titulo">
-                                        Titulo
+                                        Titulo *
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" 
                                         type="text" 
@@ -112,7 +112,7 @@ class UpdateBook extends Component {
                             <div className="-mx-3 md:flex mb-6 ">
                                 <div className="md:w-1/3 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="autor">
-                                        Autor
+                                        Autor *
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
                                         type="text" 
@@ -125,7 +125,7 @@ class UpdateBook extends Component {
                                 </div>
                                 <div className="md:w-1/3 px-3">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="pais">
-                                        Pais
+                                        Pais *
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" 
                                         type="text" 
@@ -138,7 +138,7 @@ class UpdateBook extends Component {
                                 </div>
                                 <div className="md:w-1/3 px-3">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="año">
-                                        Año
+                                        Año *
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" 
                                         type="text" 
@@ -153,7 +153,7 @@ class UpdateBook extends Component {
                             <div className="-mx-3 md:flex mb-6 ">
                                 <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="editorial">
-                                        Editorial
+                                        Editorial *
                                     </label>
                                     <input className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
                                         type="text" 
@@ -166,7 +166,7 @@ class UpdateBook extends Component {
                                 </div>
                                 <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="portada">
-                                        Portada
+                                        Portada *
                                     </label>
                                     <input 
                                         className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
@@ -177,8 +177,11 @@ class UpdateBook extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="mt-4">
-                                <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded" type="submit">Actualizar</button>
+                            <div className="mt-4 text-center">
+                                <button className="bg-gray-300 text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                                    <i className="fas fa-save"></i>
+                                    <span className="mr-2">Grabar</span>
+                                </button>
                             </div>
                         </form>
                     </main>

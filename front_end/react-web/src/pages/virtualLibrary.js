@@ -69,7 +69,7 @@ class VirtualLibrary extends Component {
                                         <div className="m-3">
                                             <button className="bg-gray-300 text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
                                                 onClick={ () => this.updateBook(element.id, element.id_estado_libro, element.autor, element.pais, element.año, element.titulo, element.editorial, element.portada) }>
-                                                <i class="fas fa-edit"></i>
+                                                <i className="fas fa-edit"></i>
                                                 <span className="mr-2">Actualizar</span>
                                             </button>
                                         </div>
