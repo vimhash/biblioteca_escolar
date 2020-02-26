@@ -122,7 +122,6 @@ class AddTypePeople extends Component {
                                 </ReactModal>
                                 {/* MODAL */}
                         </div>
-
                         <div className="px-3 py-4 flex justify-center">
                             <table className="w-full text-md bg-white shadow-md rounded mb-4">
                                 <thead className="border-b">

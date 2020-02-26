@@ -118,6 +118,7 @@ class AddBook extends Component {
                                         type="text" 
                                         placeholder="Ej: Joel"
                                         name="autor"
+                                        pattern="[A-Za-z .]*"
                                         value={ autor }
                                         onChange={ this.changeHandler }
                                         autoComplete="off"
@@ -131,6 +132,7 @@ class AddBook extends Component {
                                         type="text" 
                                         placeholder="Ej: Ecuador"
                                         name="pais"
+                                        pattern="[A-Z a-z]*"
                                         value={ pais }
                                         onChange={ this.changeHandler }
                                         autoComplete="off"
@@ -144,6 +146,7 @@ class AddBook extends Component {
                                         type="text" 
                                         placeholder="Ej: 2020"
                                         name="año"
+                                        pattern="[0-9]{4}"
                                         value={ año }
                                         onChange={ this.changeHandler }
                                         autoComplete="off"

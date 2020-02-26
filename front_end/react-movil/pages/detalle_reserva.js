@@ -7,7 +7,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
 // const API = 'http://192.168.1.39:8001/server/'
-const API = 'http://172.16.11.132:8001/server/'
+// const API = 'http://172.16.11.132:8001/server/'
+const API = 'http://192.168.100.6:8001/server/'
 
 export default class detalleBook extends Component {
   constructor(props) {
@@ -65,16 +66,26 @@ export default class detalleBook extends Component {
           source={require('../assets/book.jpg')}
         />
         <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
-            <TouchableHighlight>
-              <Link to="/library" style={styles.menuButton}>
-                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/library">
+                  <Text style={{color: '#fff'}}>
+                    <Icon style={styles.openButton} name="home" size={20} color="#fff" /> Biblioteca</Text>
               </Link>
             </TouchableHighlight>
           </View>
           <View>
-            <TouchableHighlight>
-              <Link to="/reserve" style={styles.menuButton}>
-                <Text style={{color: '#fff'}}>Reservaciones</Text>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/reserve">
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="bookmark" size={20} color="#fff" /> Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight style={{marginTop: '50%', marginLeft: '5%'}}>
+              <Link to="/" >
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" /> Salir</Text>
               </Link>
             </TouchableHighlight>
           </View>
@@ -145,12 +156,12 @@ export default class detalleBook extends Component {
             </TouchableOpacity>
 
             <View style={styles.header} >
-              <Text style={styles.textHeader}>Sistema de Bibliotecario</Text>
+              <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
             </View>
 
             <TouchableHighlight style={styles.menu}>
               <Link to="/library" onPress={ () => this.updateData( this.state.id_libro )}>
-                <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+                <Icon style={styles.openButton} name="home" size={30} color="#fff" />
               </Link>
             </TouchableHighlight>
           </View>

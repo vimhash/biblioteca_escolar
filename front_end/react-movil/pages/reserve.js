@@ -7,7 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
 // const API = 'http://192.168.1.39:8001/server/library'
-const API = 'http://172.16.11.132:8001/server/library'
+// const API = 'http://172.16.11.132:8001/server/library'
+const API = 'http://192.168.100.6:8001/server/library'
+
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -50,31 +52,39 @@ export default class Reserva extends Component {
   drawerContent = () => {
     return (
       <View style={styles.animatedBox}>
-        <TouchableOpacity onPress={this.toggleOpen} >
-          <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
-        </TouchableOpacity>
-
-        <View>
+      <TouchableOpacity onPress={this.toggleOpen} >
+        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
+      </TouchableOpacity>
+      <View>
           <Image
-            style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
-            source={require('../assets/book.jpg')}
-          />
-
-          <TouchableHighlight>
-            <Link to="/library" style={styles.menuButton}>
-              <Text style={{color: '#fff'}}>Biblioteca</Text>
-            </Link>
-          </TouchableHighlight>
+          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
+          source={require('../assets/book.jpg')}
+        />
+        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/library">
+                  <Text style={{color: '#fff'}}>
+                    <Icon style={styles.openButton} name="home" size={20} color="#fff" /> Biblioteca</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/reserve">
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="bookmark" size={20} color="#fff" /> Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight style={{marginTop: '50%', marginLeft: '5%'}}>
+              <Link to="/" >
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" /> Salir</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
         </View>
-
-        <View>
-          <TouchableHighlight>
-            <Link to="/reserve" style={styles.menuButton}>
-              <Text style={{color: '#fff'}}>Reservaciones</Text>
-            </Link>
-          </TouchableHighlight>
-        </View>
-      </View>
     );
   };
 
@@ -101,7 +111,7 @@ export default class Reserva extends Component {
 
             <TouchableHighlight style={styles.menu}>
               <Link to="/library">
-                <Icon style={styles.openButton} name="chevron-left" size={30} color="#fff" />
+                <Icon style={styles.openButton} name="home" size={30} color="#fff" />
               </Link>
             </TouchableHighlight>
           </View>

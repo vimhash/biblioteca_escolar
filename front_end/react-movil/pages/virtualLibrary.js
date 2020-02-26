@@ -7,7 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
 // const API = 'http://192.168.1.39:8001/server/'
-const API = 'http://172.16.11.132:8001/server/'
+// const API = 'http://172.16.11.132:8001/server/'
+const API = 'http://192.168.100.6:8001/server/'
+
 
 export default class virtualLibrary extends Component {
   constructor(props) {
@@ -86,14 +88,24 @@ export default class virtualLibrary extends Component {
         <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
             <TouchableHighlight style={styles.menuButton}>
               <Link to="/library">
-                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+                  <Text style={{color: '#fff'}}>
+                    <Icon style={styles.openButton} name="home" size={20} color="#fff" /> Biblioteca</Text>
               </Link>
             </TouchableHighlight>
           </View>
           <View>
-            <TouchableHighlight>
-              <Link to="/reserve" style={styles.menuButton}>
-                <Text style={{color: '#fff'}}>Reservaciones</Text>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/reserve">
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="bookmark" size={20} color="#fff" /> Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight style={{marginTop: '50%', marginLeft: '5%'}}>
+              <Link to="/" >
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" /> Salir</Text>
               </Link>
             </TouchableHighlight>
           </View>
@@ -118,11 +130,11 @@ export default class virtualLibrary extends Component {
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
             </TouchableOpacity>
               <View style={styles.header} >
-                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+                <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
               </View>
                 <TouchableHighlight style={styles.menu}>
-                  <Link to="/" >
-                    <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" />
+                  <Link to="/library" >
+                    <Icon style={styles.openButton} name="home" size={30} color="#fff" />
                   </Link>
                 </TouchableHighlight>
           </View>
