@@ -54,7 +54,7 @@ class Login extends Component {
                     type="text"
                     placeholder="correo@yavirac.edu.ec"
                     name="correo"
-                    // pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                     value={ correo }
                     onChange={ this.changeHandler }
                     autoComplete="off"

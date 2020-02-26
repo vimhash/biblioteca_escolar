@@ -90,7 +90,7 @@ export default class detalleBook extends Component {
         id_libro: this.state.id_libro,
         id_estudiante: this.state.id_estudiante,
         nombre_estudiante: this.state.nombre_estudiante,
-        fecha_pedido: '2020-02-18'
+        fecha_pedido: this.yyyymmdd()
       }
     }
 
@@ -121,6 +121,17 @@ export default class detalleBook extends Component {
         disponible: true
       }]
     })
+  }
+
+  yyyymmdd = () => {
+    const date = new Date();
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth() + 1).toString();
+    var dd = date.getDate().toString();
+    (dd.length === 1) && (dd = '0' + dd);
+    (mm.length === 1) && (mm = '0' + mm);
+    var formatDate = yyyy + "-" + mm + "-" + dd;
+    return formatDate;
   }
   
   render() {
