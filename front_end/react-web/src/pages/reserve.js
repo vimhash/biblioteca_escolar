@@ -88,8 +88,6 @@ class Reserve extends Component {
 
     render() {
         const { reserves } = this.state
-        const assets1 = require("../assets/book.png")
-
         return(
             <div>
                 <Sidebar />,
@@ -108,7 +106,8 @@ class Reserve extends Component {
                                             <p className="text-grey-darker text-base">Estado: { element.id_estado_reserva }</p>
                                         </div>
                                         <div className="flex items-center">
-                                            <img className="w-10 h-10 rounded-full mr-4" src={ assets1 } alt="profile_pic" />
+                                            {/* <img className="w-10 h-10 rounded-full mr-4" src={ assets1 } alt="profile_pic" /> */}
+                                            <i class="fas fa-bookmark text-4xl rounded-full mr-4"></i>
                                             <div className="text-sm">
                                                 <p className="text-black leading-none">Estudiante: { element.nombre_estudiante }</p>
                                                 <p className="text-black leading-none">Identificación: { element.id_estudiante }</p>

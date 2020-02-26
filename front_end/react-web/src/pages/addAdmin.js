@@ -30,6 +30,8 @@ class AddAdmin extends Component {
         this.post = {
             tabla: "persona",
             datos: {
+                id_estado_persona: 1,
+                id_tipo_persona: 1,
                 identificacion: this.state.identificacion,
                 nombre: this.state.nombre,
                 email: this.state.email,
@@ -93,18 +95,19 @@ class AddAdmin extends Component {
                         <p className="text-center my-5 text-2xl">Agregar un nuevo administrador.</p>
                         <form className="w-xl m-4 p-10 bg-white rounded shadow-xl" onSubmit={ this.saveData }>
                             <div className="mt-2">
-                                <label className="block text-sm text-gray-600" htmlFor="identificacion">Cédula de Identidad</label>
+                                <label className="block text-sm text-gray-600" htmlFor="identificacion">Cédula de Identidad*</label>
                                 <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
-                                    type="text" 
+                                    type="text"
                                     placeholder="Ej: 175148795" 
                                     name="identificacion"
+                                    pattern="[0-9]{10}"
                                     value={ identificacion }
                                     onChange={ this.changeHandler }
                                     autoComplete="off"
                                 />
                             </div>
                             <div className="mt-2">
-                                <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre y Apellido</label>
+                                <label className="block text-sm text-gray-600" htmlFor="nombre">Nombre y Apellido*</label>
                                 <input className="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" 
                                     type="text" 
                                     placeholder="Ej: Joel Simbaña"
@@ -115,18 +118,19 @@ class AddAdmin extends Component {
                                 />
                             </div>
                             <div className="mt-2">
-                                <label className=" block text-sm text-gray-600" htmlFor="email">Correo Institucional</label>
+                                <label className=" block text-sm text-gray-600" htmlFor="email">Correo Institucional*</label>
                                 <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                     type="text" 
                                     placeholder="@yavirac.edu.ec" 
                                     name="email"
+                                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                     value={ email }
                                     onChange={ this.changeHandler }
                                     autoComplete="off"
                                 />
                             </div>
                             <div className="mt-2">
-                                <label className=" block text-sm text-gray-600" htmlFor="direccion">Dirección</label>
+                                <label className=" block text-sm text-gray-600" htmlFor="direccion">Dirección*</label>
                                 <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                     type="text" 
                                     placeholder="Ej: Caupicho city"
@@ -137,18 +141,19 @@ class AddAdmin extends Component {
                                 />
                             </div>
                             <div className="inline-block mt-2 w-1/2 pr-1">
-                                <label className="block text-sm text-gray-600" htmlFor="telefono">Teléfono</label>
+                                <label className="block text-sm text-gray-600" htmlFor="telefono">Teléfono*</label>
                                 <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                     type="text" 
                                     placeholder="Ej: 0985461645" 
                                     name="telefono"
+                                    pattern="[0-9]{10}"
                                     value={ telefono }
                                     onChange={ this.changeHandler }
                                     autoComplete="off"
                                 />
                             </div>
                             <div className="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                                <label className="block text-sm text-gray-600" htmlFor="clave">Clave</label>
+                                <label className="block text-sm text-gray-600" htmlFor="clave">Clave*</label>
                                 <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
                                     type="password" 
                                     placeholder="*************" 
@@ -157,6 +162,7 @@ class AddAdmin extends Component {
                                     onChange={ this.changeHandler }
                                 />
                             </div>
+                            <p class="text-red text-xs italic">Por favor complete todos los campos*.</p>
                             <div className="mt-4">
                                 <button className="bg-gray-300 text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                                     <i className="fas fa-save"></i>

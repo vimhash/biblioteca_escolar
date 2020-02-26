@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Image, AsyncStorage, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import MenuDrawer from 'react-native-side-drawer';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.39:8001/server/library'
-// const API = 'http://172.16.11.140:8001/server/library'
+// const API = 'http://192.168.1.39:8001/server/library'
+const API = 'http://172.16.11.132:8001/server/library'
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class Reserva extends Component {
             style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
             source={require('../assets/book.jpg')}
           />
-          <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
+
           <TouchableHighlight>
             <Link to="/library" style={styles.menuButton}>
               <Text style={{color: '#fff'}}>Biblioteca</Text>
@@ -96,7 +96,7 @@ export default class Reserva extends Component {
             </TouchableOpacity>
 
             <View style={styles.header} >
-              <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+              <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
             </View>
 
             <TouchableHighlight style={styles.menu}>
@@ -107,7 +107,8 @@ export default class Reserva extends Component {
           </View>
 
           <View style={styles.body}>
-            <Text style={styles.text}>Reservaciones Realizadas.</Text>
+          <ScrollView vertical={true}>
+            <Text style={styles.text}>Historial de Reservas Realizadas.</Text>
             { reserva.map( element => 
               <Card title={ element.id_libro+"" } image={{ uri: `${element.portada}` }} key={ element.id }>
                 <Text style={{marginBottom: 10}}>
@@ -123,6 +124,7 @@ export default class Reserva extends Component {
                 </TouchableHighlight>
               </Card> ) 
             }
+            </ScrollView>
           </View>
         </MenuDrawer> 
       </View>

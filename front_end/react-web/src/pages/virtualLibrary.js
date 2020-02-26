@@ -39,8 +39,6 @@ class VirtualLibrary extends Component {
 
     render() {
         const { libros } = this.state
-        const assets1 = require('../assets/logoLibro.jpg');
-
         return(
             <div>
                 <Sidebar />,
@@ -60,7 +58,7 @@ class VirtualLibrary extends Component {
                                             <p className="text-grey-darker text-base">Editorial: { element.editorial }</p>
                                         </div>
                                         <div className="flex items-center">
-                                            <img className="w-10 h-10 rounded-full mr-4" src={ assets1 } alt="pic" />
+                                            <i className="fas fa-book text-4xl rounded-full mr-4"></i>
                                             <div className="text-sm">
                                                 <p className="text-black leading-none">Año: { element.año }</p>
                                                 <p className="text-grey-dark">Pais: { element.pais }</p>

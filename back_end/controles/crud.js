@@ -149,22 +149,20 @@ const login = (req,res) => {
     const tabla = 'persona';
     const correo = req.body.correo;
     const clave = req.body.clave;
-    const campo = req.query.campo;
   
-    db.select(campo).from(tabla)
+    db.select().from(tabla)
       .then(resultado => {
         resultado.forEach(element => {
-            if(element.email == correo && element.clave == clave) {
+            if(element.email === correo && element.clave === clave) {
                 res.status(200).json({
                     ok: true,
                     mensaje: "found"
                 })
-            } else { 
-                res.status(500).json({
-                    ok: true,
-                    mensaje: "no-found"
-                })
             }
+        })
+        res.status(500).json({
+            ok: false,
+            mensaje: 'no-found'
         })
     })
 }
@@ -237,7 +235,8 @@ const reserva_estudiante = (req, res) => {
     reserva.fecha_aprobacion_rechazo, libro.portada from reserva
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro
-    where id_estudiante = ${ id_estudiante };`)
+    where id_estudiante = ${ id_estudiante }
+    order by id desc;`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,

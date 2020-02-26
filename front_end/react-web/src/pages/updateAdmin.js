@@ -147,6 +147,7 @@ class UpdateAdmin extends Component {
                                     onChange={ this.changeHandler }
                                 />
                             </div>
+                            <p class="text-red text-xs italic">Por favor complete todos los campos*.</p>
                             <div className="mt-4">
                                 <button className="bg-gray-300 text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                                     <i className="fas fa-save"></i>

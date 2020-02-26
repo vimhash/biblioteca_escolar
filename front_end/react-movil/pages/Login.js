@@ -3,8 +3,8 @@ import { Text, TextInput, View, StyleSheet, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import axios from 'axios';
 
-const API = 'http://192.168.1.39:8001/server/login_estudiantes'
-// const API = 'http://172.16.11.140:8001/server/login_estudiantes'
+// const API = 'http://192.168.1.39:8001/server/login_estudiantes'
+const API = 'http://172.16.11.132:8001/server/login_estudiantes'
 
 export default class LoginScreen extends React.Component {
   constructor(props) {

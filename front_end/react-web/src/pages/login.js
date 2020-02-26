@@ -34,6 +34,7 @@ class Login extends Component {
       })
       .catch(error => {
         Swal.fire('Oops... Datos incorrectos!', 'Vuelve a intentarlo', 'error')
+        console.log(error)
       })
     }
   };
@@ -49,25 +50,26 @@ class Login extends Component {
               <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={ this.loginAccess }>
                 <div className="mb-4">
                   <label className="font-bold text-gray-700 block mb-2">Correo Institucional</label>
-                  <input className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                  type="text"
-                  placeholder="correo@yavirac.edu.ec"
-                  name="correo"
-                  value={ correo }
-                  onChange={ this.changeHandler }
-                  autoComplete="off"
+                  <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    type="text"
+                    placeholder="correo@yavirac.edu.ec"
+                    name="correo"
+                    // pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                    value={ correo }
+                    onChange={ this.changeHandler }
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="mb-4">
                   <label className="font-bold text-gray-700 block mb-2">Contraseña</label>
-                  <input className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                  type="password"
-                  placeholder="*************"
-                  name="clave"
-                  value={ clave }
-                  onChange={ this.changeHandler } 
-                  securetextentry="true"
+                  <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    type="password"
+                    placeholder="*************"
+                    name="clave"
+                    value={ clave }
+                    onChange={ this.changeHandler } 
+                    securetextentry="true"
                   />
                 </div>
 
