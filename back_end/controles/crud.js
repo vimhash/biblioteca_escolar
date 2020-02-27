@@ -65,6 +65,26 @@ const getDatosLibros = (req, res) => {
     })
 }
 
+const getDatosLibrosWeb = (req, res) => {
+    const tabla = req.query.tabla
+    const eliminado = req.query.eliminado
+
+    db.select().from(tabla).where('id_estado_libro', eliminado).orderBy("id", "desc")
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}`
+        })
+    })
+}
+
 const searchBook = (req, res) => {
     const tabla = "libro"
     const campo = req.query.campo
@@ -295,6 +315,7 @@ module.exports = {
     getDatos,
     getDatosByID,
     getDatosLibros,
+    getDatosLibrosWeb,
     searchBook,
     searchBookMovil,
     postDatos,

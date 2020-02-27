@@ -6,6 +6,7 @@ let api = express.Router(),
 api.get('/library', control.getDatos)
 api.get('/library_byID', control.getDatosByID)
 api.get('/library_librosdisponibles', control.getDatosLibros)
+api.get('/library_librosdisponiblesweb', control.getDatosLibrosWeb)
 api.get('/library_searchbook', control.searchBook)
 api.get('/library_searchbookmovil', control.searchBookMovil)
 api.post('/library', control.postDatos)

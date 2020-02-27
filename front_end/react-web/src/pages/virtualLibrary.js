@@ -16,7 +16,7 @@ class VirtualLibrary extends Component {
     }
 
     componentDidMount() {
-        axios.get(API+"?tabla=libro")
+        axios.get(API+"_librosdisponiblesweb?tabla=libro&&eliminado=1")
         .then(response => {
             this.setState({ libros: response.data.datos })
         })
@@ -35,6 +35,21 @@ class VirtualLibrary extends Component {
         localStorage.setItem('editorial', p_editorial);
         localStorage.setItem('portada', p_portada);
         this.props.history.push('/update_book')
+    }
+
+    logicDelete = (item) => {
+        axios.put(`${API}?tabla=libro`, {
+            datos: [{
+                id: item,
+                id_estado_libro: 2
+            }]
+        })
+        .then(response => {
+            this.props.history.replace("virtual_library");
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     render() {
@@ -69,6 +84,13 @@ class VirtualLibrary extends Component {
                                                 onClick={ () => this.updateBook(element.id, element.id_estado_libro, element.autor, element.pais, element.año, element.titulo, element.editorial, element.portada) }>
                                                 <i className="fas fa-edit"></i>
                                                 <span className="mr-2">Actualizar</span>
+                                            </button>
+                                        </div>
+                                        <div className="m-3">
+                                            <button className="bg-gray-300 text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
+                                                onClick={ () => this.logicDelete(element.id) }>
+                                                <i className="fas fa-edit"></i>
+                                                <span className="mr-2">Eliminar</span>
                                             </button>
                                         </div>
                                     </div>
