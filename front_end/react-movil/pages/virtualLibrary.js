@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage, TextInput} from 'react-native';
+import { Modal, View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage, TextInput, Button} from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
@@ -19,7 +19,14 @@ export default class virtualLibrary extends Component {
       estudiantes: [],
       id_estudiante: '',
       nombre_estudiante: '',
+      librosBuscados: [],
+      titulo: '',
+      modalVisible: false,
     };
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   getData = () => {
@@ -43,6 +50,15 @@ export default class virtualLibrary extends Component {
 
   componentDidMount() {
     this.asyncstorageGet()
+  }
+
+  searchBookMovil = () => {
+    axios.get(`${API}library_searchbookmovil?titulo=${ this.state.titulo }`)
+    .then( response => {
+      this.setState({ librosBuscados: response.data.datos })
+      alert(JSON.stringify(response.data.datos))
+      // AsyncStorage.setItem('id_libro', item.toString())
+    })
   }
 
   asyncstorageGet = async () => {
@@ -80,10 +96,7 @@ export default class virtualLibrary extends Component {
         <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
       </TouchableOpacity>
       <View>
-          <Image
-          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
-          source={require('../assets/book.jpg')}
-        />
+        <Image style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}} source={require('../assets/book.jpg')} />
         <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
             <TouchableHighlight style={styles.menuButton}>
               <Link to="/library">
@@ -113,17 +126,10 @@ export default class virtualLibrary extends Component {
   };
   
   render() {
-    const { libros } = this.state
+    const { libros, librosBuscados } = this.state
     return (
       <View style={styles.container}>
-        <MenuDrawer 
-          open={this.state.open} 
-          drawerContent={this.drawerContent()}
-          drawerPercentage={45}
-          animationTime={250}
-          overlay={true}
-          opacity={0.4}
-        >
+        <MenuDrawer open={ this.state.open } drawerContent={ this.drawerContent() } drawerPercentage={45} animationTime={250} overlay={true} opacity={0.4}>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
@@ -142,14 +148,35 @@ export default class virtualLibrary extends Component {
             <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
             <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
             <View style={styles.containerEmail}>
-            <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
+              <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
               <TextInput
                 placeholder="Buscar Libro" 
                 placeholderTextColor="gray" 
                 name="buscador"
                 type="search"
-                style={styles.textInput}/> 
+                style={styles.textInput}/>
+
+                {/*  */}
+                <Modal animationType="slide" transparent={ false } visible={ this.state.modalVisible }>
+                  <View style={{marginTop: 22}}>
+                    <View>
+                      <View style={ { alignItems: 'center', flex: 1, flexDirection: 'row', alignContent: 'center', left: 25 } }>
+                        { librosBuscados.map( element => 
+                          <Image key={ element.id } style={{width: '20%', height: 100, marginRight: '1%', left: '1%', marginTop: '50%', position: 'relative' }} source={ { uri: `${element.portada}` } } />
+                        )}
+                      </View>
+
+                      <View style={ { height: 20, width: 50, left: '85%' } }>
+                        <Button title="X" onPress={() => { this.setModalVisible(!this.state.modalVisible) }} />
+                      </View>
+                    </View>
+                  </View>
+                </Modal>
+
+                <Button title="Buscar" onPress={() => { this.searchBookMovil(); this.setModalVisible(true) }} />
+                {/*  */}
             </View>
+
             { libros.map( element => 
               <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
                 <TouchableHighlight style={styles.button}>

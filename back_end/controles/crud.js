@@ -86,6 +86,27 @@ const searchBook = (req, res) => {
     })
 }
 
+const searchBookMovil = (req, res) => {
+    const tabla = "libro"
+    const campo = req.query.campo
+    const titulo = req.query.titulo
+
+    db.select(campo).from(tabla).where('titulo', 'like', `%${ titulo }%`).andWhere('disponible', true)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 const postDatos = (req, res) => {
     const tabla = req.body.tabla
     const datos = req.body.datos
@@ -275,6 +296,7 @@ module.exports = {
     getDatosByID,
     getDatosLibros,
     searchBook,
+    searchBookMovil,
     postDatos,
     updateDatos,
     deleteDatos,
