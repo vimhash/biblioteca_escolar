@@ -29,6 +29,10 @@ export default class virtualLibrary extends Component {
     this.setState({modalVisible: visible});
   }
 
+  search_Handler = text => {
+    this.setState({ titulo: text })
+  }
+
   getData = () => {
     axios.get(API+"library_librosdisponibles?tabla=libro&&disponible=true")
     .then( response => {
@@ -52,12 +56,10 @@ export default class virtualLibrary extends Component {
     this.asyncstorageGet()
   }
 
-  searchBookMovil = () => {
+  searchBookMovil = e => {
     axios.get(`${API}library_searchbookmovil?titulo=${ this.state.titulo }`)
     .then( response => {
       this.setState({ librosBuscados: response.data.datos })
-      alert(JSON.stringify(response.data.datos))
-      // AsyncStorage.setItem('id_libro', item.toString())
     })
   }
 
@@ -126,7 +128,7 @@ export default class virtualLibrary extends Component {
   };
   
   render() {
-    const { libros, librosBuscados } = this.state
+    const { libros, librosBuscados, titulo } = this.state
     return (
       <View style={styles.container}>
         <MenuDrawer open={ this.state.open } drawerContent={ this.drawerContent() } drawerPercentage={45} animationTime={250} overlay={true} opacity={0.4}>
@@ -134,27 +136,30 @@ export default class virtualLibrary extends Component {
             <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
             </TouchableOpacity>
-              <View style={styles.header} >
-                <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
-              </View>
-                <TouchableHighlight style={styles.menu}>
-                  <Link to="/library" >
-                    <Icon style={styles.openButton} name="home" size={30} color="#fff" />
-                  </Link>
-                </TouchableHighlight>
+            <View style={styles.header} >
+              <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
+            </View>
+            <TouchableHighlight style={styles.menu}>
+              <Link to="/library" >
+                <Icon style={styles.openButton} name="home" size={30} color="#fff" />
+              </Link>
+            </TouchableHighlight>
           </View>
           <View style={styles.body}>
             <ScrollView vertical={true}>
-            <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
-            <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
-            <View style={styles.containerEmail}>
-              <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
-              <TextInput
-                placeholder="Buscar Libro" 
-                placeholderTextColor="gray" 
-                name="buscador"
-                type="search"
-                style={styles.textInput}/>
+              <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
+              <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
+              <View style={styles.containerEmail}>
+                <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
+                <TextInput
+                  placeholder="Buscar Libro" 
+                  placeholderTextColor="gray" 
+                  name="titulo"
+                  value={ titulo }
+                  type="search"
+                  style={styles.textInput}
+                  onChangeText={ this.search_Handler }
+                />
 
                 {/*  */}
                 <Modal animationType="slide" transparent={ false } visible={ this.state.modalVisible }>
@@ -175,20 +180,20 @@ export default class virtualLibrary extends Component {
 
                 <Button title="Buscar" onPress={() => { this.searchBookMovil(); this.setModalVisible(true) }} />
                 {/*  */}
-            </View>
+              </View>
 
-            { libros.map( element => 
-              <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
-                <TouchableHighlight style={styles.button}>
-                  <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
-                    <Text style={{marginHorizontal: 20, color: '#000'}} >
-                      <Icon name="book" size={20} color="#000" /> Detalles
-                    </Text>
-                  </Link>
-                </TouchableHighlight>
-              </Card> ) 
-              }
-              </ScrollView> 
+              { libros.map( element => 
+                <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
+                  <TouchableHighlight style={styles.button}>
+                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
+                      <Text style={{marginHorizontal: 20, color: '#000'}} >
+                        <Icon name="book" size={20} color="#000" /> Detalles
+                      </Text>
+                    </Link>
+                  </TouchableHighlight>
+                </Card> ) 
+                }
+            </ScrollView> 
           </View>  
         </MenuDrawer> 
       </View>
