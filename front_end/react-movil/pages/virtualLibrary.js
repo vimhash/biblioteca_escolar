@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage, TextInput} from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
@@ -142,6 +142,15 @@ export default class virtualLibrary extends Component {
             <ScrollView vertical={true}>
             <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
             <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
+            <View style={styles.containerEmail}>
+            <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
+              <TextInput
+                placeholder="Buscar Libro" 
+                placeholderTextColor="gray" 
+                name="buscador"
+                type="search"
+                style={styles.textInput}/> 
+            </View>
             { libros.map( element => 
               <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
                 <TouchableHighlight style={styles.button}>
@@ -223,5 +232,21 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fff',
     backgroundColor: 'rgba(255,255,255, .1)',
+  },
+  textInput:{
+    backgroundColor:'transparent',
+    flex: 5,
+    color:'black',
+    paddingLeft:'5%',
+  },
+  containerEmail:{
+    height: 30,
+    flexDirection:'row',
+    justifyContent:'center',
+    backgroundColor:'#ffffff',
+    marginLeft:'10%',
+    marginRight:'10%',
+    borderWidth: 1,
+    borderColor: 'gray',
   },
 })
