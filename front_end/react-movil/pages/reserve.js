@@ -6,10 +6,12 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-const API = 'http://192.168.1.39:8001/server/library'
-// const API = 'http://172.16.11.132:8001/server/library'
+// const API = 'http://192.168.1.39:8001/server/library'
+const API = 'http://172.16.11.141:8001/server/library'
 // const API = 'http://192.168.100.6:8001/server/library'
 
+// Anclaje Redmi
+// const API = 'http://192.168.43.44:8001/server/library'
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -49,71 +51,53 @@ export default class Reserva extends Component {
     }
   }
   
-  drawerContent = () => {
+  sidebar = () => {
     return (
-      <View style={styles.animatedBox}>
-      <TouchableOpacity onPress={this.toggleOpen} >
-        <Icon style={styles.closeButton} name="close" size={30} color="#fff" />
-      </TouchableOpacity>
-      <View>
-          <Image
-          style={{width: 100, height: 100, marginHorizontal: '15%', borderRadius: 100,}}
-          source={require('../assets/book.jpg')}
-        />
-        <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
-            <TouchableHighlight style={styles.menuButton}>
-              <Link to="/library">
-                  <Text style={{color: '#fff'}}>
-                    <Icon style={styles.openButton} name="home" size={20} color="#fff" /> Biblioteca</Text>
-              </Link>
-            </TouchableHighlight>
+      <View style={ styles.sidebar }>
+        <Icon style={ styles.closeButton } name="close" size={ 30 } color="#fff" onPress={ this.toggleOpen } />
+
+        <View style={ styles.sidebar_body }>
+          <Image style={ styles.image } source={ require('../assets/book.jpg') } />
+          <Text style={ {color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'} }>Sistema Bibliotecario</Text>
+
+          <View style={ styles.menuButton }>
+            <Link to="/library">
+              <Text style={ { color: '#fff' } }>
+                <Icon style={ styles.openButton } name="home" size={ 20 } color="#fff" /> Libreria
+              </Text>
+            </Link>
           </View>
-          <View>
-            <TouchableHighlight style={styles.menuButton}>
-              <Link to="/reserve">
-                <Text style={{color: '#fff'}}>
-                <Icon style={styles.openButton} name="bookmark" size={20} color="#fff" /> Reservaciones</Text>
-              </Link>
-            </TouchableHighlight>
+
+          <View style={ styles.menuButton }>
+            <Link to="/reserve">
+              <Text style={ { color: '#fff' } }>
+              <Icon style={ styles.openButton } name="bookmark" size={ 20 } color="#fff" />Reservaciones</Text>
+            </Link>
           </View>
-          <View>
-            <TouchableHighlight style={{marginTop: '50%', marginLeft: '5%'}}>
-              <Link to="/" >
-                <Text style={{color: '#fff'}}>
-                <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" /> Salir</Text>
-              </Link>
-            </TouchableHighlight>
+
+          <View style={ styles.logoutButton }>
+            <Link to="/" >
+              <Text style={ { color: '#fff' } }>
+              <Icon style={ styles.openButton } name="arrow-circle-left" size={ 30 } color="#fff" />Cerrar Sesión</Text>
+            </Link>
           </View>
         </View>
+      </View>
     );
   };
+  
 
   render() {
     const { reserva } = this.state
     return (
       <View style={styles.container}>
-        <MenuDrawer 
-          open={this.state.open} 
-          drawerContent={this.drawerContent()}
-          drawerPercentage={45}
-          animationTime={250}
-          overlay={true}
-          opacity={0.4}
-        >
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <TouchableOpacity onPress={this.toggleOpen} style={styles.menu}>
-              <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
-            </TouchableOpacity>
-
-            <View style={styles.header} >
-              <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
-            </View>
-
-            <TouchableHighlight style={styles.menu}>
-              <Link to="/library">
-                <Icon style={styles.openButton} name="home" size={30} color="#fff" />
-              </Link>
-            </TouchableHighlight>
+        <MenuDrawer open={ this.state.open } drawerContent={ this.sidebar() } drawerPercentage={ 50 } animationTime={ 250 } overlay={ true } opacity={ 0.4 }>
+          <View style={ styles.header }>
+            <Icon onPress={ this.toggleOpen } style={ styles.sidebar_icon } name="navicon" size={ 30 } color="#fff" />
+            <Text style={ styles.titulo }>Sistema Bibliotecario</Text>
+            {/* <Link to="/library" >
+              <Icon style={ styles.home_icon } name="home" size={ 30 } color="#fff" />
+            </Link> */}
           </View>
 
           <View style={styles.body}>
@@ -152,17 +136,76 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#fff',
   },
-  animatedBox: {
-    flex: 1,
-    backgroundColor: '#2c7a7b',
-  },
+  //HEADER AND SIDEBAR
   header: {
-    flex: 2, 
-    height: 75, 
+    position: 'relative',
+    width: '100%', 
+    height: '6%',
     backgroundColor: '#2c7a7b',
   },
+  sidebar_icon: {
+    position: 'absolute',
+    top: 5,
+    left: 25
+  },
+  home_icon: {
+    position: 'absolute',
+    top: 5,
+    right: 25
+  },
+  titulo: {
+    position: 'absolute',
+    top: 5,
+    color:'white',
+    left: '30%',
+    fontSize: 20,
+  },
+  sidebar: {
+    position: 'absolute',
+    top: '6%',
+    height: '100%',
+    width: '75%',
+    backgroundColor: '#000',
+  },
+  closeButton: {
+    position: 'absolute',
+    left: '80%',
+    paddingVertical: 5,
+  },
+  sidebar_body: {
+    position: 'absolute',
+    top: '6%',
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+  image: {
+    width: 100, 
+    height: 100, 
+    marginHorizontal: '15%', 
+    borderRadius: 100,
+  },
+  menuButton: {
+    padding: 10,
+    marginTop: 5,
+    borderWidth: 2,
+    borderColor: '#fff',
+    backgroundColor: 'rgba(255,255,255, .1)',
+  },
+  logoutButton: {
+    position: 'absolute',
+    top: '250%',
+    padding: 10,
+    marginTop: 5,
+    borderWidth: 2,
+    borderColor: '#fff',
+    backgroundColor: 'rgba(255,255,255, .1)',
+  },
+  //HEADER AND SIDEBAR
   body: {
-    flex: 6,
+    position: 'absolute',
+    top: '6%',
+    width: '100%',
+    height: '100%'
   },
   text:{
     color:'#000',
@@ -191,21 +234,7 @@ const styles = StyleSheet.create({
   openButton: {
     marginTop: '50%',
     marginHorizontal: '15%',
-  },  
-  closeButton: {
-    marginTop: '15%',
-    marginBottom: '20%',
-    marginLeft: '5%',
-    marginRight: '60%',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  menuButton: {
-    padding: 10,
-    borderWidth: 2,
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255, .1)',
-  },
+  }, 
   containerTable: {
     marginHorizontal: 20
   },

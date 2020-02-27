@@ -5,11 +5,11 @@ exports.seed = function(knex) {
       return knex('estado_libro').insert([
         {
           id: 1, 
-          nombre: 'Nuevo'
+          nombre: 'Disponible'
         },
         {
           id: 2, 
-          nombre: 'Usado'
+          nombre: 'Eliminado Lógico'
         },
         {
           id: 3, 
