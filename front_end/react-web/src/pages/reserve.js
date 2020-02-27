@@ -75,13 +75,7 @@ class Reserve extends Component {
 
     yyyymmdd = () => {
         const date = new Date();
-        var yyyy = date.getFullYear().toString();
-        var mm = (date.getMonth() + 1).toString();
-        var dd = date.getDate().toString();
-        (dd.length === 1) && (dd = '0' + dd);
-        (mm.length === 1) && (mm = '0' + mm);
-        var formatDate = yyyy + "-" + mm + "-" + dd;
-        return formatDate;
+        return date;
     }
 
     stateBook = (id, state) => {

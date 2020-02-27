@@ -208,8 +208,8 @@ const getloginAPI_yavirac = (req,res) =>{
 const reserva = (req, res) => {
     const estado_reserva = req.query.estado_reserva
     db.raw(`select reserva.id, estado_reserva.id as idreserva, estado_reserva.nombre as id_estado_reserva, reserva.id_estudiante, 
-    reserva.nombre_estudiante, libro.titulo as id_libro, reserva.fecha_pedido, reserva.nombre_estudiante, 
-    reserva.fecha_aprobacion_rechazo, libro.portada
+    reserva.nombre_estudiante, libro.titulo as id_libro, cast(reserva.fecha_pedido as varchar(19)), reserva.nombre_estudiante, 
+    cast(reserva.fecha_aprobacion_rechazo as varchar(19)), libro.portada
     from reserva 
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro
@@ -231,8 +231,8 @@ const reserva = (req, res) => {
 
 const reserva_estudiante = (req, res) => {
     const id_estudiante = req.query.id_estudiante
-    db.raw(`select reserva.id, estado_reserva.nombre as id_estado_reserva, libro.titulo as id_libro, reserva.id_estudiante, reserva.fecha_pedido,
-    reserva.fecha_aprobacion_rechazo, libro.portada from reserva
+    db.raw(`select reserva.id, estado_reserva.nombre as id_estado_reserva, libro.titulo as id_libro, reserva.id_estudiante, cast(reserva.fecha_pedido as varchar(19)),
+    cast(reserva.fecha_aprobacion_rechazo as varchar(19)), libro.portada from reserva
     join estado_reserva on estado_reserva.id = reserva.id_estado_reserva
     join libro on libro.id = reserva.id_libro
     where id_estudiante = ${ id_estudiante }

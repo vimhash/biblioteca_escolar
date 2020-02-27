@@ -54,8 +54,14 @@ class Header extends Component {
             cancelButtonText: 'Volver'
         }).then((result) => {
             if (result.value) {
-                Swal.fire('Sesión cerrada exitosamente!')
-                .then(() => {localStorage.clear(); this.props.history.push('/')})
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Sesión cerrada exitosamente!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                .then( () => {localStorage.clear(); this.props.history.push('/')})
             }
         })
     }

@@ -55,8 +55,8 @@ exports.up = function(knex, Promise) {
     table.integer('id_libro').references('id').inTable('libro');
     table.string('id_estudiante');
     table.string('nombre_estudiante');
-    table.date('fecha_pedido');
-    table.date('fecha_aprobacion_rechazo');
+    table.timestamp('fecha_pedido');
+    table.timestamp('fecha_aprobacion_rechazo');
   })
 };
 
