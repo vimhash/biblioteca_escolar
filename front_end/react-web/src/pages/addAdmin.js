@@ -112,6 +112,7 @@ class AddAdmin extends Component {
                                     type="text" 
                                     placeholder="Ej: Joel Simbaña"
                                     name="nombre"
+                                    pattern="[A-Z a-z]*"
                                     value={ nombre }
                                     onChange={ this.changeHandler }
                                     autoComplete="off"

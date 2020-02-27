@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView, Image, AsyncStorage, TextInput} from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 import { Card } from 'react-native-elements';
 import { Link } from 'react-router-native';
@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const API = 'http://192.168.1.39:8001/server/'
 // const API = 'http://172.16.11.132:8001/server/'
+// const API = 'http://192.168.100.6:8001/server/'
 
 export default class virtualLibrary extends Component {
   constructor(props) {
@@ -86,14 +87,24 @@ export default class virtualLibrary extends Component {
         <Text style={{color: '#fff', marginVertical: '10%', alignItems: 'center', paddingHorizontal: '5%'}}>Sistema de Biblioteca</Text>
             <TouchableHighlight style={styles.menuButton}>
               <Link to="/library">
-                  <Text style={{color: '#fff'}}>Biblioteca</Text>
+                  <Text style={{color: '#fff'}}>
+                    <Icon style={styles.openButton} name="home" size={20} color="#fff" /> Biblioteca</Text>
               </Link>
             </TouchableHighlight>
           </View>
           <View>
-            <TouchableHighlight>
-              <Link to="/reserve" style={styles.menuButton}>
-                <Text style={{color: '#fff'}}>Reservaciones</Text>
+            <TouchableHighlight style={styles.menuButton}>
+              <Link to="/reserve">
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="bookmark" size={20} color="#fff" /> Reservaciones</Text>
+              </Link>
+            </TouchableHighlight>
+          </View>
+          <View>
+            <TouchableHighlight style={{marginTop: '50%', marginLeft: '5%'}}>
+              <Link to="/" >
+                <Text style={{color: '#fff'}}>
+                <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" /> Salir</Text>
               </Link>
             </TouchableHighlight>
           </View>
@@ -118,11 +129,11 @@ export default class virtualLibrary extends Component {
               <Icon style={styles.openButton} name="navicon" size={30} color="#fff" />
             </TouchableOpacity>
               <View style={styles.header} >
-                <Text style={styles.textHeader}>Sistema de biblioteca</Text>
+                <Text style={styles.textHeader}>Sistema Bibliotecario</Text>
               </View>
                 <TouchableHighlight style={styles.menu}>
-                  <Link to="/" >
-                    <Icon style={styles.openButton} name="arrow-circle-left" size={30} color="#fff" />
+                  <Link to="/library" >
+                    <Icon style={styles.openButton} name="home" size={30} color="#fff" />
                   </Link>
                 </TouchableHighlight>
           </View>
@@ -130,6 +141,15 @@ export default class virtualLibrary extends Component {
             <ScrollView vertical={true}>
             <Text style={styles.text}>Bienvenido { this.state.nombre_estudiante }.</Text>
             <Text style={{marginHorizontal: 5, marginTop: 5, color: '#1a202c', paddingHorizontal: 15, paddingVertical: 5,  borderColor: '#fff', borderWidth: 2,}}>Selecciona el libro que deseas reservar, para mas información has click en "DETALLES".</Text>
+            <View style={styles.containerEmail}>
+            <Icon style={{marginLeft: '5%'}} name="search" size={20} color="#000" />
+              <TextInput
+                placeholder="Buscar Libro" 
+                placeholderTextColor="gray" 
+                name="buscador"
+                type="search"
+                style={styles.textInput}/> 
+            </View>
             { libros.map( element => 
               <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
                 <TouchableHighlight style={styles.button}>
@@ -211,5 +231,21 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fff',
     backgroundColor: 'rgba(255,255,255, .1)',
+  },
+  textInput:{
+    backgroundColor:'transparent',
+    flex: 5,
+    color:'black',
+    paddingLeft:'5%',
+  },
+  containerEmail:{
+    height: 30,
+    flexDirection:'row',
+    justifyContent:'center',
+    backgroundColor:'#ffffff',
+    marginLeft:'10%',
+    marginRight:'10%',
+    borderWidth: 1,
+    borderColor: 'gray',
   },
 })
