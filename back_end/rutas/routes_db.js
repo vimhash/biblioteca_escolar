@@ -19,6 +19,7 @@ api.get('/login_estudiantes', control.getloginAPI_yavirac)
 
 // RAW routes
 api.get('/library/raw_crud', control.raw_crud)
+api.get('/library/raw_reporte', control.raw_reporte)
 api.get('/library/reserva', control.reserva)
 api.get('/library/reserva_estudiante', control.reserva_estudiante)
 

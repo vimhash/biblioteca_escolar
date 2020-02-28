@@ -20,6 +20,7 @@ import RejectedOrders from './pages/rejected_orders';
 import UpdateBook from './pages/updateBook';
 import addAdmin from './pages/addAdmin';
 import updateAdmin from './pages/updateAdmin';
+import statistics from './pages/statistics';
 
 render(
   <Router>
@@ -33,6 +34,7 @@ render(
         <Route path="/approved_orders" component={ ApprovedOrders } />
         <Route path="/rejected_orders" component={ RejectedOrders } />
         <Route path="/update_book" component={ UpdateBook } />
+        <Route path="/statistics" component={ statistics } />
         <Route path="/update_admin" component={ updateAdmin } />
         <Route path="/config/state_books" component={ AddStateBook } />
         <Route path="/config/state_people" component={ AddStatePeople } />
