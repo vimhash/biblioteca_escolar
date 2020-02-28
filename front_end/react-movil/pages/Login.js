@@ -3,9 +3,9 @@ import { Text, TextInput, View, StyleSheet, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import axios from 'axios';
 
-// const API = 'http://192.168.1.39:8001/server/login_estudiantes'
+const API = 'http://192.168.1.39:8001/server/login_estudiantes'
 // const API = 'http://172.16.11.141:8001/server/login_estudiantes'
-const API = 'http://192.168.100.6:8001/server/login_estudiantes'
+// const API = 'http://192.168.100.6:8001/server/login_estudiantes'
 
 // Anclaje Redmi
 // const API = 'http://192.168.43.44:8001/server/login_estudiantes'
@@ -53,7 +53,7 @@ export default class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.text}>Correo Intitucional</Text>
+        <Text style={styles.text}>Correo Institucional</Text>
         <View style={styles.containerEmail}>
           <Icon type="font-awesome" name="user" color="black" containerStyle={styles.icon}/>
           <TextInput 

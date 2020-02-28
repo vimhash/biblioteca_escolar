@@ -71,7 +71,7 @@ class Header extends Component {
         return(
             <div className="flex flex-wrap justify-between mr-2 ml-64 relative bg-white">
                 <div>
-                    <form className="relative text-gray-600 block lg:inline-block lg:mt-0 mr-4" onSubmit={ this.searchBook }>
+                    <form className="relative text-gray-600 block lg:inline-block lg:mt-0 mr-4 ml-4" onSubmit={ this.searchBook }>
                         <input 
                             className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none border-blue-700 border"
                             type="search" 

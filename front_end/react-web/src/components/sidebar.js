@@ -3,7 +3,7 @@ import React from'react';
 import { Link } from "react-router-dom";
 
 const Sidebar = () => (
-    <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-no-wrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+    <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-no-wrap md:overflow-hidden shadow-xl bg-gray-400 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-no-wrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
             <div className="flex items-center flex-no-shrink text-white mr-6 mx-64">
 
@@ -35,6 +35,9 @@ const Sidebar = () => (
                             </ul>
                         </div>
                     </li>
+
+                    <hr />
+
                     <li className="items-center">
                         <Link to="/reserve">
                             <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
@@ -43,6 +46,9 @@ const Sidebar = () => (
                             </button>
                         </Link>
                     </li>
+
+                    <hr />
+
                     <li className="items-center">
                         <i className="text-black-900 fas fa-archive mr-2 text-sm"></i>
                         Historial de Reservas
@@ -61,6 +67,9 @@ const Sidebar = () => (
                             </Link>
                         </ul>
                     </li>
+
+                    <hr />
+
                     <li className="items-center">
                         <Link to="/admins">
                             <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
@@ -69,6 +78,9 @@ const Sidebar = () => (
                             </button>
                         </Link>
                     </li>
+
+                    <hr />
+                    
                     <li className="items-center">
                         <Link to="/statistics">
                             <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">

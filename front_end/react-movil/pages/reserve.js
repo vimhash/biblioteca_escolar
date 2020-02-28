@@ -6,9 +6,9 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
-// const API = 'http://192.168.1.39:8001/server/library'
+const API = 'http://192.168.1.39:8001/server/library'
 // const API = 'http://172.16.11.141:8001/server/library'
-const API = 'http://192.168.100.6:8001/server/library'
+// const API = 'http://192.168.100.6:8001/server/library'
 
 // Anclaje Redmi
 // const API = 'http://192.168.43.44:8001/server/library'

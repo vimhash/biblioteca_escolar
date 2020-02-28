@@ -6,9 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MenuDrawer from 'react-native-side-drawer';
 import axios from 'axios';
 
-// const API = 'http://192.168.1.39:8001/server/'
+const API = 'http://192.168.1.39:8001/server/'
 // const API = 'http://172.16.11.141:8001/server/'
-const API = 'http://192.168.100.6:8001/server/'
+// const API = 'http://192.168.100.6:8001/server/'
 
 // Anclaje Redmi
 // const API = 'http://192.168.43.44:8001/server/'
@@ -85,7 +85,7 @@ export default class virtualLibrary extends Component {
           disponible: false
         }]
       })
-      // return this.props.history.push("detalle")
+      return this.props.history.push("detalle")
     } catch (err) {
       alert(err)
     }
@@ -163,8 +163,11 @@ export default class virtualLibrary extends Component {
                 <Modal animationType="slide" transparent={ false } visible={ this.state.modalVisible }>
                   <View style={{marginTop: 22}}>
                     <View style={ { alignItems: 'center', flex: 1, flexDirection: 'row', alignContent: 'center', left: 25 } }>
-                      { librosBuscados.map( element => 
-                        <Image key={ element.id } style={{width: '20%', height: 100, marginRight: '1%', left: '1%', marginTop: '50%', position: 'relative' }} source={ { uri: `${element.portada}` } } />
+                      { librosBuscados.map( element => (
+                        <TouchableHighlight key={ element.id } onPress={ () => this.asyncstorageSave(element.id) }>
+                          <Image style={{width: '20%', height: 100, marginRight: '1%', left: '1%', marginTop: '50%', position: 'relative' }} source={ { uri: `${element.portada}` } } />
+                        </TouchableHighlight>
+                        )
                       )}
                     </View>
 
@@ -180,12 +183,12 @@ export default class virtualLibrary extends Component {
 
               { libros.map( element => 
                 <Card title={ element.titulo } image={ { uri: `${element.portada}` } } key={ element.id }>
-                  <TouchableHighlight style={styles.button}>
-                    <Link to="/detalle" onPress={ () => this.asyncstorageSave(element.id) }>
+                  <TouchableHighlight style={styles.button} onPress={ () => this.asyncstorageSave(element.id) }>
+                    {/* <Link to="/detalle" > */}
                       <Text style={{marginHorizontal: 20, color: '#000'}} >
                         <Icon name="book" size={20} color="#000" /> Detalles
                       </Text>
-                    </Link>
+                    {/* </Link> */}
                   </TouchableHighlight>
                 </Card> ) 
                 }
