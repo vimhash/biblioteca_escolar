@@ -46,6 +46,7 @@ class VirtualLibrary extends Component {
         })
         .then(response => {
             this.props.history.replace("virtual_library");
+            window.location.reload()
         })
         .catch(error => {
             console.log(error);
