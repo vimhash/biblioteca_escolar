@@ -69,6 +69,14 @@ const Sidebar = () => (
                             </button>
                         </Link>
                     </li>
+                    <li className="items-center">
+                        <Link to="/statistics">
+                            <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
+                                <i className="fas fa-chart-pie text-gray-900 mr-2 text-sm"></i>
+                                Estadisticas
+                            </button>
+                        </Link>
+                    </li>
                 </ul>
 
                 <hr />

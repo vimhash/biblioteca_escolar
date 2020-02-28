@@ -270,6 +270,24 @@ const reserva = (req, res) => {
     })
 }
 
+const raw_reporte = (req, res) => {
+    db.raw(`select libro.titulo as label, count(reserva.id_libro) as value from libro join reserva
+    on reserva.id_libro=libro.id group by libro.titulo`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 const reserva_estudiante = (req, res) => {
     const id_estudiante = req.query.id_estudiante
     db.raw(`select reserva.id, estado_reserva.nombre as id_estado_reserva, libro.titulo as id_libro, reserva.id_estudiante, cast(reserva.fecha_pedido as varchar(19)),
@@ -327,5 +345,6 @@ module.exports = {
     // RAW functions
     reserva_estudiante,
     reserva,
+    raw_reporte,
     raw_crud,
 }

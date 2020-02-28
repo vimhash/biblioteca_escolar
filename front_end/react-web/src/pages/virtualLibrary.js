@@ -45,7 +45,7 @@ class VirtualLibrary extends Component {
             }]
         })
         .then(response => {
-            this.props.history.replace("virtual_library");
+            window.location.assign("http://localhost:3000/virtual_library");
         })
         .catch(error => {
             console.log(error);
