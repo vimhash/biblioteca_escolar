@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MenuDrawer from 'react-native-side-drawer';
 import axios from 'axios';
 
-const API = 'http://192.168.1.39:8001/server/'
-// const API = 'http://172.16.11.141:8001/server/'
+// const API = 'http://192.168.1.39:8001/server/'
+const API = 'http://172.16.11.223:8001/server/'
 // const API = 'http://192.168.100.6:8001/server/'
 
 // Anclaje Redmi

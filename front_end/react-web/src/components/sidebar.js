@@ -70,7 +70,7 @@ const Sidebar = () => (
 
                     <hr />
 
-                    <li className="items-center">
+                    {/* <li className="items-center">
                         <Link to="/admins">
                             <button className="text-black-900 text-xs uppercase py-3 font-bold block hover:text-gray-600">
                                 <i className="fas fa-newspaper text-gray-900 mr-2 text-sm"></i>
@@ -79,7 +79,7 @@ const Sidebar = () => (
                         </Link>
                     </li>
 
-                    <hr />
+                    <hr /> */}
                     
                     <li className="items-center">
                         <Link to="/statistics">

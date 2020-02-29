@@ -96,11 +96,13 @@ class ApprovedOrders extends Component {
                                                     className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                                         <i className="fas fa-thumbs-up"></i>SI
                                                 </button>
-                                                <button 
+                                                {/* <button 
                                                     onClick={ () => this.stateBook(element.id, 'false') } 
                                                     className="mr-3 text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                                         <i className="fas fa-thumbs-down"></i>NO
-                                                </button></p>) 
+                                                </button> */}
+                                                </p>
+                                                ) 
                                             }
                                         </td>
                                     </tr>
