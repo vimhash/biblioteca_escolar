@@ -1,26 +1,23 @@
 exports.up = (knex) => {
-  return knex.schema.createTable("user", (table) => {
-    table.increments("user_sequence");
+  return knex.schema.createTable("users", (table) => {
+    table.increments("id").primary();
+    table.integer("type_id").references("id").inTable("catalogues");
+    table.integer("state_id").references("id").inTable("catalogues");
     table
-      .integer("user_type_sequence")
-      .references("cata_sequence")
-      .inTable("catalogue");
-    table
-      .integer("user_state_sequence")
-      .references("cata_sequence")
-      .inTable("catalogue");
-    table
-      .integer("user_identification_type_sequence")
-      .references("cata_sequence")
-      .inTable("catalogue");
-    table.string("user_identification").notNullable().unique();
-    table.string("user_email").notNullable().unique();
-    table.string("user_address").notNullable();
-    table.string("user_phone").notNullable().unique();
-    table.string("user_password").notNullable();
+      .integer("identification_type_id")
+      .references("id")
+      .inTable("catalogues");
+    table.string("identification").notNullable().unique();
+    table.string("name").notNullable();
+    table.string("email").notNullable().unique();
+    table.string("address").notNullable();
+    table.string("phone").notNullable().unique();
+    table.string("password").notNullable();
+
+    table.dateTime("createdAt").notNull();
   });
 };
 
 exports.down = (knex) => {
-  return knex.schemas.dropTableIfExists("user");
+  return knex.schemas.dropTableIfExists("users");
 };

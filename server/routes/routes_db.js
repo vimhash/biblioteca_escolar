@@ -1,6 +1,6 @@
 const express = require("express");
 let api = express.Router(),
-  control = require("../controles/crud");
+  control = require("../controllers/crud");
 
 api.get("/library", control.getDatos);
 api.get("/library_byID", control.getDatosByID);

@@ -6,7 +6,9 @@ const express = require("express"),
 
 let app = express(),
   session = require("express-session"),
-  rutas = require("../rutas/ruta"),
+  universalRoute = require("../routes/universal"),
+  cataloguesRoute = require("../routes/catalogues"),
+  // rutas = require("../rutas/ruta"),
   //   fileRoutes = require("../routes/files.routes"),
   //   courseRoutes = require("../routes/courses.routes"),
   //   userRoutes = require("../routes/users.routes"),
@@ -61,7 +63,9 @@ app.get("/", (req, res) => {
 });
 
 //Routes
-app.use("/server", rutas);
+app.use("/api", universalRoute);
+app.use("/api", cataloguesRoute);
+
 // app.use("/api", fileRoutes);
 // app.use("/api", userRoutes);
 // app.use("/api", courseRoutes);
